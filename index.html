@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>கொம்பனைப்புதூர் பண்ணை — Farm Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --soil:    #1c1209;
+  --bark:    #2d1e0a;
+  --earth:   #3d2b12;
+  --clay:    #6b4423;
+  --sand:    #c4a882;
+  --cream:   #f5edd8;
+  --parch:   #faf4e8;
+  --green:   #2d6a2f;
+  --leaf:    #4a8c3f;
+  --lime:    #7ab648;
+  --sage:    #a8c87a;
+  --amber:   #d4820a;
+  --gold:    #f0a020;
+  --saffron: #f5c040;
+  --red:     #b83232;
+  --rose:    #e05050;
+  --pink:    #f08080;
+  --blue:    #2a5a8a;
+  --sky:     #4a8ab5;
+  --mist:    #8ab8d8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--soil);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--cream);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 60px;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+.wrap { max-width: 800px; width: 100%; position: relative; z-index: 1; }
+
+/* Header */
+.hdr { text-align: center; margin-bottom: 56px; }
+.hdr-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(122,182,72,.15); border: 1px solid rgba(122,182,72,.3);
+  border-radius: 100px; padding: 5px 16px; margin-bottom: 24px;
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--lime);
+}
+.hdr-farm {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.hdr-sub {
+  font-size: 13px;
+  color: rgba(196,168,130,.8);
+  margin-bottom: 4px;
+}
+.hdr-loc {
+  font-size: 12px;
+  color: rgba(196,168,130,.55);
+}
+
+/* Tiles grid */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tile {
+  display: block;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 32px 28px;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  cursor: pointer;
+}
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+.tile::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Calendar tile — warm amber */
+.tile-calendar {
+  background: rgba(61,43,18,.5);
+  border-color: rgba(212,130,10,.3);
+}
+.tile-calendar::before { background: linear-gradient(90deg, var(--amber), var(--gold)); }
+.tile-calendar:hover { border-color: rgba(240,160,32,.6); }
+
+/* Planner tile — green */
+.tile-planner {
+  background: rgba(30,58,25,.5);
+  border-color: rgba(74,140,63,.3);
+}
+.tile-planner::before { background: linear-gradient(90deg, var(--green), var(--lime)); }
+.tile-planner:hover { border-color: rgba(122,182,72,.6); }
+
+.tile-icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+  display: block;
+  line-height: 1;
+}
+.tile-label {
+  font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.tile-calendar .tile-label { color: var(--gold); }
+.tile-planner .tile-label { color: var(--lime); }
+
+.tile-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(18px, 2.5vw, 22px);
+  color: var(--cream);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.tile-title-ta {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 13px;
+  color: var(--sand);
+  margin-bottom: 14px;
+  display: block;
+}
+.tile-desc {
+  font-size: 13px;
+  color: rgba(196,168,130,.82);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.tile-pills {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.pill {
+  font-size: 10px; padding: 3px 9px; border-radius: 100px;
+  font-weight: 500;
+}
+.tile-calendar .pill { background: rgba(212,130,10,.18); color: var(--saffron); border: 1px solid rgba(212,130,10,.25); }
+.tile-planner  .pill { background: rgba(74,140,63,.18);  color: var(--sage);    border: 1px solid rgba(74,140,63,.25); }
+
+.tile-arrow {
+  position: absolute; bottom: 28px; right: 28px;
+  font-size: 20px; opacity: .4;
+  transition: opacity .2s, transform .2s;
+}
+.tile:hover .tile-arrow { opacity: 1; transform: translate(3px, -3px); }
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 48px;
+  font-size: 11px;
+  color: rgba(196,168,130,.4);
+  line-height: 1.8;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hdr  { animation: fadeUp .5s ease both; }
+.tile { animation: fadeUp .5s ease both; }
+.tile:nth-child(1) { animation-delay: .15s; }
+.tile:nth-child(2) { animation-delay: .25s; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="hdr-badge">🐑 கொம்பனைப்புதூர் பண்ணை</div>
+    <div class="hdr-farm">ஆட்டு பண்ணை மேலாண்மை</div>
+    <div class="hdr-sub">Sheep Farm Management · Erode District · 2026</div>
+    <div class="hdr-loc">ஈரோடு மாவட்டம் · Tamil Nadu</div>
+  </div>
+
+  <div class="tiles">
+
+    <a class="tile tile-calendar" href="calendar.html">
+      <span class="tile-icon">📅</span>
+      <div class="tile-label">Market Intelligence</div>
+      <div class="tile-title">Demand Cycle Calendar</div>
+      <span class="tile-title-ta">தேவை சுழற்சி காலண்டர்</span>
+      <div class="tile-desc">Annual festival price atlas. See which months have peak, high, and low demand — with historical price bands and farm action notes for each month of 2026.</div>
+      <div class="tile-pills">
+        <span class="pill">12 Months</span>
+        <span class="pill">Festival Spikes</span>
+        <span class="pill">Price Bands</span>
+        <span class="pill">Bakrid · Deepavali</span>
+      </div>
+      <div class="tile-arrow">↗</div>
+    </a>
+
+    <a class="tile tile-planner" href="planner.html">
+      <span class="tile-icon">🧭</span>
+      <div class="tile-label">Decision Tool</div>
+      <div class="tile-title">Today's Action Planner</div>
+      <span class="tile-title-ta">இன்றே என்ன செய்வது?</span>
+      <div class="tile-desc">Tell the tool how many sheep you have, current batch weights, and budget. It tells you exactly what to do <em>today</em> to maximise profit before the next demand spike.</div>
+      <div class="tile-pills">
+        <span class="pill">Batch Tracker</span>
+        <span class="pill">Sell / Hold Advisor</span>
+        <span class="pill">Days to Festival</span>
+        <span class="pill">Profit Estimate</span>
+      </div>
+      <div class="tile-arrow">↗</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    கொம்பனைப்புதூர் பண்ணை · ஈரோடு மாவட்டம் · 2026<br>
+    Data: TANUVAS · Erode / Bhavani Market Observations
+  </div>
+
+</div>
+</body>
+</html>

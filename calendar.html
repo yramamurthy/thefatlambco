@@ -39,6 +39,20 @@ body {
   min-height: 100vh;
 }
 
+/* ── Breadcrumb nav ── */
+.nav {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 32px;
+  font-size: 13px;
+}
+.nav a {
+  color: rgba(196,168,130,.6); text-decoration: none;
+  transition: color .2s;
+}
+.nav a:hover { color: var(--sand); }
+.nav-sep  { color: rgba(196,168,130,.3); }
+.nav-curr { color: var(--gold); font-weight: 500; }
+
 /* ── Grain texture overlay ── */
 body::before {
   content: '';
@@ -342,6 +356,13 @@ body::before {
 <body>
 <div class="wrap">
 
+  <!-- Breadcrumb -->
+  <nav class="nav">
+    <a href="index.html">🏠 Home</a>
+    <span class="nav-sep">›</span>
+    <span class="nav-curr">📅 Demand Cycle Calendar</span>
+  </nav>
+
   <!-- Header -->
   <div class="hdr">
     <div class="hdr-badge">🐑 2026 Market Intelligence</div>
@@ -352,7 +373,7 @@ body::before {
 
   <!-- Legend -->
   <div class="legend">
-    <div class="leg-item"><div class="leg-swatch lvl-1" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#4a7a30,#6aaa44)"></div>சாதாரண (Low)</div>
+    <div class="leg-item"><div class="leg-swatch lvl-1" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#4a7a30,#6aaa44)"></div>சாதாரணம் (Low)</div>
     <div class="leg-item"><div class="leg-swatch" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#6a9a20,#9aca40)"></div>நடுத்தரம் (Medium)</div>
     <div class="leg-item"><div class="leg-swatch" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#c07020,#e09030)"></div>அதிகம் (High)</div>
     <div class="leg-item"><div class="leg-swatch" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#c04020,#e06030)"></div>மிக அதிகம் (Very High)</div>

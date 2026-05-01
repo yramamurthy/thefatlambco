@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>இன்றே என்ன செய்வது? — Action Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --soil:    #1c1209;
+  --bark:    #2d1e0a;
+  --earth:   #3d2b12;
+  --clay:    #6b4423;
+  --sand:    #c4a882;
+  --cream:   #f5edd8;
+  --green:   #2d6a2f;
+  --leaf:    #4a8c3f;
+  --lime:    #7ab648;
+  --sage:    #a8c87a;
+  --amber:   #d4820a;
+  --gold:    #f0a020;
+  --saffron: #f5c040;
+  --red:     #b83232;
+  --rose:    #e05050;
+  --pink:    #f08080;
+  --blue:    #2a5a8a;
+  --sky:     #4a8ab5;
+  --mist:    #8ab8d8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--soil);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--cream);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+.wrap { max-width: 960px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
+
+/* Nav */
+.nav {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 36px;
+  font-size: 13px;
+}
+.nav a {
+  color: rgba(196,168,130,.6); text-decoration: none;
+  transition: color .2s;
+}
+.nav a:hover { color: var(--sand); }
+.nav-sep { color: rgba(196,168,130,.3); }
+.nav-curr { color: var(--lime); font-weight: 500; }
+
+/* Page header */
+.hdr { margin-bottom: 36px; }
+.hdr-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(74,140,63,.15); border: 1px solid rgba(74,140,63,.3);
+  border-radius: 100px; padding: 5px 16px; margin-bottom: 16px;
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--lime);
+}
+.hdr h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(22px, 4vw, 34px);
+  color: var(--cream); margin-bottom: 4px;
+}
+.hdr h1 span { color: var(--lime); }
+.hdr-ta {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 18px; color: var(--gold); margin-bottom: 8px; font-weight: 600;
+}
+.hdr-desc { font-size: 13px; color: rgba(196,168,130,.8); max-width: 560px; line-height: 1.6; }
+
+/* Festival countdown bar */
+.fest-bar {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.fest-chip {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 10px 16px; border-radius: 12px; border: 1px solid;
+  min-width: 110px;
+}
+.fc-days { font-size: 22px; font-weight: 700; font-family: 'DM Sans', sans-serif; line-height: 1; }
+.fc-label { font-size: 10px; opacity: .8; margin-top: 3px; text-align: center; font-weight: 500; }
+.fc-name  { font-family: 'Noto Sans Tamil', sans-serif; font-size: 11px; margin-top: 2px; text-align: center; }
+
+.fc-urgent { background: rgba(184,50,50,.15); border-color: rgba(184,50,50,.4); }
+.fc-urgent .fc-days { color: var(--pink); }
+.fc-urgent .fc-label { color: var(--pink); }
+.fc-high   { background: rgba(212,130,10,.12); border-color: rgba(212,130,10,.35); }
+.fc-high   .fc-days { color: var(--saffron); }
+.fc-high   .fc-label { color: var(--saffron); }
+.fc-norm   { background: rgba(74,140,63,.1);  border-color: rgba(74,140,63,.3); }
+.fc-norm   .fc-days { color: var(--sage); }
+.fc-norm   .fc-label { color: var(--sage); }
+.fc-past   { background: rgba(100,80,50,.1);  border-color: rgba(100,80,50,.25); opacity: .5; }
+.fc-past   .fc-days { color: var(--sand); }
+.fc-past   .fc-label { color: var(--sand); }
+
+/* Section title */
+.sec-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 16px; color: var(--gold);
+  margin: 36px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(240,160,32,.2);
+  display: flex; align-items: center; gap: 12px;
+}
+.sec-title::before {
+  content: '';
+  display: block; width: 4px; height: 18px;
+  background: var(--gold); border-radius: 2px;
+}
+
+/* Input card */
+.input-card {
+  background: rgba(45,30,10,.5);
+  border: 1px solid rgba(196,168,130,.12);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 12px;
+}
+.input-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.input-card-title {
+  font-size: 14px; font-weight: 600; color: var(--cream);
+}
+.input-card-ta {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 11px; color: var(--sand); opacity: .8; margin-top: 2px;
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label {
+  font-size: 11px; color: var(--sand); font-weight: 500; letter-spacing: .03em;
+}
+.field label span {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 11px; color: rgba(196,168,130,.6); margin-left: 4px;
+}
+.field input, .field select {
+  background: rgba(28,18,9,.6);
+  border: 1px solid rgba(196,168,130,.2);
+  border-radius: 8px;
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color .2s;
+  width: 100%;
+}
+.field input:focus, .field select:focus {
+  border-color: rgba(122,182,72,.5);
+  background: rgba(28,18,9,.8);
+}
+.field input::placeholder { color: rgba(196,168,130,.35); }
+.field select option { background: #2d1e0a; }
+
+.btn-add-batch {
+  background: rgba(74,140,63,.15);
+  border: 1px dashed rgba(74,140,63,.4);
+  border-radius: 12px;
+  color: var(--lime);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 12px 20px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 8px;
+  transition: background .2s, border-color .2s;
+}
+.btn-add-batch:hover {
+  background: rgba(74,140,63,.25);
+  border-color: rgba(74,140,63,.6);
+}
+
+.btn-remove {
+  background: none; border: none;
+  color: rgba(240,80,80,.5); cursor: pointer;
+  font-size: 16px; padding: 2px 6px; border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.btn-remove:hover { color: var(--rose); background: rgba(240,80,80,.1); }
+
+/* Calculate button */
+.btn-calc {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, #2d6a2f, #4a8c3f);
+  border: 1px solid rgba(122,182,72,.4);
+  border-radius: 14px;
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600;
+  padding: 16px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: box-shadow .2s, transform .2s;
+  letter-spacing: .02em;
+}
+.btn-calc:hover {
+  box-shadow: 0 8px 30px rgba(74,140,63,.3);
+  transform: translateY(-2px);
+}
+
+/* Results */
+#results { margin-top: 10px; }
+
+.today-card {
+  border-radius: 16px;
+  border: 1px solid;
+  padding: 24px;
+  margin-bottom: 16px;
+  position: relative; overflow: hidden;
+}
+.today-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.tc-sell    { background: rgba(184,50,50,.12);  border-color: rgba(184,50,50,.4); }
+.tc-sell::before  { background: linear-gradient(90deg, var(--red), var(--rose)); }
+.tc-hold    { background: rgba(42,90,138,.12);  border-color: rgba(42,90,138,.4); }
+.tc-hold::before  { background: linear-gradient(90deg, var(--blue), var(--sky)); }
+.tc-prep    { background: rgba(212,130,10,.1);  border-color: rgba(212,130,10,.35); }
+.tc-prep::before  { background: linear-gradient(90deg, var(--amber), var(--gold)); }
+.tc-buy     { background: rgba(45,30,10,.4);    border-color: rgba(196,168,130,.2); }
+.tc-buy::before   { background: linear-gradient(90deg, var(--clay), var(--sand)); }
+
+.tc-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 14px; gap: 12px;
+}
+.tc-action-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 100px;
+}
+.badge-sell   { background: rgba(184,50,50,.25); color: var(--pink); border: 1px solid rgba(184,50,50,.4); }
+.badge-hold   { background: rgba(42,90,138,.25); color: var(--mist); border: 1px solid rgba(42,90,138,.4); }
+.badge-prep   { background: rgba(212,130,10,.25); color: var(--saffron); border: 1px solid rgba(212,130,10,.4); }
+.badge-buy    { background: rgba(100,70,30,.3); color: var(--sand); border: 1px solid rgba(100,70,30,.5); }
+
+.tc-batch-name {
+  font-size: 16px; font-weight: 600; color: var(--cream);
+  margin-bottom: 4px;
+}
+.tc-reason {
+  font-size: 13px; color: rgba(196,168,130,.85); line-height: 1.6;
+  margin-bottom: 14px;
+  font-family: 'Noto Sans Tamil', sans-serif;
+}
+.tc-stats {
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.stat-box {
+  background: rgba(0,0,0,.25);
+  border-radius: 10px; padding: 10px 14px;
+  min-width: 110px;
+}
+.stat-val { font-size: 18px; font-weight: 700; font-family: 'DM Sans', sans-serif; line-height: 1; }
+.stat-label { font-size: 10px; color: var(--sand); opacity: .8; margin-top: 4px; }
+
+/* Cash flow summary */
+.cashflow {
+  background: rgba(45,106,47,.1);
+  border: 1px solid rgba(74,140,63,.25);
+  border-radius: 16px; padding: 24px;
+  margin-bottom: 16px;
+}
+.cf-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 16px; color: var(--sage);
+  margin-bottom: 16px;
+}
+.cf-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(196,168,130,.07);
+  font-size: 13px;
+}
+.cf-row:last-child { border-bottom: none; }
+.cf-row-label { color: rgba(196,168,130,.8); font-family: 'Noto Sans Tamil', sans-serif; }
+.cf-row-val { font-weight: 600; font-family: 'DM Sans', sans-serif; }
+.cf-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 14px; margin-top: 6px;
+  border-top: 1px solid rgba(74,140,63,.3);
+  font-size: 16px; font-weight: 700;
+}
+.cf-total-val { color: var(--lime); font-family: 'DM Sans', sans-serif; font-size: 20px; }
+
+/* Next actions checklist */
+.checklist {
+  background: rgba(28,18,9,.5);
+  border: 1px solid rgba(196,168,130,.1);
+  border-radius: 16px; padding: 24px;
+  margin-bottom: 16px;
+}
+.cl-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px; color: var(--gold); margin-bottom: 16px;
+}
+.cl-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(196,168,130,.06);
+  font-size: 13px;
+}
+.cl-item:last-child { border-bottom: none; }
+.cl-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.cl-urgent .cl-num { background: rgba(184,50,50,.25); color: var(--pink); }
+.cl-high   .cl-num { background: rgba(212,130,10,.25); color: var(--saffron); }
+.cl-norm   .cl-num { background: rgba(74,140,63,.2);   color: var(--sage); }
+.cl-text { color: var(--cream); line-height: 1.5; }
+.cl-text small {
+  display: block;
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 11px; color: rgba(196,168,130,.7); margin-top: 2px;
+}
+
+/* Hidden initially */
+#results { display: none; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hdr, .fest-bar, .input-card, .btn-calc {
+  animation: fadeUp .45s ease both;
+}
+.hdr { animation-delay: .05s; }
+.fest-bar { animation-delay: .1s; }
+.input-card { animation-delay: .15s; }
+.btn-calc  { animation-delay: .2s; }
+
+@media (max-width: 600px) {
+  .input-grid { grid-template-columns: 1fr 1fr; }
+  .tc-stats   { gap: 8px; }
+  .stat-box   { min-width: 90px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html">🏠 Home</a>
+    <span class="nav-sep">›</span>
+    <span class="nav-curr">🧭 Planner</span>
+  </nav>
+
+  <!-- Header -->
+  <div class="hdr">
+    <div class="hdr-badge">🧭 Decision Tool</div>
+    <div class="hdr-ta">இன்றே என்ன செய்வது?</div>
+    <h1>Today's <span>Action Planner</span></h1>
+    <div class="hdr-desc">Enter your batches. The tool tells you whether to sell now, hold for a spike, or buy more — based on real days remaining to each festival and your sheep's current weight.</div>
+  </div>
+
+  <!-- Festival countdown (rendered by JS) -->
+  <div class="fest-bar" id="festBar"></div>
+
+  <!-- Inputs -->
+  <div class="sec-title">உங்கள் பண்ணை விவரம் <span style="font-size:12px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Your Farm Details</span></div>
+
+  <!-- Global settings -->
+  <div class="input-card">
+    <div class="input-card-header">
+      <div>
+        <div class="input-card-title">General Settings</div>
+        <div class="input-card-ta">பொது அமைப்புகள்</div>
+      </div>
+    </div>
+    <div class="input-grid">
+      <div class="field">
+        <label>Today's Date <span>இன்றைய தேதி</span></label>
+        <input type="date" id="today" />
+      </div>
+      <div class="field">
+        <label>Daily Weight Gain (kg/day) <span>தினசரி எடை</span></label>
+        <input type="number" id="dailyGain" value="0.08" step="0.01" min="0.02" max="0.2" />
+      </div>
+      <div class="field">
+        <label>Feed Cost / day / sheep (₹) <span>தீவன செலவு</span></label>
+        <input type="number" id="feedCost" value="35" step="5" min="10" />
+      </div>
+      <div class="field">
+        <label>Current Base Price (₹/kg) <span>இப்போது சந்தை விலை</span></label>
+        <input type="number" id="basePrice" value="580" step="10" min="300" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Batch cards (dynamic) -->
+  <div id="batchContainer"></div>
+
+  <button class="btn-add-batch" id="addBatch">+ Add Another Batch &nbsp;<span style="font-family:'Noto Sans Tamil',sans-serif;font-size:12px">மேலும் ஒரு தொகுதி சேர்க்கவும்</span></button>
+
+  <!-- Calculate -->
+  <button class="btn-calc" id="calcBtn" onclick="calculate()">
+    🧭 &nbsp;Calculate — இன்றே என்ன செய்வது?
+  </button>
+
+  <!-- Results -->
+  <div id="results">
+    <div class="sec-title" style="margin-top:40px">இன்றைய பரிந்துரை <span style="font-size:12px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Today's Recommendations</span></div>
+    <div id="batchResults"></div>
+    <div id="cashflowDiv"></div>
+    <div id="checklistDiv"></div>
+  </div>
+
+</div>
+
+<script>
+// ── Festival data ─────────────────────────────────────────────
+const FESTIVALS = [
+  { name: 'பக்ரீத்',     eng: 'Bakrid',       date: '2026-05-27', priceMult: 2.0,  demandDays: 42, icon: '🐏' },
+  { name: 'தீபாவளி',    eng: 'Deepavali',    date: '2026-11-08', priceMult: 1.45, demandDays: 21, icon: '🎆' },
+  { name: 'கிறிஸ்துமஸ்', eng: 'Christmas',    date: '2026-12-25', priceMult: 1.20, demandDays: 14, icon: '🎄' },
+  { name: 'பொங்கல்',    eng: 'Pongal 2027',  date: '2027-01-14', priceMult: 1.30, demandDays: 14, icon: '🌾' },
+];
+
+function daysBetween(a, b) {
+  return Math.round((b - a) / 86400000);
+}
+
+function today() {
+  return new Date(document.getElementById('today').value + 'T00:00:00');
+}
+
+function festChipClass(days) {
+  if (days < 0)   return 'fc-past';
+  if (days <= 21) return 'fc-urgent';
+  if (days <= 45) return 'fc-high';
+  return 'fc-norm';
+}
+
+function renderFestBar() {
+  const t = today();
+  const bar = document.getElementById('festBar');
+  bar.innerHTML = FESTIVALS.map(f => {
+    const fd = new Date(f.date + 'T00:00:00');
+    const d  = daysBetween(t, fd);
+    const cls = festChipClass(d);
+    const label = d < 0 ? `${Math.abs(d)} days ago` : `${d} days away`;
+    return `
+      <div class="fest-chip ${cls}">
+        <div class="fc-days">${d < 0 ? '✓' : d}</div>
+        <div class="fc-label">${d < 0 ? 'Passed' : label}</div>
+        <div class="fc-name">${f.icon} ${f.name}</div>
+      </div>`;
+  }).join('');
+}
+
+// ── Batch management ──────────────────────────────────────────
+let batchCount = 0;
+
+function addBatch(defaults = {}) {
+  batchCount++;
+  const id = batchCount;
+  const n  = defaults.n    || '';
+  const wt = defaults.wt   || '';
+  const ct = defaults.ct   || '';
+  const nm = defaults.name || `Batch ${id}`;
+
+  const card = document.createElement('div');
+  card.className = 'input-card';
+  card.id = `batch-${id}`;
+  card.dataset.batchId = id;
+  card.innerHTML = `
+    <div class="input-card-header">
+      <div>
+        <div class="input-card-title">
+          <input type="text" value="${nm}" id="bname-${id}" style="background:none;border:none;color:var(--cream);font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;width:160px;outline:none;padding:0;" />
+        </div>
+        <div class="input-card-ta">தொகுதி விவரம்</div>
+      </div>
+      <button class="btn-remove" onclick="removeBatch(${id})" title="Remove batch">✕</button>
+    </div>
+    <div class="input-grid">
+      <div class="field">
+        <label>No. of Sheep <span>ஆடுகள் எண்ணிக்கை</span></label>
+        <input type="number" id="bcount-${id}" value="${n}" min="1" max="500" placeholder="e.g. 20" />
+      </div>
+      <div class="field">
+        <label>Avg Weight Now (kg) <span>தற்போதைய எடை</span></label>
+        <input type="number" id="bwt-${id}" value="${wt}" min="5" max="60" step="0.5" placeholder="e.g. 18" />
+      </div>
+      <div class="field">
+        <label>Avg Cost / sheep (₹) <span>வாங்கிய விலை</span></label>
+        <input type="number" id="bcost-${id}" value="${ct}" min="1000" max="30000" step="500" placeholder="e.g. 6500" />
+      </div>
+      <div class="field">
+        <label>Batch Age (days in farm) <span>பண்ணையில் நாட்கள்</span></label>
+        <input type="number" id="bage-${id}" value="" min="0" max="365" placeholder="e.g. 45" />
+      </div>
+    </div>
+  `;
+  document.getElementById('batchContainer').appendChild(card);
+}
+
+function removeBatch(id) {
+  const el = document.getElementById(`batch-${id}`);
+  if (el) el.remove();
+}
+
+// ── Core logic ────────────────────────────────────────────────
+function getBatches() {
+  const cards = document.querySelectorAll('#batchContainer .input-card');
+  return Array.from(cards).map(card => {
+    const id = card.dataset.batchId;
+    return {
+      id,
+      name:  document.getElementById(`bname-${id}`)?.value  || `Batch ${id}`,
+      count: parseFloat(document.getElementById(`bcount-${id}`)?.value) || 0,
+      wt:    parseFloat(document.getElementById(`bwt-${id}`)?.value)    || 0,
+      cost:  parseFloat(document.getElementById(`bcost-${id}`)?.value)  || 0,
+      age:   parseFloat(document.getElementById(`bage-${id}`)?.value)   || 0,
+    };
+  }).filter(b => b.count > 0 && b.wt > 0);
+}
+
+function nearestUpcomingFestival(t) {
+  const sorted = FESTIVALS
+    .map(f => ({ ...f, days: daysBetween(t, new Date(f.date + 'T00:00:00')) }))
+    .filter(f => f.days >= -7)
+    .sort((a, b) => a.days - b.days);
+  return sorted[0] || null;
+}
+
+function allUpcomingFestivals(t) {
+  return FESTIVALS
+    .map(f => ({ ...f, days: daysBetween(t, new Date(f.date + 'T00:00:00')) }))
+    .filter(f => f.days >= 0)
+    .sort((a, b) => a.days - b.days);
+}
+
+function projectWeight(wt, days, dailyGain) {
+  return wt + days * dailyGain;
+}
+
+function projectPrice(basePrice, festMult, daysToFest) {
+  // Price ramps up in the last demandDays before festival, then returns to base
+  if (daysToFest <= 0) return basePrice;
+  if (daysToFest > 60) return basePrice;
+  // Linear ramp from base to peak over 60→0 days
+  const rampFactor = 1 + (festMult - 1) * Math.max(0, (60 - daysToFest) / 60);
+  return basePrice * rampFactor;
+}
+
+function adviseBatch(batch, t, dailyGain, feedCost, basePrice) {
+  const fests = allUpcomingFestivals(t);
+  if (!fests.length) return { action: 'hold', reason: 'No upcoming festivals found.', bestFest: null };
+
+  const TARGET_SELL_WEIGHT = 25; // kg — typical market-ready weight
+  const daysToTarget = Math.max(0, Math.ceil((TARGET_SELL_WEIGHT - batch.wt) / dailyGain));
+
+  // Evaluate each upcoming festival: net revenue if sold at that festival vs. sell today
+  const today_price    = basePrice;
+  const today_revenue  = batch.wt * today_price * batch.count;
+  const today_cost_inv = batch.cost * batch.count;
+  const today_profit   = today_revenue - today_cost_inv;
+
+  let best = null;
+  for (const f of fests) {
+    if (f.days > 120) break; // don't look more than 4 months ahead
+    const wAtFest     = projectWeight(batch.wt, f.days, dailyGain);
+    const pAtFest     = projectPrice(basePrice, f.priceMult, 0); // at festival price = peak
+    const feedUntil   = feedCost * batch.count * f.days;
+    const revenue     = wAtFest * pAtFest * batch.count;
+    const profit      = revenue - today_cost_inv - feedUntil;
+    const profitDelta = profit - today_profit;
+
+    if (!best || profitDelta > best.profitDelta) {
+      best = { fest: f, wAtFest, pAtFest, feedUntil, revenue, profit, profitDelta };
+    }
+  }
+
+  // Minimum weight gate
+  const readyNow = batch.wt >= 20;
+
+  // Decision logic
+  let action, reason, urgency;
+
+  const nearFest = fests[0];
+
+  if (nearFest && nearFest.days <= 7 && readyNow) {
+    action = 'sell';
+    urgency = 'urgent';
+    reason = `${nearFest.icon} ${nearFest.name} (${nearFest.eng}) is in ${nearFest.days} day${nearFest.days===1?'':'s'}! Sell NOW at peak price. விலை உச்சத்தில் உடனே விற்கவும்.`;
+  } else if (nearFest && nearFest.days <= nearFest.demandDays && readyNow && best && best.profitDelta > 2000) {
+    action = 'sell';
+    urgency = 'high';
+    reason = `${nearFest.icon} ${nearFest.name} demand window active (${nearFest.days} days away). Ready-weight sheep should go to market now. சந்தை தேவை அதிகமாக உள்ளது — விற்கவும்.`;
+  } else if (best && best.profitDelta > 5000 && best.fest.days > 14) {
+    action = 'hold';
+    urgency = 'high';
+    reason = `Hold for ${best.fest.icon} ${best.fest.name} in ${best.fest.days} days. Estimated extra profit: ₹${Math.round(best.profitDelta).toLocaleString('en-IN')} by fattening until then. ${best.fest.name} வரை வளர்க்கவும் — கூடுதல் லாபம் கிடைக்கும்.`;
+  } else if (!readyNow) {
+    action = 'hold';
+    urgency = 'norm';
+    reason = `Sheep are under 20 kg (current: ${batch.wt} kg). Keep feeding — ~${daysToTarget} more days to reach market weight. ஆடுகள் இன்னும் தயாரில்லை. தொடர்ந்து வளர்க்கவும்.`;
+  } else if (fests.length && fests[0].days <= 45) {
+    action = 'prep';
+    urgency = 'norm';
+    reason = `${fests[0].icon} ${fests[0].name} in ${fests[0].days} days. Start contacting buyers now — pre-book for festival price. முன்பதிவு செய்யுங்கள்.`;
+  } else {
+    action = 'hold';
+    urgency = 'norm';
+    reason = `No immediate spike. Keep fattening and reduce feed costs. Market is calm — இப்போது பொறுமையாக இருங்கள்.`;
+  }
+
+  return { action, urgency, reason, best, today_profit, today_price };
+}
+
+function calculate() {
+  const t         = today();
+  const dailyGain = parseFloat(document.getElementById('dailyGain').value) || 0.08;
+  const feedCost  = parseFloat(document.getElementById('feedCost').value)  || 35;
+  const basePrice = parseFloat(document.getElementById('basePrice').value) || 580;
+  const batches   = getBatches();
+
+  if (!batches.length) {
+    alert('Please add at least one batch with sheep count and weight.');
+    return;
+  }
+
+  renderFestBar();
+
+  const resultsEl  = document.getElementById('results');
+  const batchResEl = document.getElementById('batchResults');
+  batchResEl.innerHTML = '';
+
+  let totalSellRevenue = 0, totalCostBasis = 0, totalFeedCost = 0, totalSheep = 0;
+  const checklist = [];
+
+  batches.forEach(b => {
+    const adv = adviseBatch(b, t, dailyGain, feedCost, basePrice);
+    totalSheep++;
+
+    const actionLabel = { sell: 'SELL NOW', hold: 'HOLD', prep: 'PREPARE TO SELL', buy: 'BUY OPPORTUNITY' }[adv.action];
+    const badgeCls    = `badge-${adv.action}`;
+    const cardCls     = `tc-${adv.action}`;
+
+    // Financials
+    const sellRevNow  = b.wt * basePrice * b.count;
+    const costBasis   = b.cost * b.count;
+    const profitNow   = sellRevNow - costBasis;
+
+    let bestRevStr = '—', bestPriceStr = '—', bestDaysStr = '—', bestWtStr = '—';
+    if (adv.best) {
+      bestRevStr   = `₹${Math.round(adv.best.revenue).toLocaleString('en-IN')}`;
+      bestPriceStr = `₹${Math.round(adv.best.pAtFest)}/kg`;
+      bestDaysStr  = `${adv.best.fest.days} days`;
+      bestWtStr    = `~${adv.best.wAtFest.toFixed(1)} kg`;
+    }
+
+    const profitColor = profitNow >= 0 ? 'var(--lime)' : 'var(--pink)';
+
+    batchResEl.innerHTML += `
+      <div class="today-card ${cardCls}">
+        <div class="tc-header">
+          <div>
+            <div class="tc-batch-name">${b.name} &nbsp;<span style="font-size:12px;color:var(--sand);font-weight:400">${b.count} sheep · ${b.wt} kg avg</span></div>
+          </div>
+          <div class="tc-action-badge ${badgeCls}">${actionLabel}</div>
+        </div>
+        <div class="tc-reason">${adv.reason}</div>
+        <div class="tc-stats">
+          <div class="stat-box">
+            <div class="stat-val" style="color:${profitColor}">₹${Math.round(profitNow).toLocaleString('en-IN')}</div>
+            <div class="stat-label">Profit if sold today</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" style="color:var(--sand)">₹${Math.round(sellRevNow).toLocaleString('en-IN')}</div>
+            <div class="stat-label">Revenue at ₹${basePrice}/kg</div>
+          </div>
+          ${adv.best ? `
+          <div class="stat-box">
+            <div class="stat-val" style="color:var(--saffron)">${bestRevStr}</div>
+            <div class="stat-label">Revenue at ${adv.best.fest.name}</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" style="color:var(--mist)">${bestDaysStr}</div>
+            <div class="stat-label">Days to ${adv.best.fest.eng}</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" style="color:var(--sage)">${bestWtStr}</div>
+            <div class="stat-label">Weight at festival</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" style="color:var(--lime)">+₹${Math.round(adv.best.profitDelta).toLocaleString('en-IN')}</div>
+            <div class="stat-label">Extra profit by waiting</div>
+          </div>` : ''}
+        </div>
+      </div>
+    `;
+
+    if (adv.action === 'sell') {
+      totalSellRevenue += sellRevNow;
+      totalCostBasis   += costBasis;
+      checklist.push({ urgency: adv.urgency === 'urgent' ? 'urgent' : 'high',
+        text: `Sell ${b.name} (${b.count} sheep)`, sub: adv.reason });
+    } else if (adv.action === 'hold' || adv.action === 'prep') {
+      const daysHold = adv.best ? adv.best.fest.days : 30;
+      totalFeedCost += feedCost * b.count * daysHold;
+      checklist.push({ urgency: 'norm',
+        text: `${adv.action === 'prep' ? 'Pre-book buyers for' : 'Continue fattening'} ${b.name}`,
+        sub: adv.reason });
+    }
+  });
+
+  // Cashflow summary
+  const netProfit = totalSellRevenue - totalCostBasis;
+  document.getElementById('cashflowDiv').innerHTML = `
+    <div class="cashflow">
+      <div class="cf-title">💰 Projected Cash Flow Summary</div>
+      ${totalSellRevenue > 0 ? `
+      <div class="cf-row">
+        <span class="cf-row-label">Expected sell revenue (sell-now batches)</span>
+        <span class="cf-row-val" style="color:var(--lime)">₹${Math.round(totalSellRevenue).toLocaleString('en-IN')}</span>
+      </div>
+      <div class="cf-row">
+        <span class="cf-row-label">Purchase cost (sell-now batches)</span>
+        <span class="cf-row-val" style="color:var(--pink)">−₹${Math.round(totalCostBasis).toLocaleString('en-IN')}</span>
+      </div>` : ''}
+      ${totalFeedCost > 0 ? `
+      <div class="cf-row">
+        <span class="cf-row-label">Feed costs until target festival (hold batches)</span>
+        <span class="cf-row-val" style="color:var(--sand)">−₹${Math.round(totalFeedCost).toLocaleString('en-IN')}</span>
+      </div>` : ''}
+      <div class="cf-total">
+        <span style="font-family:'Noto Sans Tamil',sans-serif;font-size:13px;color:var(--sand)">Net Profit (sell-now batches)</span>
+        <span class="cf-total-val">${netProfit >= 0 ? '+' : ''}₹${Math.round(netProfit).toLocaleString('en-IN')}</span>
+      </div>
+    </div>
+  `;
+
+  // Checklist
+  const priorityOrder = { urgent: 0, high: 1, norm: 2 };
+  checklist.sort((a, b) => priorityOrder[a.urgency] - priorityOrder[b.urgency]);
+
+  // Add standing checklist items
+  const fests = allUpcomingFestivals(t);
+  if (fests[0] && fests[0].days <= 45) {
+    checklist.push({ urgency: 'high',
+      text: `Contact buyers / mandis for ${fests[0].name} (${fests[0].days} days away)`,
+      sub: 'பண்டிகை வாடிக்கையாளர்களிடம் தொடர்பு கொள்ளுங்கள்' });
+  }
+  checklist.push({ urgency: 'norm', text: 'Record today\'s weights in farm log', sub: 'எடை குறிப்பேட்டில் பதிவு செய்யுங்கள்' });
+  checklist.push({ urgency: 'norm', text: 'Check feed and water supply for next 3 days', sub: 'தீவனம் மற்றும் தண்ணீர் இருப்பு சரிபாருங்கள்' });
+
+  document.getElementById('checklistDiv').innerHTML = `
+    <div class="checklist">
+      <div class="cl-title">✅ Today's Action Checklist</div>
+      ${checklist.map((item, i) => `
+        <div class="cl-item cl-${item.urgency}">
+          <div class="cl-num">${i + 1}</div>
+          <div class="cl-text">
+            ${item.text}
+            <small>${item.sub}</small>
+          </div>
+        </div>`).join('')}
+    </div>
+  `;
+
+  resultsEl.style.display = 'block';
+  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Init ──────────────────────────────────────────────────────
+(function init() {
+  // Set today's date
+  const now = new Date();
+  const iso = now.toISOString().slice(0, 10);
+  document.getElementById('today').value = iso;
+
+  // Add a default batch
+  addBatch({ n: 15, wt: 18, ct: 6500, name: 'Batch 1' });
+
+  // Bind add-batch button
+  document.getElementById('addBatch').addEventListener('click', () => addBatch());
+
+  // Render festival bar on date change
+  document.getElementById('today').addEventListener('change', renderFestBar);
+
+  // Initial festival bar render
+  renderFestBar();
+})();
+</script>
+</body>
+</html>
