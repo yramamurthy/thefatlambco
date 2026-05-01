@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ஆட்டு தேவை சுழற்சி காலண்டர் — தமிழ்நாடு 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --soil:    #1c1209;
+  --bark:    #2d1e0a;
+  --earth:   #3d2b12;
+  --clay:    #6b4423;
+  --sand:    #c4a882;
+  --cream:   #f5edd8;
+  --parch:   #faf4e8;
+  --green:   #2d6a2f;
+  --leaf:    #4a8c3f;
+  --lime:    #7ab648;
+  --sage:    #a8c87a;
+  --amber:   #d4820a;
+  --gold:    #f0a020;
+  --saffron: #f5c040;
+  --red:     #b83232;
+  --rose:    #e05050;
+  --pink:    #f08080;
+  --blue:    #2a5a8a;
+  --sky:     #4a8ab5;
+  --mist:    #8ab8d8;
+  --purple:  #6a3a8a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--soil);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--cream);
+  min-height: 100vh;
+}
+
+/* ── Grain texture overlay ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 20px 80px; position: relative; z-index: 1; }
+
+/* ── Header ── */
+.hdr { text-align: center; margin-bottom: 56px; }
+.hdr-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(122,182,72,.15); border: 1px solid rgba(122,182,72,.3);
+  border-radius: 100px; padding: 5px 16px; margin-bottom: 20px;
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--lime);
+}
+.hdr h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(28px, 5vw, 46px);
+  line-height: 1.15;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.hdr h1 span { color: var(--gold); font-style: italic; }
+.hdr-tamil {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 15px; color: var(--sand); margin-bottom: 14px;
+}
+.hdr-sub { font-size: 13px; color: rgba(196,168,130,.85); font-weight: 400; }
+
+/* ── Demand legend ── */
+.legend {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.leg-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; color: var(--sand); font-weight: 500;
+}
+.leg-swatch { width: 28px; height: 10px; border-radius: 3px; }
+
+/* ── Main calendar grid ── */
+.cal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin-bottom: 48px;
+}
+
+.month-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 220px;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(196,168,130,.1);
+  transition: border-color .2s;
+  cursor: default;
+}
+.month-row:hover { border-color: rgba(240,160,32,.35); }
+
+.month-label {
+  background: rgba(45,30,10,.6);
+  padding: 14px 16px;
+  border-right: 1px solid rgba(196,168,130,.1);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.m-name {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--cream);
+  line-height: 1.2;
+}
+.m-eng { font-size: 11px; color: var(--sand); margin-top: 2px; opacity: .85; }
+.m-num { font-size: 10px; color: var(--sand); opacity: .7; margin-top: 2px; }
+
+.bar-area {
+  background: rgba(28,18,9,.5);
+  padding: 14px 20px;
+  display: flex; flex-direction: column; justify-content: center; gap: 8px;
+  border-right: 1px solid rgba(196,168,130,.08);
+}
+
+.demand-bar-wrap { display: flex; align-items: center; gap: 10px; }
+.bar-label { font-size: 11px; color: var(--sand); opacity: .85; width: 42px; text-align: right; flex-shrink: 0; }
+.bar-track {
+  flex: 1; height: 8px;
+  background: rgba(196,168,130,.08);
+  border-radius: 100px; overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%; border-radius: 100px;
+  transition: width .6s ease;
+  position: relative;
+}
+.bar-fill::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent 60%, rgba(255,255,255,.25));
+  border-radius: 100px;
+}
+.bar-pct { font-size: 11px; width: 32px; color: var(--sand); opacity: .9; }
+
+/* bar colors by level */
+.lvl-1 { background: linear-gradient(90deg, #4a7a30, #6aaa44); }
+.lvl-2 { background: linear-gradient(90deg, #6a9a20, #9aca40); }
+.lvl-3 { background: linear-gradient(90deg, #c07020, #e09030); }
+.lvl-4 { background: linear-gradient(90deg, #c04020, #e06030); }
+.lvl-5 { background: linear-gradient(90deg, #8b0000, #cc2020); }
+
+.info-area {
+  background: rgba(45,30,10,.4);
+  padding: 14px 16px;
+  display: flex; flex-direction: column; justify-content: center; gap: 4px;
+}
+
+.festival-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 600;
+  border-radius: 6px; padding: 3px 8px;
+  font-family: 'Noto Sans Tamil', sans-serif;
+  width: fit-content; margin-bottom: 2px;
+}
+.ft-red    { background: rgba(184,50,50,.25); color: #f08080; border: 1px solid rgba(184,50,50,.3); }
+.ft-gold   { background: rgba(212,130,10,.25); color: #f5c040; border: 1px solid rgba(212,130,10,.3); }
+.ft-green  { background: rgba(74,140,63,.25); color: #a8d870; border: 1px solid rgba(74,140,63,.3); }
+.ft-blue   { background: rgba(42,90,138,.25); color: #8ab8d8; border: 1px solid rgba(42,90,138,.3); }
+.ft-purple { background: rgba(106,58,138,.25); color: #c090e8; border: 1px solid rgba(106,58,138,.3); }
+.ft-none   { color: rgba(196,168,130,.7); font-size: 11px; font-style: italic; }
+
+.farm-action {
+  font-size: 11px; color: rgba(196,168,130,.8);
+  margin-top: 3px; line-height: 1.5;
+  font-family: 'Noto Sans Tamil', sans-serif;
+}
+
+/* ── Price band ── */
+.price-band {
+  display: flex; align-items: center; gap: 10px; margin-top: 6px;
+}
+.price-range {
+  font-size: 12px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+}
+.price-arrow {
+  font-size: 9px; padding: 2px 6px; border-radius: 4px;
+  font-weight: 700; letter-spacing: .04em;
+}
+.pa-up   { background: rgba(184,50,50,.2); color: #f08080; }
+.pa-norm { background: rgba(74,140,63,.2); color: #a8d870; }
+.pa-low  { background: rgba(42,90,138,.2); color: #8ab8d8; }
+
+/* ── Section dividers ── */
+.sec-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px; color: var(--gold);
+  margin: 52px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(240,160,32,.2);
+  display: flex; align-items: center; gap: 12px;
+}
+.sec-title::before {
+  content: '';
+  display: block; width: 4px; height: 22px;
+  background: var(--gold); border-radius: 2px;
+}
+
+/* ── Festival spike cards ── */
+.spike-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.spike-card {
+  border-radius: 14px; padding: 20px;
+  border: 1px solid; position: relative; overflow: hidden;
+}
+.spike-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.sc-red    { background: rgba(184,50,50,.1);  border-color: rgba(184,50,50,.3); }
+.sc-red::before  { background: var(--red); }
+.sc-gold   { background: rgba(212,130,10,.1); border-color: rgba(212,130,10,.3); }
+.sc-gold::before { background: var(--gold); }
+.sc-green  { background: rgba(74,140,63,.1);  border-color: rgba(74,140,63,.3); }
+.sc-green::before{ background: var(--leaf); }
+.sc-blue   { background: rgba(42,90,138,.1);  border-color: rgba(42,90,138,.3); }
+.sc-blue::before { background: var(--sky); }
+.sc-purple { background: rgba(106,58,138,.1); border-color: rgba(106,58,138,.3); }
+.sc-purple::before{ background: var(--purple); }
+
+.spike-icon { font-size: 28px; margin-bottom: 10px; }
+.spike-name {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--cream);
+  margin-bottom: 3px;
+}
+.spike-date { font-size: 11px; color: var(--sand); opacity: .9; margin-bottom: 10px; }
+.spike-stat {
+  font-size: 22px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 2px;
+}
+.spike-sub { font-size: 11px; color: var(--sand); opacity: .8; }
+.spike-tip {
+  margin-top: 12px; padding-top: 10px;
+  border-top: 1px solid rgba(196,168,130,.15);
+  font-size: 11px; color: rgba(196,168,130,.85);
+  font-family: 'Noto Sans Tamil', sans-serif;
+  line-height: 1.6;
+}
+
+/* ── Strategy table ── */
+.strat-table {
+  width: 100%; border-collapse: collapse;
+  background: rgba(28,18,9,.6);
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid rgba(196,168,130,.1);
+  margin-bottom: 48px;
+}
+.strat-table th {
+  background: rgba(45,106,47,.4);
+  padding: 12px 16px; text-align: left;
+  font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--sage); border-bottom: 1px solid rgba(196,168,130,.1);
+}
+.strat-table td {
+  padding: 12px 16px; font-size: 12px;
+  border-bottom: 1px solid rgba(196,168,130,.08);
+  color: rgba(196,168,130,.92);
+  font-family: 'Noto Sans Tamil', sans-serif;
+  vertical-align: top; line-height: 1.5;
+}
+.strat-table tr:last-child td { border-bottom: none; }
+.strat-table tr:hover td { background: rgba(240,160,32,.04); }
+.td-month { color: var(--gold); font-weight: 600; font-family: 'DM Sans', sans-serif; font-size: 11px; }
+.td-action { color: var(--cream); font-weight: 500; }
+
+/* ── Demand score ring ── */
+.score-rings {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  margin-bottom: 48px;
+}
+.ring-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.ring-svg { transform: rotate(-90deg); }
+.ring-center {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; font-family: 'DM Sans', sans-serif;
+}
+.ring-container { position: relative; width: 60px; height: 60px; }
+.ring-abbr {
+  font-size: 10px; color: var(--sand); text-align: center;
+  font-family: 'Noto Sans Tamil', sans-serif;
+  line-height: 1.3;
+}
+
+/* ── Footer note ── */
+.footer-note {
+  background: rgba(45,106,47,.12); border: 1px solid rgba(74,140,63,.2);
+  border-radius: 12px; padding: 18px 20px;
+  font-size: 12px; color: rgba(196,168,130,.88);
+  line-height: 1.7; font-family: 'Noto Sans Tamil', sans-serif;
+}
+.footer-note strong { color: var(--sage); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.month-row { animation: fadeUp .5s ease both; }
+.month-row:nth-child(1)  { animation-delay: .05s; }
+.month-row:nth-child(2)  { animation-delay: .09s; }
+.month-row:nth-child(3)  { animation-delay: .13s; }
+.month-row:nth-child(4)  { animation-delay: .17s; }
+.month-row:nth-child(5)  { animation-delay: .21s; }
+.month-row:nth-child(6)  { animation-delay: .25s; }
+.month-row:nth-child(7)  { animation-delay: .29s; }
+.month-row:nth-child(8)  { animation-delay: .33s; }
+.month-row:nth-child(9)  { animation-delay: .37s; }
+.month-row:nth-child(10) { animation-delay: .41s; }
+.month-row:nth-child(11) { animation-delay: .45s; }
+.month-row:nth-child(12) { animation-delay: .49s; }
+
+@media (max-width: 680px) {
+  .month-row { grid-template-columns: 90px 1fr; }
+  .info-area { display: none; }
+  .score-rings { grid-template-columns: repeat(6, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="hdr">
+    <div class="hdr-badge">🐑 2026 Market Intelligence</div>
+    <h1>தமிழ்நாடு ஆட்டு<br><span>தேவை சுழற்சி காலண்டர்</span></h1>
+    <div class="hdr-tamil">Tamil Nadu Sheep Demand Cycle · Festival Price Atlas · Farm Action Guide</div>
+    <div class="hdr-sub">கொம்பனைப்புதூர் பண்ணை · ஈரோடு மாவட்டம் · 2026</div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="leg-item"><div class="leg-swatch lvl-1" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#4a7a30,#6aaa44)"></div>சாதாரண (Low)</div>
+    <div class="leg-item"><div class="leg-swatch" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#6a9a20,#9aca40)"></div>நடுத்தரம் (Medium)</div>
+    <div class="leg-item"><div class="leg-swatch" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#c07020,#e09030)"></div>அதிகம் (High)</div>
+    <div class="leg-item"><div class="leg-swatch" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#c04020,#e06030)"></div>மிக அதிகம் (Very High)</div>
+    <div class="leg-item"><div class="leg-swatch" style="width:28px;height:10px;border-radius:3px;background:linear-gradient(90deg,#8b0000,#cc2020)"></div>உச்சம் (Peak)</div>
+  </div>
+
+  <!-- Main Calendar -->
+  <div class="cal-grid">
+
+    <!-- JAN -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">ஜனவரி</div>
+        <div class="m-eng">January</div>
+        <div class="m-num">தை · Thai</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-4" style="width:82%"></div></div>
+          <div class="bar-pct">82%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-4" style="width:78%"></div></div>
+          <div class="bar-pct">78%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#f08080">₹660–720/கி.கி.</div>
+          <div class="price-arrow pa-up">▲ HIGH</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-gold">🌾 பொங்கல் — ஜன. 14–17</div>
+        <div class="festival-tag ft-green">🐄 மாட்டுப் பொங்கல் — ஜன. 15</div>
+        <div class="farm-action">குட்டி ஈனுதல் நடுவில். தொகுதி 4 அனுப்பு. பண்டிகை இரண்டு வாரம் முன் விற்கவும்.</div>
+      </div>
+    </div>
+
+    <!-- FEB -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">பிப்ரவரி</div>
+        <div class="m-eng">February</div>
+        <div class="m-num">மாசி · Maasi</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:42%"></div></div>
+          <div class="bar-pct">42%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:45%"></div></div>
+          <div class="bar-pct">45%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#a8d870">₹570–600/கி.கி.</div>
+          <div class="price-arrow pa-norm">→ NORM</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-blue">🌊 மாசி மகம் — பிப். 3</div>
+        <div class="festival-tag ft-none">சந்தை தேவை குறைவு</div>
+        <div class="farm-action">குட்டி பராமரிப்பு. தொகுதி 1 வாங்கல் திட்டம். கோடை தீவனம் கையிருப்பு.</div>
+      </div>
+    </div>
+
+    <!-- MAR -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">மார்ச்</div>
+        <div class="m-eng">March</div>
+        <div class="m-num">பங்குனி · Panguni</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:48%"></div></div>
+          <div class="bar-pct">48%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:50%"></div></div>
+          <div class="bar-pct">50%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#a8d870">₹580–615/கி.கி.</div>
+          <div class="price-arrow pa-norm">→ NORM</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-blue">🌙 ரம்ஜான் — மார். 21 ஆரம்பம்</div>
+        <div class="festival-tag ft-green">🌸 பங்குனி உத்திரம்</div>
+        <div class="farm-action">ரம்ஜான் தேவை மெதுவாக உயரும். ஃப்ளஷிங் தயார். இணைவு பருவம் திட்டம்.</div>
+      </div>
+    </div>
+
+    <!-- APR -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">ஏப்ரல்</div>
+        <div class="m-eng">April</div>
+        <div class="m-num">சித்திரை · Chithirai</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-3" style="width:65%"></div></div>
+          <div class="bar-pct">65%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-3" style="width:68%"></div></div>
+          <div class="bar-pct">68%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#e09030">₹620–660/கி.கி.</div>
+          <div class="price-arrow pa-up">▲ HIGH</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-green">🎊 தமிழ் புத்தாண்டு — ஏப். 14</div>
+        <div class="festival-tag ft-purple">💒 திருமண சீசன் ஆரம்பம்</div>
+        <div class="farm-action">பொதுவிழா + திருமண தேவை. தொகுதி 1 அனுப்புதல். இணைவு சீசன் 1 தொடக்கம்.</div>
+      </div>
+    </div>
+
+    <!-- MAY — BAKRID PEAK -->
+    <div class="month-row" style="border-color:rgba(184,50,50,.5);">
+      <div class="month-label" style="background:rgba(120,20,20,.5)">
+        <div class="m-name">மே</div>
+        <div class="m-eng">May</div>
+        <div class="m-num">வைகாசி · Vaikasi</div>
+      </div>
+      <div class="bar-area" style="background:rgba(120,20,20,.3)">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-5" style="width:98%"></div></div>
+          <div class="bar-pct" style="color:#f08080;font-weight:700">98%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-5" style="width:95%"></div></div>
+          <div class="bar-pct" style="color:#f08080;font-weight:700">95%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#f08080;font-size:14px;font-weight:700">₹800–1,200/கி.கி.</div>
+          <div class="price-arrow pa-up">🔥 PEAK</div>
+        </div>
+      </div>
+      <div class="info-area" style="background:rgba(120,20,20,.25)">
+        <div class="festival-tag ft-red">🐏 பக்ரீத் — மே 28, 2026</div>
+        <div class="farm-action" style="color:rgba(240,160,130,.8);font-weight:600">ஆண்டின் மிக உயர்ந்த தேவை! 3–4 வாரம் முன்பே விற்பனை ஒப்பந்தம். கடா ஆட்டுக்கு ₹10K–75K வரை.</div>
+      </div>
+    </div>
+
+    <!-- JUN -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">ஜூன்</div>
+        <div class="m-eng">June</div>
+        <div class="m-num">ஆனி · Aani</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-1" style="width:30%"></div></div>
+          <div class="bar-pct">30%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-1" style="width:35%"></div></div>
+          <div class="bar-pct">35%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#8ab8d8">₹540–570/கி.கி.</div>
+          <div class="price-arrow pa-low">▼ LOW</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-blue">🌧️ மழைக்காலம் தொடக்கம்</div>
+        <div class="festival-tag ft-none">பக்ரீத் பின் தேவை குறைவு</div>
+        <div class="farm-action">மலிவான விலையில் ஆடு வாங்கவும். மழை வடிகால் சரி. foot rot கவனிப்பு.</div>
+      </div>
+    </div>
+
+    <!-- JUL -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">ஜூலை</div>
+        <div class="m-eng">July</div>
+        <div class="m-num">ஆடி · Aadi</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-1" style="width:35%"></div></div>
+          <div class="bar-pct">35%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:42%"></div></div>
+          <div class="bar-pct">42%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#8ab8d8">₹550–580/கி.கி.</div>
+          <div class="price-arrow pa-low">▼ LOW</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-purple">🌺 ஆடி வெள்ளி (அம்மன்)</div>
+        <div class="festival-tag ft-blue">💧 ஆடி பெருக்கு — ஆக. 3</div>
+        <div class="farm-action">குறைந்த விலை — வாங்கல் வாய்ப்பு. நேப்பியர் புல் வெட்டு. மழை கொட்டில் சரிபார்ப்பு.</div>
+      </div>
+    </div>
+
+    <!-- AUG -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">ஆகஸ்ட்</div>
+        <div class="m-eng">August</div>
+        <div class="m-num">ஆவணி · Avani</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:50%"></div></div>
+          <div class="bar-pct">50%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:52%"></div></div>
+          <div class="bar-pct">52%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#a8d870">₹580–615/கி.கி.</div>
+          <div class="price-arrow pa-norm">→ NORM</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-green">🐘 வினாயகர் சதுர்த்தி — ஆக. 22</div>
+        <div class="festival-tag ft-gold">🕉️ ஆவணி அவிட்டம்</div>
+        <div class="farm-action">தொகுதி 2 நடு எடை சரிபார்ப்பு. Ivermectin புழுக்கள் நீக்கம். CDT booster.</div>
+      </div>
+    </div>
+
+    <!-- SEP -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">செப்டம்பர்</div>
+        <div class="m-eng">September</div>
+        <div class="m-num">புரட்டாசி · Purattasi</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:45%"></div></div>
+          <div class="bar-pct">45%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-2" style="width:40%"></div></div>
+          <div class="bar-pct">40%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#a8d870">₹575–605/கி.கி.</div>
+          <div class="price-arrow pa-norm">→ NORM</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-purple">🔱 புரட்டாசி சனி (விஷ்ணு)</div>
+        <div class="festival-tag ft-none">நவராத்திரி தொடக்கம்</div>
+        <div class="farm-action">தீபாவளி சீசனுக்கு தயாரிப்பு. கொட்டில் சுத்தம். 2வது இணைவு சீசன் திட்டம்.</div>
+      </div>
+    </div>
+
+    <!-- OCT — DEEPAVALI -->
+    <div class="month-row" style="border-color:rgba(212,130,10,.4)">
+      <div class="month-label" style="background:rgba(80,55,5,.5)">
+        <div class="m-name">அக்டோபர்</div>
+        <div class="m-eng">October</div>
+        <div class="m-num">ஐப்பசி · Aippasi</div>
+      </div>
+      <div class="bar-area" style="background:rgba(80,55,5,.3)">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-4" style="width:80%"></div></div>
+          <div class="bar-pct" style="color:#f5c040">80%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-4" style="width:85%"></div></div>
+          <div class="bar-pct" style="color:#f5c040">85%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#f5c040;font-weight:700">₹720–800/கி.கி.</div>
+          <div class="price-arrow pa-up">▲ PEAK</div>
+        </div>
+      </div>
+      <div class="info-area" style="background:rgba(80,55,5,.25)">
+        <div class="festival-tag ft-gold">✨ தீபாவளி — நவ. 8, 2026</div>
+        <div class="festival-tag ft-gold">🏹 விஜயதசமி — அக்.</div>
+        <div class="farm-action" style="color:rgba(245,192,64,.8)">2வது பெரிய தேவை சீசன்! தொகுதி 3 அனுப்புதல். ஒரு மாதம் முன்பே ஆட்டு கடைகளிடம் ஒப்பந்தம்.</div>
+      </div>
+    </div>
+
+    <!-- NOV -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">நவம்பர்</div>
+        <div class="m-eng">November</div>
+        <div class="m-num">கார்த்திகை · Karthigai</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-3" style="width:68%"></div></div>
+          <div class="bar-pct">68%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-3" style="width:72%"></div></div>
+          <div class="bar-pct">72%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#e09030">₹660–710/கி.கி.</div>
+          <div class="price-arrow pa-up">▲ HIGH</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-gold">🪔 கார்த்திகை தீபம் — நவ. 25</div>
+        <div class="festival-tag ft-purple">💒 திருமண சீசன் உச்சம்</div>
+        <div class="farm-action">குட்டி ஈனுதல் சீசன் 1. திருமண விருந்துக்கு தேவை அதிகம். இணைவு சீசன் 2 தொடக்கம்.</div>
+      </div>
+    </div>
+
+    <!-- DEC -->
+    <div class="month-row">
+      <div class="month-label">
+        <div class="m-name">டிசம்பர்</div>
+        <div class="m-eng">December</div>
+        <div class="m-num">மார்கழி · Margazhi</div>
+      </div>
+      <div class="bar-area">
+        <div class="demand-bar-wrap">
+          <div class="bar-label">நேரடி</div>
+          <div class="bar-track"><div class="bar-fill lvl-3" style="width:70%"></div></div>
+          <div class="bar-pct">70%</div>
+        </div>
+        <div class="demand-bar-wrap">
+          <div class="bar-label">இறைச்சி</div>
+          <div class="bar-track"><div class="bar-fill lvl-3" style="width:73%"></div></div>
+          <div class="bar-pct">73%</div>
+        </div>
+        <div class="price-band">
+          <div class="price-range" style="color:#e09030">₹650–700/கி.கி.</div>
+          <div class="price-arrow pa-up">▲ HIGH</div>
+        </div>
+      </div>
+      <div class="info-area">
+        <div class="festival-tag ft-blue">🎄 கிறிஸ்துமஸ் — டிச. 25</div>
+        <div class="festival-tag ft-purple">💒 திருமண சீசன் தொடரும்</div>
+        <div class="farm-action">கிறிஸ்துமஸ் + புத்தாண்டு தேவை. தொகுதி 4 வாங்கல். ஆண்டு கணக்கு தணிக்கை.</div>
+      </div>
+    </div>
+
+  </div><!-- /cal-grid -->
+
+  <!-- Demand Score Rings -->
+  <div class="sec-title">மாதாந்திர தேவை மதிப்பெண்</div>
+  <div class="score-rings" id="rings"></div>
+
+  <!-- Festival Spike Cards -->
+  <div class="sec-title">முக்கிய திருவிழா தேவை உச்சங்கள்</div>
+  <div class="spike-grid">
+
+    <div class="spike-card sc-red">
+      <div class="spike-icon">🐏</div>
+      <div class="spike-name">பக்ரீத் (ஈத் அல் அழ்ஹா)</div>
+      <div class="spike-date">மே 28, 2026 · 4–6 வாரம் முன்பே தேவை</div>
+      <div class="spike-stat" style="color:#f08080">+120%</div>
+      <div class="spike-sub">சாதாரண விலையை விட</div>
+      <div class="spike-tip">கடா ஆடு ₹10,000–75,000 வரை விற்கலாம். பதிவு இல்லாமல் ஆட்டு வாங்க மறுக்கிறார்கள். 6 வாரம் முன்பே ஆட்டு கடைகளுடன் ஒப்பந்தம் செய்யவும்.</div>
+    </div>
+
+    <div class="spike-card sc-gold">
+      <div class="spike-icon">🎆</div>
+      <div class="spike-name">தீபாவளி</div>
+      <div class="spike-date">நவம்பர் 8, 2026 · 3 வாரம் முன்பே</div>
+      <div class="spike-stat" style="color:#f5c040">+45%</div>
+      <div class="spike-sub">சாதாரண விலையை விட</div>
+      <div class="spike-tip">வீட்டு சமையல் + விருந்து தேவை. கோழி விலையும் உயரும் — முட்டன் கர்ரி தேவை அதிகம். நகர பகுதி கடைகளுக்கு நேரடி சப்ளை பேசவும்.</div>
+    </div>
+
+    <div class="spike-card sc-green">
+      <div class="spike-icon">🌾</div>
+      <div class="spike-name">பொங்கல்</div>
+      <div class="spike-date">ஜனவரி 14–17, 2026 · 2 வாரம் முன்பே</div>
+      <div class="spike-stat" style="color:#a8d870">+30%</div>
+      <div class="spike-sub">சாதாரண விலையை விட</div>
+      <div class="spike-tip">குடும்ப கூட்டம் + விருந்து. கிராமப்புற தேவை அதிகம். ஈரோடு மாவட்டத்தில் மக்கார் சந்திக்கல் மந்தை பெரும் பண்டிகை. முன்பதிவு செய்யவும்.</div>
+    </div>
+
+    <div class="spike-card sc-purple">
+      <div class="spike-icon">💒</div>
+      <div class="spike-name">திருமண சீசன்</div>
+      <div class="spike-date">ஏப்ரல்–மே, நவ–டிச · தொடர் தேவை</div>
+      <div class="spike-stat" style="color:#c090e8">+25%</div>
+      <div class="spike-sub">சராசரி மாதங்களை விட</div>
+      <div class="spike-tip">100–500 விருந்தினர் உணவிற்கு 5–15 ஆடுகள் தேவை. கேட்டரிங் நிறுவனங்களுடன் நேரடி ஒப்பந்தம் செய்யவும். நிலையான தேவை.</div>
+    </div>
+
+    <div class="spike-card sc-blue">
+      <div class="spike-icon">🪔</div>
+      <div class="spike-name">கார்த்திகை + கிறிஸ்துமஸ்</div>
+      <div class="spike-date">நவ. 25 + டிச. 25, 2026</div>
+      <div class="spike-stat" style="color:#8ab8d8">+20%</div>
+      <div class="spike-sub">சாதாரண விலையை விட</div>
+      <div class="spike-tip">டிசம்பர் மாதம் கிறிஸ்துமஸ் + புத்தாண்டு + கார்த்திகை — மூன்று சீசன் ஒரே நேரத்தில். இடைவெளியே இல்லாத தேவை.</div>
+    </div>
+
+  </div>
+
+  <!-- Strategy Table -->
+  <div class="sec-title">பண்ணை செயல்திட்ட அட்டவணை — தேவை சுழற்சி அடிப்படையில்</div>
+  <table class="strat-table">
+    <thead>
+      <tr>
+        <th>மாதம்</th>
+        <th>தேவை நிலை</th>
+        <th>கொழுப்பேற்றல் செயல்</th>
+        <th>இனப்பெருக்க செயல்</th>
+        <th>விலை உத்தி</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-month">ஜனவரி</td>
+        <td><span style="color:#f08080">🔴 மிக அதிகம்</span></td>
+        <td class="td-action">தொகுதி 4 அனுப்பு → பொங்கல் விலை பயன்படுத்து</td>
+        <td>குட்டி ஈனுதல் — colostrum கவனிப்பு</td>
+        <td>இப்போதே விற்க வேண்டாம் — பொங்கல் கடந்து உயர் விலையில் விற்கவும்</td>
+      </tr>
+      <tr>
+        <td class="td-month">பிப்–மார்</td>
+        <td><span style="color:#a8d870">🟢 குறைவு</span></td>
+        <td>தொகுதி 1 வாங்கல் — மலிவான விலையில்</td>
+        <td>குட்டி வளர்ப்பு, ஃப்ளஷிங் தயாரிப்பு</td>
+        <td>வாங்கல் சரியான நேரம் — விற்பனை தவிர்க்கவும்</td>
+      </tr>
+      <tr>
+        <td class="td-month">ஏப்ரல்</td>
+        <td><span style="color:#e09030">🟡 அதிகம்</span></td>
+        <td>தொகுதி 1 நடுத்தர சோதனை</td>
+        <td>இணைவு சீசன் 1 — கடா அறிமுகம்</td>
+        <td>திருமண சீசன் — கேட்டரிங் நேரடி சப்ளை</td>
+      </tr>
+      <tr>
+        <td class="td-month" style="color:#f08080;font-weight:700">மே ★</td>
+        <td><span style="color:#f08080;font-weight:700">🔴🔴 உச்சம்</span></td>
+        <td class="td-action" style="color:#f08080">தொகுதி 1 அனுப்பு — பக்ரீத் விலையில்! 6 வாரம் முன்பே ஒப்பந்தம்</td>
+        <td>வாங்கல் இல்லை — விலை உச்சம்</td>
+        <td style="color:#f08080">ஆண்டின் சிறந்த விலை. கடா ஆடுகளை தனியே வளர்க்கவும்</td>
+      </tr>
+      <tr>
+        <td class="td-month">ஜூன்–ஜூல்</td>
+        <td><span style="color:#8ab8d8">🔵 மிகக் குறைவு</span></td>
+        <td>தொகுதி 2 வாங்கல் — வாங்கல் விலை குறைவு!</td>
+        <td>கர்ப்ப நிர்வாகம் — கூடுதல் தீவனம்</td>
+        <td>வாங்கல் சரியான நேரம் — ₹4,500–5,000/ஆடு கிடைக்கும்</td>
+      </tr>
+      <tr>
+        <td class="td-month">ஆக–செப்</td>
+        <td><span style="color:#a8d870">🟢 நடுத்தரம்</span></td>
+        <td>தொகுதி 2 நடு பரிசோதனை, எடை கண்காணிப்பு</td>
+        <td>CDT booster, Ivermectin, FMD தடுப்பூசி</td>
+        <td>விருந்து சப்ளை — கேட்டரிங் ஒப்பந்தம் புதுப்பிப்பு</td>
+      </tr>
+      <tr>
+        <td class="td-month" style="color:#f5c040;font-weight:700">அக்–நவ ★</td>
+        <td><span style="color:#f5c040;font-weight:700">🟡🟡 மிக அதிகம்</span></td>
+        <td class="td-action" style="color:#f5c040">தொகுதி 3 அனுப்பு — தீபாவளி + கார்த்திகை விலை</td>
+        <td>குட்டி ஈனுதல் சீசன் 1 — இரவு கொட்டில் அவசியம்</td>
+        <td style="color:#f5c040">நேரடி விற்பனை — கசாப்பு + கேட்டரிங். முன்பதிவு மட்டுமே</td>
+      </tr>
+      <tr>
+        <td class="td-month">டிசம்பர்</td>
+        <td><span style="color:#e09030">🟠 அதிகம்</span></td>
+        <td>தொகுதி 4 வாங்கல் — சாதாரண விலை</td>
+        <td>இணைவு சீசன் 2, கடா நிர்வாகம்</td>
+        <td>கிறிஸ்துமஸ் + புத்தாண்டு தேவை — நேரடி சப்ளை</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <strong>📊 தரவு ஆதாரங்கள்:</strong> TANUVAS ஆராய்ச்சி (Seasonal variation in mutton prices, Tamil Nadu) · ஈரோடு / பவானி சந்தை நேரடி அவதானிப்பு · Tamil Nadu Government Holidays 2026 · Bakrid 2026: <strong>மே 28</strong> (சந்திர பார்வை அடிப்படையில் ±1 நாள்) · தீபாவளி: <strong>நவம்பர் 8</strong> · பொங்கல்: <strong>ஜனவரி 14–17</strong> · கார்த்திகை தீபம்: <strong>நவம்பர் 25</strong><br><br>
+    <strong>⚠ குறிப்பு:</strong> விலைகள் மதிப்பீட்டு அடிப்படையிலானவை. சந்தை நிலவரம், தீவன செலவு, வழங்கல் அளவு மற்றும் வானிலை காரணமாக மாறலாம். உண்மையான சந்தை விலைக்கு ஈரோடு / பவானி மந்தை நேரடி தொடர்பு அவசியம்.
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+// Demand score data (live, meat average, 0–100)
+const months = [
+  { ta:'ஜன',  score:80, color:'#e06050' },
+  { ta:'பிப்', score:43, color:'#6aaa44' },
+  { ta:'மார்', score:49, color:'#7abb44' },
+  { ta:'ஏப்', score:66, color:'#daa030' },
+  { ta:'மே',  score:97, color:'#cc2020' },
+  { ta:'ஜூன்', score:32, color:'#4a8ab5' },
+  { ta:'ஜூல்', score:38, color:'#4a8ab5' },
+  { ta:'ஆக்',  score:51, color:'#9aca40' },
+  { ta:'செப்', score:42, color:'#7abb44' },
+  { ta:'அக்',  score:82, color:'#e09030' },
+  { ta:'நவ',  score:70, color:'#d4820a' },
+  { ta:'டிச்', score:71, color:'#d09020' },
+];
+
+const container = document.getElementById('rings');
+const r = 24, cx = 30, cy = 30, circ = 2 * Math.PI * r;
+
+months.forEach(m => {
+  const dash = (m.score / 100) * circ;
+  const wrap = document.createElement('div');
+  wrap.className = 'ring-wrap';
+  wrap.innerHTML = `
+    <div class="ring-container">
+      <svg class="ring-svg" width="60" height="60" viewBox="0 0 60 60">
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(196,168,130,.1)" stroke-width="5"/>
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${m.color}" stroke-width="5"
+          stroke-dasharray="${dash} ${circ - dash}" stroke-linecap="round"/>
+      </svg>
+      <div class="ring-center" style="color:${m.color}">${m.score}</div>
+    </div>
+    <div class="ring-abbr">${m.ta}</div>
+  `;
+  container.appendChild(wrap);
+});
+</script>
+</body>
+</html>
