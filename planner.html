@@ -367,9 +367,9 @@ body::before {
 
   <!-- Nav -->
   <nav class="nav">
-    <a href="index.html">🏠 Home</a>
+    <a href="index.html">🏠 முகப்பு · Home</a>
     <span class="nav-sep">›</span>
-    <span class="nav-curr">🧭 Planner</span>
+    <span class="nav-curr">🧭 இன்றே என்ன செய்வது · Planner</span>
   </nav>
 
   <!-- Header -->
@@ -401,15 +401,15 @@ body::before {
       </div>
       <div class="field">
         <label>Daily Weight Gain (kg/day) <span>தினசரி எடை</span></label>
-        <input type="number" id="dailyGain" value="0.08" step="0.01" min="0.02" max="0.2" />
+        <input type="number" id="dailyGain" value="0.15" step="0.01" min="0.02" max="0.2" />
       </div>
       <div class="field">
         <label>Feed Cost / day / sheep (₹) <span>தீவன செலவு</span></label>
-        <input type="number" id="feedCost" value="35" step="5" min="10" />
+        <input type="number" id="feedCost" value="30" step="5" min="10" />
       </div>
       <div class="field">
         <label>Current Base Price (₹/kg) <span>இப்போது சந்தை விலை</span></label>
-        <input type="number" id="basePrice" value="580" step="10" min="300" />
+        <input type="number" id="basePrice" value="500" step="10" min="300" />
       </div>
     </div>
   </div>
@@ -451,6 +451,17 @@ function today() {
   return new Date(document.getElementById('today').value + 'T00:00:00');
 }
 
+function dateFromInput(value) {
+  return value ? new Date(value + 'T00:00:00') : null;
+}
+
+function isoDaysAgo(days) {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() - days);
+  return d.toISOString().slice(0, 10);
+}
+
 function festChipClass(days) {
   if (days < 0)   return 'fc-past';
   if (days <= 21) return 'fc-urgent';
@@ -481,10 +492,12 @@ let batchCount = 0;
 function addBatch(defaults = {}) {
   batchCount++;
   const id = batchCount;
-  const n  = defaults.n    || '';
-  const wt = defaults.wt   || '';
-  const ct = defaults.ct   || '';
-  const nm = defaults.name || `Batch ${id}`;
+  const n   = defaults.n         || '';
+  const sd  = defaults.startDate || isoDaysAgo(defaults.daysAtFarm || 0);
+  const swt = defaults.startWt   || '';
+  const wt  = defaults.wt        || '';
+  const ct  = defaults.ct        || '';
+  const nm  = defaults.name      || `Batch ${id}`;
 
   const card = document.createElement('div');
   card.className = 'input-card';
@@ -502,20 +515,24 @@ function addBatch(defaults = {}) {
     </div>
     <div class="input-grid">
       <div class="field">
+        <label>Batch Start Date <span>தொகுதி தொடங்கிய தேதி</span></label>
+        <input type="date" id="bstart-${id}" value="${sd}" />
+      </div>
+      <div class="field">
         <label>No. of Sheep <span>ஆடுகள் எண்ணிக்கை</span></label>
         <input type="number" id="bcount-${id}" value="${n}" min="1" max="500" placeholder="e.g. 20" />
+      </div>
+      <div class="field">
+        <label>Avg Weight at Start (kg) <span>தொடக்க எடை</span></label>
+        <input type="number" id="bstartwt-${id}" value="${swt}" min="3" max="60" step="0.5" placeholder="e.g. 16" />
       </div>
       <div class="field">
         <label>Avg Weight Now (kg) <span>தற்போதைய எடை</span></label>
         <input type="number" id="bwt-${id}" value="${wt}" min="5" max="60" step="0.5" placeholder="e.g. 18" />
       </div>
       <div class="field">
-        <label>Avg Cost / sheep (₹) <span>வாங்கிய விலை</span></label>
+        <label>Purchase Cost / sheep (₹) <span>வாங்கிய விலை</span></label>
         <input type="number" id="bcost-${id}" value="${ct}" min="1000" max="30000" step="500" placeholder="e.g. 6500" />
-      </div>
-      <div class="field">
-        <label>Batch Age (days in farm) <span>பண்ணையில் நாட்கள்</span></label>
-        <input type="number" id="bage-${id}" value="" min="0" max="365" placeholder="e.g. 45" />
       </div>
     </div>
   `;
@@ -530,15 +547,21 @@ function removeBatch(id) {
 // ── Core logic ────────────────────────────────────────────────
 function getBatches() {
   const cards = document.querySelectorAll('#batchContainer .input-card');
+  const t = today();
   return Array.from(cards).map(card => {
     const id = card.dataset.batchId;
+    const startDateValue = document.getElementById(`bstart-${id}`)?.value || '';
+    const startDate = dateFromInput(startDateValue);
+    const daysAtFarm = startDate ? Math.max(0, daysBetween(startDate, t)) : 0;
     return {
       id,
       name:  document.getElementById(`bname-${id}`)?.value  || `Batch ${id}`,
       count: parseFloat(document.getElementById(`bcount-${id}`)?.value) || 0,
+      startDate: startDateValue,
+      daysAtFarm,
+      startWt: parseFloat(document.getElementById(`bstartwt-${id}`)?.value) || 0,
       wt:    parseFloat(document.getElementById(`bwt-${id}`)?.value)    || 0,
       cost:  parseFloat(document.getElementById(`bcost-${id}`)?.value)  || 0,
-      age:   parseFloat(document.getElementById(`bage-${id}`)?.value)   || 0,
     };
   }).filter(b => b.count > 0 && b.wt > 0);
 }
@@ -577,11 +600,16 @@ function adviseBatch(batch, t, dailyGain, feedCost, basePrice) {
 
   const TARGET_SELL_WEIGHT = 25; // kg — typical market-ready weight
   const daysToTarget = Math.max(0, Math.ceil((TARGET_SELL_WEIGHT - batch.wt) / dailyGain));
+  const feedSpentToDate = feedCost * batch.count * batch.daysAtFarm;
+  const feedSpentPerSheep = feedCost * batch.daysAtFarm;
+  const purchaseCost = batch.cost * batch.count;
+  const costToDate = purchaseCost + feedSpentToDate;
+  const costToDatePerSheep = batch.cost + feedSpentPerSheep;
 
   // Evaluate each upcoming festival: net revenue if sold at that festival vs. sell today
   const today_price    = basePrice;
   const today_revenue  = batch.wt * today_price * batch.count;
-  const today_cost_inv = batch.cost * batch.count;
+  const today_cost_inv = costToDate;
   const today_profit   = today_revenue - today_cost_inv;
 
   let best = null;
@@ -590,12 +618,14 @@ function adviseBatch(batch, t, dailyGain, feedCost, basePrice) {
     const wAtFest     = projectWeight(batch.wt, f.days, dailyGain);
     const pAtFest     = projectPrice(basePrice, f.priceMult, 0); // at festival price = peak
     const feedUntil   = feedCost * batch.count * f.days;
+    const totalFeed   = feedSpentToDate + feedUntil;
+    const totalCost   = purchaseCost + totalFeed;
     const revenue     = wAtFest * pAtFest * batch.count;
-    const profit      = revenue - today_cost_inv - feedUntil;
+    const profit      = revenue - totalCost;
     const profitDelta = profit - today_profit;
 
     if (!best || profitDelta > best.profitDelta) {
-      best = { fest: f, wAtFest, pAtFest, feedUntil, revenue, profit, profitDelta };
+      best = { fest: f, wAtFest, pAtFest, feedUntil, totalFeed, totalCost, revenue, profit, profitDelta };
     }
   }
 
@@ -633,7 +663,7 @@ function adviseBatch(batch, t, dailyGain, feedCost, basePrice) {
     reason = `No immediate spike. Keep fattening and reduce feed costs. Market is calm — இப்போது பொறுமையாக இருங்கள்.`;
   }
 
-  return { action, urgency, reason, best, today_profit, today_price };
+  return { action, urgency, reason, best, today_profit, today_price, feedSpentToDate, feedSpentPerSheep, purchaseCost, costToDate, costToDatePerSheep };
 }
 
 function calculate() {
@@ -654,12 +684,13 @@ function calculate() {
   const batchResEl = document.getElementById('batchResults');
   batchResEl.innerHTML = '';
 
-  let totalSellRevenue = 0, totalCostBasis = 0, totalFeedCost = 0, totalSheep = 0;
+  let totalSellRevenue = 0, totalSellCostBasis = 0, totalCurrentCost = 0, totalFeedCost = 0, totalSheep = 0;
   const checklist = [];
 
   batches.forEach(b => {
     const adv = adviseBatch(b, t, dailyGain, feedCost, basePrice);
-    totalSheep++;
+    totalSheep += b.count;
+    totalCurrentCost += adv.costToDate;
 
     const actionLabel = { sell: 'SELL NOW', hold: 'HOLD', prep: 'PREPARE TO SELL', buy: 'BUY OPPORTUNITY' }[adv.action];
     const badgeCls    = `badge-${adv.action}`;
@@ -667,24 +698,28 @@ function calculate() {
 
     // Financials
     const sellRevNow  = b.wt * basePrice * b.count;
-    const costBasis   = b.cost * b.count;
+    const costBasis   = adv.costToDate;
     const profitNow   = sellRevNow - costBasis;
+    const sellPricePerSheep = b.wt * basePrice;
+    const profitPerSheep = sellPricePerSheep - adv.costToDatePerSheep;
 
-    let bestRevStr = '—', bestPriceStr = '—', bestDaysStr = '—', bestWtStr = '—';
+    let bestRevStr = '—', bestPriceStr = '—', bestDaysStr = '—', bestWtStr = '—', bestProfitStr = '—';
     if (adv.best) {
       bestRevStr   = `₹${Math.round(adv.best.revenue).toLocaleString('en-IN')}`;
       bestPriceStr = `₹${Math.round(adv.best.pAtFest)}/kg`;
       bestDaysStr  = `${adv.best.fest.days} days`;
       bestWtStr    = `~${adv.best.wAtFest.toFixed(1)} kg`;
+      bestProfitStr = `₹${Math.round(adv.best.profit).toLocaleString('en-IN')}`;
     }
 
     const profitColor = profitNow >= 0 ? 'var(--lime)' : 'var(--pink)';
+    const profitPerSheepColor = profitPerSheep >= 0 ? 'var(--lime)' : 'var(--pink)';
 
     batchResEl.innerHTML += `
       <div class="today-card ${cardCls}">
         <div class="tc-header">
           <div>
-            <div class="tc-batch-name">${b.name} &nbsp;<span style="font-size:12px;color:var(--sand);font-weight:400">${b.count} sheep · ${b.wt} kg avg</span></div>
+            <div class="tc-batch-name">${b.name} &nbsp;<span style="font-size:12px;color:var(--sand);font-weight:400">${b.count} sheep · ${b.startWt ? `${b.startWt}→` : ''}${b.wt} kg avg · ${b.daysAtFarm} days at farm</span></div>
           </div>
           <div class="tc-action-badge ${badgeCls}">${actionLabel}</div>
         </div>
@@ -692,11 +727,23 @@ function calculate() {
         <div class="tc-stats">
           <div class="stat-box">
             <div class="stat-val" style="color:${profitColor}">₹${Math.round(profitNow).toLocaleString('en-IN')}</div>
-            <div class="stat-label">Profit if sold today</div>
+            <div class="stat-label">Profit today incl. feed</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" style="color:${profitPerSheepColor}">₹${Math.round(profitPerSheep).toLocaleString('en-IN')}</div>
+            <div class="stat-label">Profit / sheep today</div>
           </div>
           <div class="stat-box">
             <div class="stat-val" style="color:var(--sand)">₹${Math.round(sellRevNow).toLocaleString('en-IN')}</div>
-            <div class="stat-label">Revenue at ₹${basePrice}/kg</div>
+            <div class="stat-label">Sell value at ₹${basePrice}/kg</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" style="color:var(--mist)">₹${Math.round(adv.costToDate).toLocaleString('en-IN')}</div>
+            <div class="stat-label">Cost incl. feed to date</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" style="color:var(--sand)">₹${Math.round(adv.feedSpentToDate).toLocaleString('en-IN')}</div>
+            <div class="stat-label">Feed cost for ${b.daysAtFarm} days</div>
           </div>
           ${adv.best ? `
           <div class="stat-box">
@@ -712,6 +759,10 @@ function calculate() {
             <div class="stat-label">Weight at festival</div>
           </div>
           <div class="stat-box">
+            <div class="stat-val" style="color:var(--lime)">${bestProfitStr}</div>
+            <div class="stat-label">Profit at ${bestPriceStr}</div>
+          </div>
+          <div class="stat-box">
             <div class="stat-val" style="color:var(--lime)">+₹${Math.round(adv.best.profitDelta).toLocaleString('en-IN')}</div>
             <div class="stat-label">Extra profit by waiting</div>
           </div>` : ''}
@@ -721,7 +772,7 @@ function calculate() {
 
     if (adv.action === 'sell') {
       totalSellRevenue += sellRevNow;
-      totalCostBasis   += costBasis;
+      totalSellCostBasis += costBasis;
       checklist.push({ urgency: adv.urgency === 'urgent' ? 'urgent' : 'high',
         text: `Sell ${b.name} (${b.count} sheep)`, sub: adv.reason });
     } else if (adv.action === 'hold' || adv.action === 'prep') {
@@ -734,18 +785,26 @@ function calculate() {
   });
 
   // Cashflow summary
-  const netProfit = totalSellRevenue - totalCostBasis;
+  const netProfit = totalSellRevenue - totalSellCostBasis;
   document.getElementById('cashflowDiv').innerHTML = `
     <div class="cashflow">
       <div class="cf-title">💰 Projected Cash Flow Summary</div>
+      <div class="cf-row">
+        <span class="cf-row-label">Total sheep planned</span>
+        <span class="cf-row-val" style="color:var(--cream)">${totalSheep}</span>
+      </div>
+      <div class="cf-row">
+        <span class="cf-row-label">Current cost tied up (purchase + feed to date)</span>
+        <span class="cf-row-val" style="color:var(--mist)">₹${Math.round(totalCurrentCost).toLocaleString('en-IN')}</span>
+      </div>
       ${totalSellRevenue > 0 ? `
       <div class="cf-row">
         <span class="cf-row-label">Expected sell revenue (sell-now batches)</span>
         <span class="cf-row-val" style="color:var(--lime)">₹${Math.round(totalSellRevenue).toLocaleString('en-IN')}</span>
       </div>
       <div class="cf-row">
-        <span class="cf-row-label">Purchase cost (sell-now batches)</span>
-        <span class="cf-row-val" style="color:var(--pink)">−₹${Math.round(totalCostBasis).toLocaleString('en-IN')}</span>
+        <span class="cf-row-label">Purchase + feed cost to date (sell-now batches)</span>
+        <span class="cf-row-val" style="color:var(--pink)">−₹${Math.round(totalSellCostBasis).toLocaleString('en-IN')}</span>
       </div>` : ''}
       ${totalFeedCost > 0 ? `
       <div class="cf-row">
@@ -799,7 +858,7 @@ function calculate() {
   document.getElementById('today').value = iso;
 
   // Add a default batch
-  addBatch({ n: 15, wt: 18, ct: 6500, name: 'Batch 1' });
+  addBatch({ n: 30, startWt: 16, wt: 18, ct: 7500, daysAtFarm: 15, name: 'Batch 1' });
 
   // Bind add-batch button
   document.getElementById('addBatch').addEventListener('click', () => addBatch());
