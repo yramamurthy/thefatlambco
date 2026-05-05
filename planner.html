@@ -360,6 +360,175 @@ body::before {
   .tc-stats   { gap: 8px; }
   .stat-box   { min-width: 90px; }
 }
+
+@media (max-width: 720px) {
+  body {
+    padding-bottom: 48px;
+  }
+
+  .wrap {
+    padding: 28px 14px 52px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+    line-height: 1.35;
+  }
+
+  .hdr {
+    margin-bottom: 28px;
+  }
+
+  .hdr-badge {
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .hdr-ta {
+    font-size: 16px;
+  }
+
+  .hdr-desc {
+    font-size: 12px;
+  }
+
+  .fest-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .fest-chip {
+    min-width: 0;
+    border-radius: 10px;
+    padding: 10px 8px;
+  }
+
+  .sec-title {
+    align-items: flex-start;
+    font-size: 15px;
+    line-height: 1.35;
+    margin: 30px 0 14px;
+  }
+
+  .input-card,
+  .today-card,
+  .cashflow,
+  .checklist {
+    border-radius: 14px;
+    padding: 18px;
+  }
+
+  .input-card-header {
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .input-card-title input {
+    max-width: 100%;
+  }
+
+  .input-grid {
+    gap: 12px;
+  }
+
+  .field label,
+  .field label span {
+    line-height: 1.35;
+  }
+
+  .field input,
+  .field select {
+    min-height: 42px;
+    font-size: 16px;
+  }
+
+  .btn-add-batch,
+  .btn-calc {
+    min-height: 48px;
+    border-radius: 12px;
+  }
+
+  .tc-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tc-batch-name {
+    line-height: 1.45;
+  }
+
+  .tc-action-badge {
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  .tc-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .stat-box {
+    min-width: 0;
+    padding: 10px;
+  }
+
+  .stat-val {
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  .cf-row,
+  .cf-total {
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .cf-row-label {
+    line-height: 1.45;
+  }
+
+  .cf-row-val,
+  .cf-total-val {
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 520px) {
+  .input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tc-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .wrap {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .fest-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .input-card,
+  .today-card,
+  .cashflow,
+  .checklist {
+    padding: 16px;
+  }
+}
 </style>
 </head>
 <body>

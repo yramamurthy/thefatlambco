@@ -229,6 +229,173 @@ body::before {
   .price-chain { gap: 3px; }
   .pc-val { font-size: 10px; }
 }
+
+@media (max-width: 720px) {
+  .wrap {
+    padding: 28px 14px 52px;
+  }
+
+  .nav {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .nav a,
+  .nav-curr {
+    line-height: 1.35;
+  }
+
+  .top-controls {
+    justify-content: stretch;
+    margin-bottom: 24px;
+  }
+
+  .animal-toggle {
+    width: 100%;
+    border-radius: 14px;
+  }
+
+  .toggle-btn {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 12px;
+    white-space: normal;
+    line-height: 1.25;
+  }
+
+  .hdr {
+    margin-bottom: 28px;
+  }
+
+  .hdr-badge {
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .legend,
+  .price-legend {
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .price-legend {
+    padding: 10px 12px;
+  }
+
+  .cal-grid {
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .month-row {
+    border-radius: 14px;
+  }
+
+  .bar-area {
+    min-width: 0;
+    padding: 12px;
+  }
+
+  .bar-label {
+    width: 42px;
+    font-size: 10px;
+  }
+
+  .pc-tier {
+    min-width: 0;
+  }
+
+  .pc-lbl {
+    font-size: 8px;
+  }
+
+  .price-arrow {
+    margin-left: 0;
+  }
+
+  .sec-title {
+    align-items: flex-start;
+    font-size: 16px;
+    line-height: 1.35;
+    margin: 38px 0 16px;
+  }
+
+  .spike-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .spike-card {
+    padding: 18px;
+  }
+
+  .strat-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .strat-table th,
+  .strat-table td {
+    padding: 11px 12px;
+  }
+
+  .footer-note {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .month-row {
+    grid-template-columns: 1fr;
+  }
+
+  .month-label {
+    border-right: none;
+    border-bottom: 1px solid rgba(196,168,130,.1);
+    padding: 12px 14px;
+  }
+
+  .info-area {
+    display: flex;
+    border-top: 1px solid rgba(196,168,130,.08);
+    padding: 12px 14px;
+  }
+
+  .score-rings {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 8px;
+  }
+
+  .price-chain {
+    row-gap: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .wrap {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .bar-area {
+    padding: 10px;
+  }
+
+  .bar-label {
+    width: 34px;
+  }
+
+  .pc-val {
+    font-size: 9px;
+  }
+}
 </style>
 </head>
 <body>
