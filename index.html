@@ -103,25 +103,33 @@ a { color: inherit; }
 .lang-toggle button {
   border-radius: 999px;
   padding: 9px 13px;
-  color: rgba(255, 247, 232, .82);
+  border: 1px solid rgba(255, 247, 232, .22);
+  background: rgba(255, 247, 232, .1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+  color: var(--cream);
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
+  transition: background .18s, border-color .18s, color .18s, transform .18s;
 }
 
 .nav-links a:hover,
 .lang-toggle button:hover {
-  background: rgba(255, 247, 232, .12);
+  background: rgba(255, 247, 232, .2);
+  border-color: rgba(255, 247, 232, .42);
   color: var(--cream);
+  transform: translateY(-1px);
 }
 
 .nav-links .call {
   background: var(--sun);
+  border-color: var(--sun);
   color: var(--ink);
 }
 
 .nav-links .whatsapp {
   background: #25d366;
+  border-color: #25d366;
   color: #082611;
 }
 
