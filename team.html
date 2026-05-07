@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fat Lamb Co. | Team & Credentials</title>
+<meta name="description" content="Meet The Fat Lamb Co. team: livestock procurement and marketing expertise plus in-house veterinary support for farm consulting, vet services, and workshops.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#174832">
+<meta property="og:title" content="The Fat Lamb Co. | Team & Credentials">
+<meta property="og:description" content="Business, livestock procurement, and veterinary expertise behind The Fat Lamb Co. farm services.">
+<meta property="og:image" content="assets/farm-hero.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #123726;
+  --deep: #174832;
+  --blue: #1f68bd;
+  --cream: #fff7e8;
+  --paper: #f8edda;
+  --leaf: #315f35;
+  --sun: #e6b65d;
+  --line: rgba(18, 55, 38, .16);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: #17231b;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+body.lang-ta {
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+}
+
+a { color: inherit; }
+
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(1120px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 12px 10px 18px;
+  background: rgba(18, 55, 38, .84);
+  border: 1px solid rgba(255, 247, 232, .18);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  color: var(--cream);
+}
+
+.brand {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 17px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-links,
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links a,
+.lang-toggle button {
+  border-radius: 999px;
+  padding: 9px 13px;
+  color: rgba(255, 247, 232, .84);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.lang-toggle button:hover {
+  background: rgba(255, 247, 232, .12);
+  color: var(--cream);
+}
+
+.nav-links .whatsapp {
+  background: #25d366;
+  color: #082611;
+}
+
+.lang-toggle {
+  padding: 3px;
+  border: 1px solid rgba(255, 247, 232, .2);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, .08);
+}
+
+.lang-toggle button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  min-width: 42px;
+}
+
+.lang-toggle button.active {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.hero {
+  background:
+    linear-gradient(90deg, rgba(18,55,38,.94), rgba(18,55,38,.75)),
+    url("assets/farm-wide.jpeg") center/cover;
+  color: var(--cream);
+  padding: 150px 0 70px;
+}
+
+.wrap {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: 18px;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 247, 232, .25);
+  border-radius: 999px;
+  color: var(--sun);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 900px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(40px, 7vw, 78px);
+  line-height: 1;
+}
+
+.hero p {
+  max-width: 760px;
+  margin-top: 20px;
+  color: rgba(255, 247, 232, .84);
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.6;
+}
+
+.section {
+  padding: 72px 0;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: .8fr 1fr;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.kicker {
+  color: var(--leaf);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-top: 8px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.1;
+}
+
+.section-head p {
+  color: rgba(23, 35, 27, .72);
+  line-height: 1.7;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.credential-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border: 2px solid var(--deep);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .58);
+  box-shadow: 0 22px 70px rgba(18, 55, 38, .12);
+}
+
+.credential-card.vet {
+  border-color: var(--blue);
+}
+
+.card-head {
+  padding: 26px 24px 22px;
+  background: var(--deep);
+  color: var(--cream);
+  text-align: center;
+}
+
+.vet .card-head {
+  background: var(--blue);
+}
+
+.card-head h3 {
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.2;
+}
+
+.card-head p {
+  margin-top: 14px;
+  font-size: 17px;
+  font-style: italic;
+  color: rgba(255, 247, 232, .92);
+}
+
+.card-body {
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  padding: 34px 42px;
+}
+
+.card-body ul {
+  display: grid;
+  gap: 14px;
+  padding-left: 20px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.proof-band {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proof {
+  min-height: 190px;
+  padding: 22px;
+  border: 1px solid rgba(255, 247, 232, .15);
+  border-radius: 8px;
+  background: rgba(255, 247, 232, .08);
+}
+
+.proof b {
+  display: block;
+  color: var(--sun);
+  margin-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.proof p {
+  color: rgba(255, 247, 232, .78);
+  line-height: 1.65;
+}
+
+.together {
+  margin-top: 24px;
+  color: rgba(18, 55, 38, .78);
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+
+.cta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 42px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--leaf), #1f4326);
+  color: var(--cream);
+}
+
+.cta p {
+  margin-top: 12px;
+  color: rgba(255, 247, 232, .8);
+  line-height: 1.65;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--sun);
+  color: #17231b;
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 247, 232, .28);
+  color: var(--cream);
+  background: rgba(255, 247, 232, .08);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 26px 0 34px;
+  color: rgba(23, 35, 27, .58);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--leaf);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 860px) {
+  .nav {
+    position: absolute;
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 18px;
+    align-items: stretch;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .hero {
+    padding: 190px 0 54px;
+  }
+
+  .wrap,
+  .footer {
+    width: calc(100% - 28px);
+  }
+
+  .section {
+    padding: 54px 0;
+  }
+
+  .section-head,
+  .team-grid,
+  .proof-grid,
+  .cta {
+    grid-template-columns: 1fr;
+  }
+
+  .card-body {
+    min-height: 0;
+    padding: 28px;
+  }
+
+  .card-body ul {
+    font-size: 16px;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .brand {
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  .hero {
+    padding-top: 210px;
+  }
+
+  .card-head {
+    padding: 22px 18px;
+  }
+
+  .card-body {
+    padding: 24px 20px;
+  }
+
+  .card-body ul {
+    gap: 12px;
+    padding-left: 18px;
+  }
+
+  .cta {
+    padding: 28px 20px;
+  }
+
+  .actions {
+    display: grid;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="index.html">The Fat Lamb Co.</a>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+      <a href="index.html#services" data-en="Services" data-ta="சேவைகள்">Services</a>
+      <a class="whatsapp" href="https://wa.me/917845867125" target="_blank" rel="noopener" data-en="WhatsApp" data-ta="வாட்ஸ்அப்">WhatsApp</a>
+      <a href="tel:+917845867125" data-en="Call" data-ta="அழைக்க">Call</a>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow" data-en="Our Team & Credentials" data-ta="எங்கள் குழு & தகுதிகள்">Our Team & Credentials</div>
+      <h1 data-en="The people behind our farm advisory, vet services, and lamb supply." data-ta="எங்கள் பண்ணை ஆலோசனை, கால்நடை சேவை, மற்றும் ஆடு விநியோகத்தின் பின்னுள்ள குழு.">The people behind our farm advisory, vet services, and lamb supply.</h1>
+      <p data-en="The Fat Lamb Co. combines market-side livestock operations with animal health and fattening science, so farmers get support from procurement to production to sale." data-ta="The Fat Lamb Co. சந்தை சார்ந்த கால்நடை செயல்பாடுகளையும், கால்நடை ஆரோக்கியம் மற்றும் கொழுப்பூட்டல் அறிவையும் இணைக்கிறது; அதனால் விவசாயிகளுக்கு கொள்முதல் முதல் உற்பத்தி, விற்பனை வரை ஆதரவு கிடைக்கிறது.">The Fat Lamb Co. combines market-side livestock operations with animal health and fattening science, so farmers get support from procurement to production to sale.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker" data-en="Credential pillars" data-ta="முக்கிய தகுதி தளங்கள்">Credential pillars</div>
+            <h2 data-en="Business execution plus veterinary depth." data-ta="வணிக செயல்திறன் மற்றும் கால்நடை மருத்துவ நிபுணத்துவம்.">Business execution plus veterinary depth.</h2>
+          </div>
+          <p data-en="Our team is structured around two strengths: livestock sourcing, logistics, and marketing on one side; animal health, nutrition, and farm productivity on the other." data-ta="எங்கள் குழு இரண்டு வலிமைகளில் அமைந்துள்ளது: ஒரு பக்கம் கால்நடை கொள்முதல், போக்குவரத்து, சந்தைப்படுத்தல்; மற்றொரு பக்கம் கால்நடை ஆரோக்கியம், ஊட்டச்சத்து, மற்றும் பண்ணை உற்பத்தித்திறன்.">Our team is structured around two strengths: livestock sourcing, logistics, and marketing on one side; animal health, nutrition, and farm productivity on the other.</p>
+        </div>
+
+        <div class="team-grid">
+          <article class="credential-card">
+            <div class="card-head">
+              <h3 data-en="Business Entrepreneur" data-ta="வணிகத் தொழில்முனைவோர்">Business Entrepreneur</h3>
+              <p data-en="Livestock Procurement & Marketing" data-ta="கால்நடை கொள்முதல் & சந்தைப்படுத்தல்">Livestock Procurement & Marketing</p>
+            </div>
+            <div class="card-body">
+              <ul>
+                <li data-en="Extensive experience in livestock sourcing from Madurai, Dindigul, Erode and Salem markets" data-ta="மதுரை, திண்டுக்கல், ஈரோடு, சேலம் சந்தைகளில் இருந்து கால்நடை கொள்முதல் அனுபவம்">Extensive experience in livestock sourcing from Madurai, Dindigul, Erode and Salem markets</li>
+                <li data-en="Established network of lamb suppliers and wholesale meat buyers" data-ta="ஆடு வழங்குநர்கள் மற்றும் மொத்த இறைச்சி வாங்குபவர்களுடன் நிலையான வலையமைப்பு">Established network of lamb suppliers and wholesale meat buyers</li>
+                <li data-en="Expertise in batch logistics, transport and market timing" data-ta="தொகுதி போக்குவரத்து, லாஜிஸ்டிக்ஸ் மற்றும் சந்தை நேரம் குறித்து நிபுணத்துவம்">Expertise in batch logistics, transport and market timing</li>
+                <li data-en="Experienced in agri-business operations and SOP development" data-ta="வேளாண் வணிக செயல்பாடுகள் மற்றும் SOP உருவாக்கத்தில் அனுபவம்">Experienced in agri-business operations and SOP development</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="credential-card vet">
+            <div class="card-head">
+              <h3 data-en="Veterinary Expert" data-ta="கால்நடை மருத்துவ நிபுணர்">Veterinary Expert</h3>
+              <p data-en="Animal Health & Fattening Science" data-ta="கால்நடை ஆரோக்கியம் & கொழுப்பூட்டல் அறிவியல்">Animal Health & Fattening Science</p>
+            </div>
+            <div class="card-body">
+              <ul>
+                <li data-en="Qualified veterinary practitioner with clinical and field experience" data-ta="மருத்துவ மற்றும் கள அனுபவமுள்ள தகுதிவாய்ந்த கால்நடை மருத்துவர்">Qualified veterinary practitioner with clinical and field experience</li>
+                <li data-en="Expertise in small ruminant health, nutrition and fattening protocols" data-ta="சிறு கால்நடைகளின் ஆரோக்கியம், ஊட்டச்சத்து மற்றும் கொழுப்பூட்டல் முறைகளில் நிபுணத்துவம்">Expertise in small ruminant health, nutrition and fattening protocols</li>
+                <li data-en="Knowledge of vaccination schedules, disease prevention and biosecurity" data-ta="தடுப்பூசி அட்டவணைகள், நோய் தடுப்பு மற்றும் உயிர் பாதுகாப்பு குறித்த அறிவு">Knowledge of vaccination schedules, disease prevention and biosecurity</li>
+                <li data-en="Experience in farm setup, feed formulation and production monitoring" data-ta="பண்ணை அமைப்பு, தீவன கலவை மற்றும் உற்பத்தி கண்காணிப்பில் அனுபவம்">Experience in farm setup, feed formulation and production monitoring</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="together" data-en="Together: End-to-end sheep fattening expertise from procurement to sale." data-ta="இணைந்து: கொள்முதல் முதல் விற்பனை வரை முழுமையான ஆடு கொழுப்பூட்டல் நிபுணத்துவம்.">Together: End-to-end sheep fattening expertise from procurement to sale.</div>
+      </div>
+    </section>
+
+    <section class="section proof-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker" data-en="What this means for farms" data-ta="பண்ணைகளுக்கு இதன் பயன்">What this means for farms</div>
+            <h2 data-en="Practical advice, not theory alone." data-ta="வெறும் கோட்பாடு அல்ல, நடைமுறை ஆலோசனை.">Practical advice, not theory alone.</h2>
+          </div>
+          <p data-en="Our consulting, vet services, and workshops are designed around the realities of Tamil Nadu livestock farms: sourcing, feed cost, health risk, growth tracking, buyer timing and market price." data-ta="எங்கள் ஆலோசனை, கால்நடை சேவைகள் மற்றும் பயிற்சிகள் தமிழ்நாடு கால்நடை பண்ணைகளின் நடைமுறை தேவைகளை மையமாகக் கொண்டவை: கொள்முதல், தீவன செலவு, ஆரோக்கிய அபாயம், வளர்ச்சி கண்காணிப்பு, வாங்குபவர் நேரம், சந்தை விலை.">Our consulting, vet services, and workshops are designed around the realities of Tamil Nadu livestock farms: sourcing, feed cost, health risk, growth tracking, buyer timing and market price.</p>
+        </div>
+
+        <div class="proof-grid">
+          <div class="proof">
+            <b data-en="Farm Management" data-ta="பண்ணை மேலாண்மை">Farm Management</b>
+            <p data-en="Setup guidance, SOPs, batch planning, record keeping and production monitoring for repeatable farm operations." data-ta="பண்ணை அமைப்பு, SOP, தொகுதி திட்டமிடல், பதிவேடு பராமரிப்பு மற்றும் உற்பத்தி கண்காணிப்பு வழிகாட்டுதல்.">Setup guidance, SOPs, batch planning, record keeping and production monitoring for repeatable farm operations.</p>
+          </div>
+          <div class="proof">
+            <b data-en="Vet Support" data-ta="கால்நடை ஆதரவு">Vet Support</b>
+            <p data-en="Preventive care planning, vaccination guidance, disease risk checks and practical health protocols for small ruminants." data-ta="சிறு கால்நடைகளுக்கான தடுப்பு பராமரிப்பு, தடுப்பூசி வழிகாட்டுதல், நோய் அபாய மதிப்பீடு மற்றும் நடைமுறை ஆரோக்கிய முறைகள்.">Preventive care planning, vaccination guidance, disease risk checks and practical health protocols for small ruminants.</p>
+          </div>
+          <div class="proof">
+            <b data-en="Workshops" data-ta="பயிற்சிகள்">Workshops</b>
+            <p data-en="Farmer-friendly sessions on sourcing, feeding, fattening, biosecurity, farm economics and market-ready sales." data-ta="கொள்முதல், தீவனம், கொழுப்பூட்டல், உயிர் பாதுகாப்பு, பண்ணை பொருளாதாரம் மற்றும் சந்தை விற்பனை குறித்து விவசாயிகளுக்கான பயிற்சிகள்.">Farmer-friendly sessions on sourcing, feeding, fattening, biosecurity, farm economics and market-ready sales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <div class="kicker" data-en="Talk to the team" data-ta="குழுவுடன் பேசுங்கள்">Talk to the team</div>
+            <h2 data-en="Planning a farm, solving a health issue, or training your team?" data-ta="பண்ணை திட்டமிடுகிறீர்களா, ஆரோக்கிய பிரச்சினை தீர்க்க வேண்டுமா, அல்லது உங்கள் குழுவுக்கு பயிற்சி வேண்டுமா?">Planning a farm, solving a health issue, or training your team?</h2>
+            <p data-en="Call or WhatsApp us with your requirement. We will help route it to the right business or veterinary expert." data-ta="உங்கள் தேவையை அழைப்பில் அல்லது வாட்ஸ்அப்பில் தெரிவிக்கவும். அதை சரியான வணிக அல்லது கால்நடை நிபுணரிடம் கொண்டு சேர்க்கிறோம்.">Call or WhatsApp us with your requirement. We will help route it to the right business or veterinary expert.</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="tel:+917845867125" data-en="Call 7845867125" data-ta="அழைக்க 7845867125">Call 7845867125</a>
+            <a class="btn btn-secondary" href="https://wa.me/917845867125" target="_blank" rel="noopener" data-en="WhatsApp" data-ta="வாட்ஸ்அப்">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div data-en="The Fat Lamb Co. · Team & Credentials" data-ta="The Fat Lamb Co. · குழு & தகுதிகள்">The Fat Lamb Co. · Team & Credentials</div>
+    <a href="index.html" data-en="Back to Home" data-ta="முகப்புக்கு திரும்ப">Back to Home</a>
+  </footer>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "The Fat Lamb Co. Team & Credentials",
+      "description": "Team credentials for The Fat Lamb Co. farm consulting, veterinary services, workshops, and Mecheri lamb supply.",
+      "mainEntity": {
+        "@type": "LocalBusiness",
+        "name": "The Fat Lamb Co.",
+        "telephone": "+917845867125",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kombanaipudur",
+          "addressRegion": "Tamil Nadu",
+          "addressCountry": "IN"
+        }
+      }
+    }
+  </script>
+  <script>
+    const langButtons = document.querySelectorAll('[data-lang-btn]');
+    const translatable = document.querySelectorAll('[data-en][data-ta]');
+    const titles = {
+      en: 'The Fat Lamb Co. | Team & Credentials',
+      ta: 'The Fat Lamb Co. | குழு & தகுதிகள்'
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.classList.toggle('lang-ta', lang === 'ta');
+      document.title = titles[lang] || titles.en;
+      translatable.forEach((el) => {
+        el.textContent = el.dataset[lang] || el.dataset.en;
+      });
+      langButtons.forEach((button) => {
+        const active = button.dataset.langBtn === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('fatLambLang', lang);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.langBtn));
+    });
+
+    setLanguage(localStorage.getItem('fatLambLang') || 'en');
+  </script>
+</body>
+</html>

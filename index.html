@@ -1,304 +1,901 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>கொம்பனைப்புதூர் பண்ணை — Farm Tools</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<title>The Fat Lamb Co. | Mecheri Lambs, Farm Consulting & Vet Services</title>
+<meta name="description" content="The Fat Lamb Co. in Kombanaipudur offers Mecheri lambs, farm management consulting, vet services, and farm management workshops. Call or WhatsApp 7845867125.">
+<meta name="keywords" content="The Fat Lamb Co, Mecheri lambs, Kombanaipudur sheep farm, farm management consulting, veterinary services for farms, sheep farm workshop, livestock consulting Tamil Nadu">
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Fat Lamb Co.">
+<meta name="theme-color" content="#1d140b">
+<link rel="canonical" href="/">
+<link rel="alternate" hreflang="en" href="/">
+<link rel="alternate" hreflang="ta" href="/">
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="The Fat Lamb Co. | Mecheri Lambs, Farm Consulting & Vet Services">
+<meta property="og:description" content="Mecheri lambs, farm management consulting, in-house vet services, and workshops from The Fat Lamb Co. in Kombanaipudur.">
+<meta property="og:image" content="assets/farm-hero.jpeg">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Fat Lamb Co. | Mecheri Lambs, Farm Consulting & Vet Services">
+<meta name="twitter:description" content="Mecheri lambs, farm management consulting, vet services, and workshops. Call or WhatsApp 7845867125.">
+<meta name="twitter:image" content="assets/farm-hero.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --soil:    #1c1209;
-  --bark:    #2d1e0a;
-  --earth:   #3d2b12;
-  --clay:    #6b4423;
-  --sand:    #c4a882;
-  --cream:   #f5edd8;
-  --parch:   #faf4e8;
-  --green:   #2d6a2f;
-  --leaf:    #4a8c3f;
-  --lime:    #7ab648;
-  --sage:    #a8c87a;
-  --amber:   #d4820a;
-  --gold:    #f0a020;
-  --saffron: #f5c040;
-  --red:     #b83232;
-  --rose:    #e05050;
-  --pink:    #f08080;
-  --blue:    #2a5a8a;
-  --sky:     #4a8ab5;
-  --mist:    #8ab8d8;
+  --ink: #1d140b;
+  --bark: #382414;
+  --earth: #694829;
+  --hay: #c69a55;
+  --sun: #e6b65d;
+  --cream: #fff7e8;
+  --paper: #f8edda;
+  --leaf: #315f35;
+  --moss: #6f8f49;
+  --sky: #dcebd7;
+  --line: rgba(56, 36, 20, .16);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--soil);
+  background: var(--paper);
+  color: var(--ink);
   font-family: 'DM Sans', sans-serif;
-  color: var(--cream);
   min-height: 100vh;
+}
+
+body.lang-ta {
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(1120px, calc(100% - 32px));
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 12px 10px 18px;
+  background: rgba(29, 20, 11, .72);
+  border: 1px solid rgba(255, 247, 232, .18);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  color: var(--cream);
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+  gap: 18px;
+}
+
+.brand {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links a,
+.lang-toggle button {
+  border-radius: 999px;
+  padding: 9px 13px;
+  color: rgba(255, 247, 232, .82);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.lang-toggle button:hover {
+  background: rgba(255, 247, 232, .12);
+  color: var(--cream);
+}
+
+.nav-links .call {
+  background: var(--sun);
+  color: var(--ink);
+}
+
+.nav-links .whatsapp {
+  background: #25d366;
+  color: #082611;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid rgba(255, 247, 232, .2);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, .08);
+}
+
+.lang-toggle button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  min-width: 42px;
+}
+
+.lang-toggle button.active {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.hero {
+  min-height: 96vh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(29,20,11,.88), rgba(29,20,11,.42) 48%, rgba(29,20,11,.12)),
+    linear-gradient(0deg, rgba(29,20,11,.86), rgba(29,20,11,0) 48%);
+  z-index: 1;
+}
+
+.hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 130px 0 72px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 247, 232, .25);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, .1);
+  color: var(--sun);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 760px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(44px, 8vw, 88px);
+  line-height: .98;
+  letter-spacing: 0;
+}
+
+.hero-copy {
+  max-width: 620px;
+  margin-top: 22px;
+  color: rgba(255, 247, 232, .86);
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.55;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px 60px;
-}
-
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 0;
-}
-
-.wrap { max-width: 800px; width: 100%; position: relative; z-index: 1; }
-
-/* Header */
-.hdr { text-align: center; margin-bottom: 56px; }
-.hdr-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(122,182,72,.15); border: 1px solid rgba(122,182,72,.3);
-  border-radius: 100px; padding: 5px 16px; margin-bottom: 24px;
-  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--lime);
-}
-.hdr-farm {
-  font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: clamp(22px, 4vw, 32px);
+  min-height: 48px;
+  padding: 13px 18px;
+  border-radius: 999px;
   font-weight: 700;
-  color: var(--cream);
-  line-height: 1.2;
-  margin-bottom: 6px;
-}
-.hdr-sub {
-  font-size: 13px;
-  color: rgba(196,168,130,.8);
-  margin-bottom: 4px;
-}
-.hdr-loc {
-  font-size: 12px;
-  color: rgba(196,168,130,.55);
-}
-
-/* Tiles grid */
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.tile {
-  display: block;
   text-decoration: none;
-  border-radius: 20px;
-  padding: 32px 28px;
-  border: 1px solid;
-  position: relative;
-  overflow: hidden;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  cursor: pointer;
-}
-.tile:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
-}
-.tile::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  border-radius: 20px 20px 0 0;
 }
 
-/* Calendar tile — warm amber */
-.tile-calendar {
-  background: rgba(61,43,18,.5);
-  border-color: rgba(212,130,10,.3);
+.btn-primary {
+  background: var(--sun);
+  color: var(--ink);
 }
-.tile-calendar::before { background: linear-gradient(90deg, var(--amber), var(--gold)); }
-.tile-calendar:hover { border-color: rgba(240,160,32,.6); }
 
-/* Planner tile — green */
-.tile-planner {
-  background: rgba(30,58,25,.5);
-  border-color: rgba(74,140,63,.3);
+.btn-secondary {
+  border: 1px solid rgba(255, 247, 232, .28);
+  color: var(--cream);
+  background: rgba(255, 247, 232, .08);
 }
-.tile-planner::before { background: linear-gradient(90deg, var(--green), var(--lime)); }
-.tile-planner:hover { border-color: rgba(122,182,72,.6); }
 
-.tile-icon {
-  font-size: 40px;
-  margin-bottom: 16px;
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 760px;
+  margin-top: 44px;
+}
+
+.stat {
+  padding: 18px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  background: rgba(255, 247, 232, .09);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.stat strong {
   display: block;
+  color: var(--sun);
+  font-size: 28px;
   line-height: 1;
 }
-.tile-label {
-  font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.tile-calendar .tile-label { color: var(--gold); }
-.tile-planner .tile-label { color: var(--lime); }
 
-.tile-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(18px, 2.5vw, 22px);
-  color: var(--cream);
-  margin-bottom: 10px;
-  line-height: 1.2;
-}
-.tile-title-ta {
-  font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: 13px;
-  color: var(--sand);
-  margin-bottom: 14px;
+.stat span {
   display: block;
+  margin-top: 7px;
+  color: rgba(255, 247, 232, .78);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
 }
-.tile-desc {
-  font-size: 13px;
-  color: rgba(196,168,130,.82);
+
+main {
+  overflow: hidden;
+}
+
+.section {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 74px 0;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+
+.kicker {
+  color: var(--leaf);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-top: 8px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.08;
+}
+
+.section-head p,
+.lead {
+  color: rgba(29, 20, 11, .7);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.feature {
+  min-height: 188px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .42);
+}
+
+.feature b {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--leaf);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.feature p {
+  color: rgba(29, 20, 11, .72);
   line-height: 1.65;
-  margin-bottom: 20px;
 }
-.tile-pills {
-  display: flex; flex-wrap: wrap; gap: 6px;
-}
-.pill {
-  font-size: 10px; padding: 3px 9px; border-radius: 100px;
-  font-weight: 500;
-}
-.tile-calendar .pill { background: rgba(212,130,10,.18); color: var(--saffron); border: 1px solid rgba(212,130,10,.25); }
-.tile-planner  .pill { background: rgba(74,140,63,.18);  color: var(--sage);    border: 1px solid rgba(74,140,63,.25); }
 
-.tile-arrow {
-  position: absolute; bottom: 28px; right: 28px;
-  font-size: 20px; opacity: .4;
-  transition: opacity .2s, transform .2s;
+.showcase {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 18px;
+  align-items: stretch;
 }
-.tile:hover .tile-arrow { opacity: 1; transform: translate(3px, -3px); }
 
-/* Footer */
+.photo-large,
+.photo-stack img,
+.map-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 60px rgba(56, 36, 20, .14);
+}
+
+.photo-large {
+  min-height: 560px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-stack {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 18px;
+}
+
+.photo-stack img {
+  width: 100%;
+  height: 100%;
+  min-height: 270px;
+  object-fit: cover;
+}
+
+.availability {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.availability .section {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.availability .kicker {
+  color: var(--sun);
+}
+
+.availability .lead {
+  color: rgba(255, 247, 232, .76);
+}
+
+.market-list {
+  display: grid;
+  gap: 12px;
+}
+
+.market-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 247, 232, .12);
+}
+
+.market-row span {
+  color: rgba(255, 247, 232, .58);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.market-row strong {
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.1;
+}
+
+.contact-band {
+  background: linear-gradient(135deg, var(--leaf), #1f4326);
+  color: var(--cream);
+}
+
+.contact-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.contact-copy {
+  padding: 36px 0;
+}
+
+.contact-copy p {
+  max-width: 620px;
+  margin-top: 14px;
+  color: rgba(255, 247, 232, .8);
+  line-height: 1.7;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.map-card {
+  min-height: 320px;
+  background: var(--cream);
+}
+
+.map-card iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border: 0;
+}
+
 .footer {
-  text-align: center;
-  margin-top: 48px;
-  font-size: 11px;
-  color: rgba(196,168,130,.4);
-  line-height: 1.8;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 26px 0 34px;
+  color: rgba(29, 20, 11, .58);
+  font-size: 13px;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+.footer a {
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--leaf);
 }
-.hdr  { animation: fadeUp .5s ease both; }
-.tile { animation: fadeUp .5s ease both; }
-.tile:nth-child(1) { animation-delay: .15s; }
-.tile:nth-child(2) { animation-delay: .25s; }
 
-@media (max-width: 720px) {
-  body {
+@media (max-width: 860px) {
+  .nav {
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 18px;
+    align-items: stretch;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .nav-main {
+    width: 100%;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
     justify-content: flex-start;
-    padding: 28px 16px 44px;
+    width: 100%;
   }
 
-  .hdr {
-    margin-bottom: 32px;
+  .nav-links a {
+    padding: 8px 10px;
   }
 
-  .hdr-badge {
-    max-width: 100%;
-    justify-content: center;
-    text-align: center;
-    line-height: 1.35;
-    white-space: normal;
+  .lang-toggle button {
+    padding: 8px 10px;
   }
 
-  .tiles {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-inner {
+    width: calc(100% - 28px);
+    padding: 132px 0 46px;
+  }
+
+  .hero-stats,
+  .feature-grid,
+  .showcase,
+  .availability .section,
+  .contact-card,
+  .section-head {
     grid-template-columns: 1fr;
-    gap: 14px;
   }
 
-  .tile {
-    border-radius: 16px;
-    padding: 24px 20px;
-    min-width: 0;
+  .hero-stats {
+    gap: 8px;
   }
 
-  .tile-icon {
-    font-size: 34px;
+  .section {
+    width: calc(100% - 28px);
+    padding: 54px 0;
   }
 
-  .tile-desc {
-    margin-bottom: 18px;
+  .photo-large,
+  .photo-stack img {
+    min-height: 280px;
   }
 
-  .tile-arrow {
-    bottom: 20px;
-    right: 20px;
+  .availability .section {
+    gap: 28px;
+  }
+
+  .market-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .contact-copy {
+    padding: 0;
   }
 
   .footer {
-    margin-top: 34px;
+    width: calc(100% - 28px);
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .nav {
+    position: absolute;
+  }
+
+  .brand {
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .nav-links a[href="#services"],
+  .nav-links a[href="#available"],
+  .nav-links a[href="#visit"] {
+    display: none;
+  }
+
+  .lang-toggle {
+    flex-shrink: 0;
+  }
+
+  .lang-toggle button {
+    min-width: 38px;
+    padding: 8px 9px;
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(0deg, rgba(29,20,11,.92), rgba(29,20,11,.25) 64%),
+      linear-gradient(90deg, rgba(29,20,11,.55), rgba(29,20,11,.08));
+  }
+
+  .hero img {
+    object-position: 45% center;
+  }
+
+  .hero-inner {
+    width: calc(100% - 24px);
+    padding-top: 184px;
+    padding-bottom: 36px;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stat {
+    padding: 14px;
+  }
+
+  .feature {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .contact-actions,
+  .hero-actions {
+    display: grid;
+    gap: 9px;
+  }
+
+  .btn {
+    width: 100%;
   }
 }
 
 @media (max-width: 380px) {
-  body {
-    padding-left: 12px;
-    padding-right: 12px;
+  .nav {
+    width: calc(100% - 14px);
+    padding: 8px;
   }
 
-  .tile {
-    padding: 22px 16px;
+  .brand {
+    font-size: 15px;
+  }
+
+  .nav-links {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-inner {
+    padding-top: 222px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .hero-copy {
+    font-size: 16px;
+  }
+
+  .section {
+    width: calc(100% - 22px);
   }
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <div class="hdr">
-    <div class="hdr-badge">🐑 The Fat Lamb Co.</div>
-    <div class="hdr-farm">ஆட்டு பண்ணை மேலாண்மை</div>
-    <div class="hdr-sub">Sheep Farm Management · Erode District · 2026</div>
-    <div class="hdr-loc">கொம்பனைப்புதூர் · பண்ணை ஈரோடு மாவட்டம் · Tamil Nadu</div>
-  </div>
-
-  <div class="tiles">
-
-    <a class="tile tile-calendar" href="calendar.html">
-      <span class="tile-icon">📅</span>
-      <div class="tile-label">Market Intelligence</div>
-      <div class="tile-title">Demand Cycle Calendar</div>
-      <span class="tile-title-ta">தேவை சுழற்சி காலண்டர்</span>
-      <div class="tile-desc">Annual festival price atlas. See which months have peak, high, and low demand — with historical price bands and farm action notes for each month of 2026.</div>
-      <div class="tile-pills">
-        <span class="pill">12 Months</span>
-        <span class="pill">Festival Spikes</span>
-        <span class="pill">Price Bands</span>
-        <span class="pill">Bakrid · Deepavali</span>
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="nav-main">
+      <div class="brand">The Fat Lamb Co.</div>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
       </div>
-      <div class="tile-arrow">↗</div>
-    </a>
+    </div>
+    <div class="nav-links">
+      <a href="#services" data-en="Services" data-ta="சேவைகள்">Services</a>
+      <a href="team.html" data-en="Team" data-ta="குழு">Team</a>
+      <a href="#available" data-en="Available" data-ta="இருப்பு">Available</a>
+      <a href="#visit" data-en="Location" data-ta="இடம்">Location</a>
+      <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
+      <a class="whatsapp" href="https://wa.me/917845867125" target="_blank" rel="noopener" data-en="WhatsApp" data-ta="வாட்ஸ்அப்">WhatsApp</a>
+      <a class="call" href="tel:+917845867125" data-en="Call 7845867125" data-ta="அழைக்க 7845867125">Call 7845867125</a>
+    </div>
+  </nav>
 
-    <a class="tile tile-planner" href="planner.html">
-      <span class="tile-icon">🧭</span>
-      <div class="tile-label">Decision Tool</div>
-      <div class="tile-title">Today's Action Planner</div>
-      <span class="tile-title-ta">இன்றே என்ன செய்வது?</span>
-      <div class="tile-desc">Tell the tool how many sheep you have, current batch weights, and budget. It tells you exactly what to do <em>today</em> to maximise profit before the next demand spike.</div>
-      <div class="tile-pills">
-        <span class="pill">Batch Tracker</span>
-        <span class="pill">Sell / Hold Advisor</span>
-        <span class="pill">Days to Festival</span>
-        <span class="pill">Profit Estimate</span>
+  <header class="hero">
+    <img src="assets/farm-hero.jpeg" fetchpriority="high" width="1900" height="1160" alt="Mecheri lambs feeding at The Fat Lamb Co. farm in Kombanaipudur">
+    <div class="hero-inner">
+      <div class="eyebrow" data-en="Kombanaipudur · Mecheri Lambs" data-ta="கொம்பனைப்புதூர் · மேச்சேரி ஆடுகள்">Kombanaipudur · Mecheri Lambs</div>
+      <h1>The Fat Lamb Co.</h1>
+      <p class="hero-copy" data-en="Mecheri lambs, farm management consulting, in-house vet services, and practical workshops for farmers and livestock farms." data-ta="மேச்சேரி ஆடுகள், பண்ணை மேலாண்மை ஆலோசனை, எங்கள் நிபுணர் கால்நடை மருத்துவர் குழுவின் சேவைகள், மற்றும் விவசாயிகள்/பண்ணைகளுக்கான பயிற்சி பட்டறைகள்.">Mecheri lambs, farm management consulting, in-house vet services, and practical workshops for farmers and livestock farms.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:+917845867125" data-en="Call to Enquire" data-ta="விசாரிக்க அழைக்கவும்">Call to Enquire</a>
+        <a class="btn btn-secondary" href="https://wa.me/917845867125" target="_blank" rel="noopener" data-en="Chat on WhatsApp" data-ta="வாட்ஸ்அப்பில் பேசவும்">Chat on WhatsApp</a>
+        <a class="btn btn-secondary" href="https://www.google.com/maps?q=11.139575639659443,77.85377674589682" target="_blank" rel="noopener" data-en="Open Farm Map" data-ta="பண்ணை வரைபடம் திறக்கவும்">Open Farm Map</a>
       </div>
-      <div class="tile-arrow">↗</div>
-    </a>
+      <div class="hero-stats" id="available">
+        <div class="stat"><strong data-en="Mecheri" data-ta="மேச்சேரி">Mecheri</strong><span data-en="Breed available" data-ta="இருக்கும் இனம்">Breed available</span></div>
+        <div class="stat"><strong data-en="33 kg" data-ta="33 கிலோ">33 kg</strong><span data-en="Average weight" data-ta="சராசரி எடை">Average weight</span></div>
+        <div class="stat"><strong data-en="Kombanaipudur" data-ta="கொம்பனைப்புதூர்">Kombanaipudur</strong><span data-en="Farm location" data-ta="பண்ணை இடம்">Farm location</span></div>
+      </div>
+    </div>
+  </header>
 
-  </div>
+  <main>
+    <section class="section" id="services">
+      <div class="section-head">
+        <div>
+          <div class="kicker" data-en="Farm services" data-ta="பண்ணை சேவைகள்">Farm services</div>
+          <h2 data-en="Support for farmers, farms, and buyers from one experienced livestock team." data-ta="விவசாயிகள், பண்ணைகள், மற்றும் வாங்குபவர்களுக்கு ஒரே அனுபவமுள்ள கால்நடை குழுவிலிருந்து ஆதரவு.">Support for farmers, farms, and buyers from one experienced livestock team.</h2>
+        </div>
+        <p data-en="Alongside our Mecheri lamb availability, The Fat Lamb Co. now provides farm management consulting, veterinary support from our in-house expert vet doctor team, and practical workshops for farmers and livestock farms." data-ta="மேச்சேரி ஆடுகளின் இருப்புடன், The Fat Lamb Co. இப்போது பண்ணை மேலாண்மை ஆலோசனை, எங்கள் நிபுணர் கால்நடை மருத்துவர் குழுவின் மருத்துவ ஆதரவு, மற்றும் விவசாயிகள்/கால்நடை பண்ணைகளுக்கான நடைமுறை பயிற்சி பட்டறைகளையும் வழங்குகிறது.">Alongside our Mecheri lamb availability, The Fat Lamb Co. now provides farm management consulting, veterinary support from our in-house expert vet doctor team, and practical workshops for farmers and livestock farms.</p>
+      </div>
 
-  <div class="footer">
-    கொம்பனைப்புதூர் பண்ணை · ஈரோடு மாவட்டம் · 2026<br>
-    Data: TANUVAS · Erode / Bhavani Market Observations
-  </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <b data-en="Farm Consulting" data-ta="பண்ணை ஆலோசனை">Farm Consulting</b>
+          <p data-en="Guidance on farm setup, batch planning, feed systems, fattening schedules, and day-to-day livestock management." data-ta="பண்ணை அமைப்பு, தொகுதி திட்டமிடல், தீவன முறை, கொழுப்பூட்டல் அட்டவணை, மற்றும் தினசரி கால்நடை மேலாண்மைக்கு வழிகாட்டுதல்.">Guidance on farm setup, batch planning, feed systems, fattening schedules, and day-to-day livestock management.</p>
+        </div>
+        <div class="feature">
+          <b data-en="Vet Services" data-ta="கால்நடை மருத்துவர் சேவை">Vet Services</b>
+          <p data-en="On-call farm health support from our in-house expert vet doctor team for preventive care and practical treatment guidance." data-ta="தடுப்பு பராமரிப்பு மற்றும் நடைமுறை சிகிச்சை வழிகாட்டலுக்காக எங்கள் நிபுணர் கால்நடை மருத்துவர் குழுவின் பண்ணை ஆரோக்கிய ஆதரவு.">On-call farm health support from our in-house expert vet doctor team for preventive care and practical treatment guidance.</p>
+        </div>
+        <div class="feature">
+          <b data-en="Workshops" data-ta="பயிற்சி பட்டறைகள்">Workshops</b>
+          <p data-en="Hands-on farm management sessions for farmers, farm teams, and new entrants who want practical livestock systems." data-ta="விவசாயிகள், பண்ணை குழுக்கள், மற்றும் கால்நடை பண்ணை தொடங்க விரும்புவோருக்கான நடைமுறை பண்ணை மேலாண்மை பயிற்சிகள்.">Hands-on farm management sessions for farmers, farm teams, and new entrants who want practical livestock systems.</p>
+        </div>
+        <div class="feature">
+          <b data-en="Mecheri Lambs" data-ta="மேச்சேரி ஆடுகள்">Mecheri Lambs</b>
+          <p data-en="Farm-raised Mecheri lambs averaging 33 kg, available for buyers who want breed clarity and direct farm inspection." data-ta="சராசரி 33 கிலோ எடையுள்ள பண்ணையில் வளர்க்கப்பட்ட மேச்சேரி ஆடுகள்; இனம் தெளிவாகவும் நேரடி பார்வையுடனும் வாங்க விரும்புவோருக்கு.">Farm-raised Mecheri lambs averaging 33 kg, available for buyers who want breed clarity and direct farm inspection.</p>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="section" aria-label="Farm photos">
+      <div class="showcase">
+        <img class="photo-large" src="assets/farm-wide.jpeg" loading="lazy" width="1900" height="1160" alt="Wide view of The Fat Lamb Co. farm with lambs under coconut trees">
+        <div class="photo-stack">
+          <img src="assets/farm-grove.jpeg" loading="lazy" width="1900" height="1160" alt="Lambs resting in the coconut grove farm yard">
+          <img src="assets/farm-feeding.jpeg" loading="lazy" width="1500" height="2000" alt="Mecheri lambs feeding together at the farm trough">
+        </div>
+      </div>
+    </section>
+
+    <section class="availability">
+      <div class="section">
+        <div>
+          <div class="kicker" data-en="Current availability" data-ta="தற்போதைய இருப்பு">Current availability</div>
+          <h2 data-en="Mecheri lambs averaging 33 kg, plus expert farm services." data-ta="சராசரி 33 கிலோ மேச்சேரி ஆடுகள் மற்றும் நிபுணர் பண்ணை சேவைகள்.">Mecheri lambs averaging 33 kg, plus expert farm services.</h2>
+          <p class="lead" data-en="For lamb purchase, farm consulting, vet service, or workshop enquiries, call or WhatsApp ahead so we can understand your requirement and schedule the right support." data-ta="ஆடு வாங்குதல், பண்ணை ஆலோசனை, கால்நடை மருத்துவர் சேவை, அல்லது பயிற்சி பட்டறை விசாரணைகளுக்கு முன்கூட்டியே அழைக்கவும் அல்லது வாட்ஸ்அப் செய்யவும்; உங்கள் தேவையை புரிந்து சரியான ஆதரவை ஏற்பாடு செய்கிறோம்.">For lamb purchase, farm consulting, vet service, or workshop enquiries, call or WhatsApp ahead so we can understand your requirement and schedule the right support.</p>
+        </div>
+        <div class="market-list">
+          <div class="market-row"><span data-en="Farm" data-ta="பண்ணை">Farm</span><strong>The Fat Lamb Co.</strong></div>
+          <div class="market-row"><span data-en="Location" data-ta="இடம்">Location</span><strong data-en="Kombanaipudur" data-ta="கொம்பனைப்புதூர்">Kombanaipudur</strong></div>
+          <div class="market-row"><span data-en="Services" data-ta="சேவைகள்">Services</span><strong data-en="Lambs · Consulting · Vet Care · Workshops" data-ta="ஆடுகள் · ஆலோசனை · கால்நடை சேவை · பயிற்சி">Lambs · Consulting · Vet Care · Workshops</strong></div>
+          <div class="market-row"><span data-en="Contact" data-ta="தொடர்பு">Contact</span><strong>7845867125</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-band" id="visit">
+      <div class="section contact-card">
+        <div class="contact-copy">
+          <div class="kicker" data-en="Visit the farm" data-ta="பண்ணைக்கு வருகை">Visit the farm</div>
+          <h2 data-en="Find us at Kombanaipudur." data-ta="கொம்பனைப்புதூரில் எங்களை காணலாம்.">Find us at Kombanaipudur.</h2>
+          <p data-en="Use the map to navigate to the farm location. For lamb availability, consulting, vet services, workshops, pricing, and visit timing, call before you arrive." data-ta="பண்ணை இடத்துக்கு வர வரைபடத்தைப் பயன்படுத்தவும். ஆடு இருப்பு, ஆலோசனை, கால்நடை மருத்துவர் சேவை, பயிற்சி, விலை, வருகை நேரம் ஆகியவற்றுக்கு வருவதற்கு முன் அழைக்கவும்.">Use the map to navigate to the farm location. For lamb availability, consulting, vet services, workshops, pricing, and visit timing, call before you arrive.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="tel:+917845867125" data-en="Call 7845867125" data-ta="அழைக்க 7845867125">Call 7845867125</a>
+            <a class="btn btn-secondary" href="https://wa.me/917845867125" target="_blank" rel="noopener" data-en="WhatsApp 7845867125" data-ta="வாட்ஸ்அப் 7845867125">WhatsApp 7845867125</a>
+            <a class="btn btn-secondary" href="https://www.google.com/maps?q=11.139575639659443,77.85377674589682" target="_blank" rel="noopener" data-en="Open in Google Maps" data-ta="Google Maps-ல் திறக்கவும்">Open in Google Maps</a>
+          </div>
+        </div>
+        <div class="map-card">
+          <iframe
+            title="The Fat Lamb Co. farm location map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=11.139575639659443,77.85377674589682&z=15&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div data-en="The Fat Lamb Co. · Kombanaipudur · Mecheri lambs" data-ta="The Fat Lamb Co. · கொம்பனைப்புதூர் · மேச்சேரி ஆடுகள்">The Fat Lamb Co. · Kombanaipudur · Mecheri lambs</div>
+    <div>
+      <a href="team.html" data-en="Team & Credentials" data-ta="குழு & தகுதிகள்">Team & Credentials</a>
+      <span aria-hidden="true"> · </span>
+      <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
+    </div>
+  </footer>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "The Fat Lamb Co.",
+      "description": "Mecheri lambs, farm management consulting, veterinary services, and farm management workshops in Kombanaipudur.",
+      "telephone": "+917845867125",
+      "url": "/",
+      "image": "assets/farm-hero.jpeg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kombanaipudur",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 11.139575639659443,
+        "longitude": 77.85377674589682
+      },
+      "areaServed": [
+        "Kombanaipudur",
+        "Erode",
+        "Tamil Nadu"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Mecheri lambs",
+            "description": "Mecheri breed lambs averaging 33 kg."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Farm management consulting",
+            "description": "Consulting for livestock farm setup, feed systems, fattening schedules, and day-to-day farm management."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Vet services for farmers and farms",
+            "description": "Veterinary support from The Fat Lamb Co. in-house expert vet doctor team."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Farm management workshops",
+            "description": "Practical workshops for farmers, farm teams, and livestock farm owners."
+          }
+        }
+      ],
+      "sameAs": [
+        "https://wa.me/917845867125",
+        "https://www.google.com/maps?q=11.139575639659443,77.85377674589682"
+      ]
+    }
+  </script>
+  <script>
+    const langButtons = document.querySelectorAll('[data-lang-btn]');
+    const translatable = document.querySelectorAll('[data-en][data-ta]');
+    const titles = {
+      en: 'The Fat Lamb Co. | Mecheri Lambs, Farm Consulting & Vet Services',
+      ta: 'The Fat Lamb Co. | மேச்சேரி ஆடுகள், பண்ணை ஆலோசனை & கால்நடை சேவை'
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.classList.toggle('lang-ta', lang === 'ta');
+      document.title = titles[lang] || titles.en;
+      translatable.forEach((el) => {
+        el.textContent = el.dataset[lang] || el.dataset.en;
+      });
+      langButtons.forEach((button) => {
+        const active = button.dataset.langBtn === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('fatLambLang', lang);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.langBtn));
+    });
+
+    setLanguage(localStorage.getItem('fatLambLang') || 'en');
+  </script>
 </body>
 </html>
