@@ -550,7 +550,23 @@ h2 {
 
   .photo-large,
   .photo-stack img {
-    min-height: 280px;
+    aspect-ratio: 4 / 3;
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  .photo-stack {
+    grid-template-rows: none;
+    gap: 12px;
+  }
+
+  .showcase {
+    gap: 12px;
+    margin-bottom: 0;
   }
 
   .availability .section {
