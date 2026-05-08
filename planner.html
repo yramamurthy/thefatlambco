@@ -33,6 +33,8 @@ body {
   background: var(--soil);
   font-family: 'DM Sans', sans-serif;
   color: var(--cream);
+  font-size: 14px;
+  line-height: 1.55;
   min-height: 100vh;
   padding-bottom: 80px;
 }
@@ -64,20 +66,23 @@ body::before {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(74,140,63,.15); border: 1px solid rgba(74,140,63,.3);
   border-radius: 100px; padding: 5px 16px; margin-bottom: 16px;
-  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
   color: var(--lime);
 }
 .hdr h1 {
   font-family: 'Libre Baskerville', serif;
-  font-size: clamp(22px, 4vw, 34px);
-  color: var(--cream); margin-bottom: 4px;
+  font-size: clamp(28px, 4.4vw, 40px);
+  line-height: 1.14;
+  color: var(--cream); margin-bottom: 8px;
 }
 .hdr h1 span { color: var(--lime); }
 .hdr-ta {
   font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: 18px; color: var(--gold); margin-bottom: 8px; font-weight: 600;
+  font-size: clamp(18px, 3vw, 22px);
+  line-height: 1.45;
+  color: var(--gold); margin-bottom: 8px; font-weight: 700;
 }
-.hdr-desc { font-size: 13px; color: rgba(196,168,130,.8); max-width: 560px; line-height: 1.6; }
+.hdr-desc { font-size: 13.5px; color: rgba(196,168,130,.8); max-width: 580px; line-height: 1.68; }
 
 /* Festival countdown bar */
 .fest-bar {
@@ -109,7 +114,8 @@ body::before {
 /* Section title */
 .sec-title {
   font-family: 'Libre Baskerville', serif;
-  font-size: 16px; color: var(--gold);
+  font-size: 17px; color: var(--gold);
+  line-height: 1.35;
   margin: 36px 0 16px;
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(240,160,32,.2);
@@ -134,11 +140,11 @@ body::before {
   margin-bottom: 20px;
 }
 .input-card-title {
-  font-size: 14px; font-weight: 600; color: var(--cream);
+  font-size: 14.5px; font-weight: 700; color: var(--cream);
 }
 .input-card-ta {
   font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: 11px; color: var(--sand); opacity: .8; margin-top: 2px;
+  font-size: 11.5px; line-height: 1.55; color: var(--sand); opacity: .82; margin-top: 2px;
 }
 
 .input-grid {
@@ -148,11 +154,11 @@ body::before {
 }
 .field { display: flex; flex-direction: column; gap: 5px; }
 .field label {
-  font-size: 11px; color: var(--sand); font-weight: 500; letter-spacing: .03em;
+  font-size: 11px; color: var(--sand); font-weight: 600; letter-spacing: .03em;
 }
 .field label span {
   font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: 11px; color: rgba(196,168,130,.6); margin-left: 4px;
+  font-size: 11.5px; line-height: 1.45; color: rgba(196,168,130,.64); margin-left: 4px;
 }
 .field input, .field select {
   background: rgba(28,18,9,.6);
@@ -258,11 +264,11 @@ body::before {
 .badge-buy    { background: rgba(100,70,30,.3); color: var(--sand); border: 1px solid rgba(100,70,30,.5); }
 
 .tc-batch-name {
-  font-size: 16px; font-weight: 600; color: var(--cream);
+  font-size: 16px; font-weight: 700; color: var(--cream);
   margin-bottom: 4px;
 }
 .tc-reason {
-  font-size: 13px; color: rgba(196,168,130,.85); line-height: 1.6;
+  font-size: 13.5px; color: rgba(196,168,130,.85); line-height: 1.68;
   margin-bottom: 14px;
   font-family: 'Noto Sans Tamil', sans-serif;
 }
@@ -315,7 +321,7 @@ body::before {
 }
 .cl-title {
   font-family: 'Libre Baskerville', serif;
-  font-size: 15px; color: var(--gold); margin-bottom: 16px;
+  font-size: 16px; color: var(--gold); margin-bottom: 16px;
 }
 .cl-item {
   display: flex; align-items: flex-start; gap: 12px;
@@ -336,7 +342,7 @@ body::before {
 .cl-text small {
   display: block;
   font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: 11px; color: rgba(196,168,130,.7); margin-top: 2px;
+  font-size: 11.5px; line-height: 1.55; color: rgba(196,168,130,.72); margin-top: 2px;
 }
 
 /* Hidden initially */
@@ -390,11 +396,13 @@ body::before {
   }
 
   .hdr-ta {
-    font-size: 16px;
+    font-size: 17px;
+    line-height: 1.5;
   }
 
   .hdr-desc {
-    font-size: 12px;
+    font-size: 13px;
+    line-height: 1.65;
   }
 
   .fest-bar {
@@ -553,7 +561,7 @@ body::before {
   <div class="fest-bar" id="festBar"></div>
 
   <!-- Inputs -->
-  <div class="sec-title">உங்கள் பண்ணை விவரம் <span style="font-size:12px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Your Farm Details</span></div>
+  <div class="sec-title">உங்கள் பண்ணை விவரம் <span style="font-size:12.5px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Your Farm Details</span></div>
 
   <!-- Global settings -->
   <div class="input-card">
@@ -586,7 +594,7 @@ body::before {
   <!-- Batch cards (dynamic) -->
   <div id="batchContainer"></div>
 
-  <button class="btn-add-batch" id="addBatch">+ Add Another Batch &nbsp;<span style="font-family:'Noto Sans Tamil',sans-serif;font-size:12px">மேலும் ஒரு தொகுதி சேர்க்கவும்</span></button>
+  <button class="btn-add-batch" id="addBatch">+ Add Another Batch &nbsp;<span style="font-family:'Noto Sans Tamil',sans-serif;font-size:12.5px;line-height:1.5">மேலும் ஒரு தொகுதி சேர்க்கவும்</span></button>
 
   <!-- Calculate -->
   <button class="btn-calc" id="calcBtn" onclick="calculate()">
@@ -595,7 +603,7 @@ body::before {
 
   <!-- Results -->
   <div id="results">
-    <div class="sec-title" style="margin-top:40px">இன்றைய பரிந்துரை <span style="font-size:12px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Today's Recommendations</span></div>
+    <div class="sec-title" style="margin-top:40px">இன்றைய பரிந்துரை <span style="font-size:12.5px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Today's Recommendations</span></div>
     <div id="batchResults"></div>
     <div id="cashflowDiv"></div>
     <div id="checklistDiv"></div>
@@ -981,7 +989,7 @@ function calculate() {
         <span class="cf-row-val" style="color:var(--sand)">−₹${Math.round(totalFeedCost).toLocaleString('en-IN')}</span>
       </div>` : ''}
       <div class="cf-total">
-        <span style="font-family:'Noto Sans Tamil',sans-serif;font-size:13px;color:var(--sand)">Net Profit (sell-now batches)</span>
+        <span style="font-family:'Noto Sans Tamil',sans-serif;font-size:13.5px;line-height:1.5;color:var(--sand)">Net Profit (sell-now batches)</span>
         <span class="cf-total-val">${netProfit >= 0 ? '+' : ''}₹${Math.round(netProfit).toLocaleString('en-IN')}</span>
       </div>
     </div>

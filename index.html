@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Fat Lamb Co. | Mecheri Lambs, Farm Consulting & Vet Services</title>
-<meta name="description" content="The Fat Lamb Co. in Kombanaipudur offers Mecheri lambs, farm management consulting, vet services, and farm management workshops. Call or WhatsApp 7845867125.">
-<meta name="keywords" content="The Fat Lamb Co, Mecheri lambs, Kombanaipudur sheep farm, farm management consulting, veterinary services for farms, sheep farm workshop, livestock consulting Tamil Nadu">
+<meta name="description" content="The Fat Lamb Co. in Kombanaipudur offers Mecheri lambs, farm management consulting, vet services, feed supplies, and farm management workshops. Call or WhatsApp 7845867125.">
+<meta name="keywords" content="The Fat Lamb Co, Mecheri lambs, Kombanaipudur sheep farm, farm management consulting, veterinary services for farms, sheep farm workshop, livestock consulting Tamil Nadu, livestock feed supplies">
 <meta name="robots" content="index, follow">
 <meta name="author" content="The Fat Lamb Co.">
 <meta name="theme-color" content="#1d140b">
@@ -14,12 +14,12 @@
 <link rel="alternate" hreflang="ta" href="/">
 <meta property="og:type" content="business.business">
 <meta property="og:title" content="The Fat Lamb Co. | Mecheri Lambs, Farm Consulting & Vet Services">
-<meta property="og:description" content="Mecheri lambs, farm management consulting, in-house vet services, and workshops from The Fat Lamb Co. in Kombanaipudur.">
+<meta property="og:description" content="Mecheri lambs, farm management consulting, in-house vet services, feed supplies, and workshops from The Fat Lamb Co. in Kombanaipudur.">
 <meta property="og:image" content="assets/farm-hero.jpeg">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Fat Lamb Co. | Mecheri Lambs, Farm Consulting & Vet Services">
-<meta name="twitter:description" content="Mecheri lambs, farm management consulting, vet services, and workshops. Call or WhatsApp 7845867125.">
+<meta name="twitter:description" content="Mecheri lambs, farm management consulting, vet services, feed supplies, and workshops. Call or WhatsApp 7845867125.">
 <meta name="twitter:image" content="assets/farm-hero.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +51,50 @@ body {
 }
 
 body.lang-ta { font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif; }
+
+body.lang-ta h1,
+body.lang-ta h2,
+body.lang-ta .market-row strong {
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+body.lang-ta h1 {
+  font-size: clamp(38px, 6.8vw, 72px);
+  line-height: 1.08;
+}
+
+body.lang-ta h2 {
+  font-size: clamp(28px, 3.7vw, 42px);
+  line-height: 1.18;
+}
+
+body.lang-ta .hero-copy,
+body.lang-ta .section-head > p,
+body.lang-ta .availability .lead,
+body.lang-ta .contact-copy p {
+  font-size: 16px;
+  line-height: 1.82;
+}
+
+body.lang-ta .feature b {
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+
+body.lang-ta .feature p {
+  font-size: 14px;
+  line-height: 1.78;
+}
+
+body.lang-ta .btn {
+  font-size: 14px;
+}
+
+body.lang-ta .market-row strong {
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.34;
+}
 
 img { display: block; max-width: 100%; }
 
@@ -222,8 +266,8 @@ a { color: inherit; }
 h1 {
   max-width: 760px;
   font-family: 'Libre Baskerville', serif;
-  font-size: clamp(48px, 9vw, 96px);
-  line-height: .95;
+  font-size: clamp(46px, 8vw, 88px);
+  line-height: .98;
   letter-spacing: -.02em;
 }
 
@@ -283,11 +327,13 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
-  max-width: 660px;
+  max-width: 850px;
   margin-top: 52px;
 }
 
 .stat {
+  min-width: 0;
+  overflow: hidden;
   padding: 20px 22px;
   border: 1px solid rgba(255, 247, 232, .13);
   background: rgba(255, 247, 232, .07);
@@ -299,8 +345,9 @@ h1 {
   display: block;
   color: var(--sun);
   font-family: 'Libre Baskerville', serif;
-  font-size: 26px;
-  line-height: 1;
+  font-size: clamp(21px, 2.8vw, 26px);
+  line-height: 1.08;
+  overflow-wrap: anywhere;
 }
 
 .stat span {
@@ -349,8 +396,8 @@ main { overflow: hidden; }
 
 h2 {
   font-family: 'Libre Baskerville', serif;
-  font-size: clamp(30px, 4.5vw, 52px);
-  line-height: 1.06;
+  font-size: clamp(30px, 4.2vw, 48px);
+  line-height: 1.08;
   letter-spacing: -.01em;
 }
 
@@ -593,6 +640,10 @@ h2 {
 
   .hero-stats { gap: 8px; max-width: 100%; }
 
+  .stat strong {
+    overflow-wrap: normal;
+  }
+
   .section {
     width: calc(100% - 28px);
     padding: 60px 0;
@@ -670,6 +721,14 @@ h2 {
   .contact-actions { display: grid; }
 
   .btn { width: 100%; }
+
+  body.lang-ta h1 {
+    font-size: clamp(34px, 10.2vw, 46px);
+  }
+
+  body.lang-ta h2 {
+    font-size: clamp(27px, 8.4vw, 36px);
+  }
 }
 
 @media (max-width: 380px) {
@@ -678,6 +737,7 @@ h2 {
   .nav-links { grid-template-columns: 1fr; }
   .hero-inner { padding-top: 234px; }
   h1 { font-size: 42px; }
+  body.lang-ta h1 { font-size: 36px; }
   .section { width: calc(100% - 22px); }
 }
 </style>
@@ -698,7 +758,7 @@ h2 {
       <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
       <a href="team.html" data-en="Team" data-ta="குழு">Team</a>
       <a class="whatsapp" href="https://wa.me/917845867125" target="_blank" rel="noopener" data-en="WhatsApp" data-ta="வாட்ஸ்அப்">WhatsApp</a>
-      <a class="call" href="tel:+917845867125" data-en="Call 7845867125" data-ta="அழைக்க 7845867125">Call 7845867125</a>
+      <a class="call" href="tel:+917845867125" data-en="Call Us" data-ta="அழைக்க">Call Us</a>
     </div>
   </nav>
 
@@ -707,7 +767,7 @@ h2 {
     <div class="hero-inner">
       <div class="eyebrow" data-en="Kombanaipudur · Mecheri Lambs" data-ta="கொம்பனைப்புதூர் · மேச்சேரி ஆடுகள்">Kombanaipudur · Mecheri Lambs</div>
       <h1>The Fat Lamb Co.</h1>
-      <p class="hero-copy" data-en="Mecheri lambs, farm management consulting, vet services, feed supplies and practical workshops for farmers and livestock farms." data-ta="மேச்சேரி ஆடுகள், பண்ணை மேலாண்மை ஆலோசனை, எங்கள் நிபுணர் கால்நடை மருத்துவர் குழுவின் சேவைகள், மற்றும் விவசாயிகள்/பண்ணைகளுக்கான பயிற்சி பட்டறைகள்.">Mecheri lambs, farm management consulting, in-house vet services, and practical workshops for farmers and livestock farms.</p>
+      <p class="hero-copy" data-en="Mecheri lambs, vet services, feed supplies, farm management consulting and practical workshops for farmers and livestock farms." data-ta="மேச்சேரி ஆடுகள், கால்நடை மருத்துவர் குழுவின் சேவைகள், தீவன பொருட்கள், பண்ணை மேலாண்மை ஆலோசனை மற்றும் விவசாயிகள்/பண்ணைகளுக்கான பயிற்சி பட்டறைகள்.">Mecheri lambs, vet services, feed supplies, farm management consulting and practical workshops for farmers and livestock farms.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="tel:+917845867125" data-en="Call to Enquire" data-ta="விசாரிக்க அழைக்கவும்">Call to Enquire</a>
         <a class="btn btn-secondary" href="https://wa.me/917845867125" target="_blank" rel="noopener" data-en="Chat on WhatsApp" data-ta="வாட்ஸ்அப்பில் பேசவும்">Chat on WhatsApp</a>
@@ -725,8 +785,8 @@ h2 {
     <section class="section" id="services">
       <div class="section-head">
         <div class="kicker" data-en="Farm services" data-ta="பண்ணை சேவைகள்">Farm services</div>
-        <h2 data-en="Support for farmers, farms, and buyers from one experienced livestock team." data-ta="விவசாயிகள், பண்ணைகள், மற்றும் வாங்குபவர்களுக்கு ஒரே அனுபவமுள்ள கால்நடை குழுவிலிருந்து ஆதரவு.">Support for farmers, farms, and buyers from one experienced livestock team.</h2>
-        <p data-en="Alongside our Mecheri lamb availability, The Fat Lamb Co. provides farm management consulting, veterinary support, practical workshops, and feed supplies for farmers and livestock farms." data-ta="மேச்சேரி ஆடுகளின் இருப்புடன், The Fat Lamb Co. பண்ணை மேலாண்மை ஆலோசனை, கால்நடை மருத்துவர் ஆதரவு, நடைமுறை பயிற்சி பட்டறைகள், மற்றும் தீவன பொருட்கள் வழங்கல் சேவைகளையும் தருகிறது.">Alongside our Mecheri lamb availability, The Fat Lamb Co. provides farm management consulting, veterinary support, practical workshops, and feed supplies for farmers and livestock farms.</p>
+        <h2 data-en="Support for farmers, farms, and buyers from one experienced livestock team." data-ta="விவசாயிகள், பண்ணைகள், மற்றும் வியாபாரிகளுக்கு, அனுபவமுள்ள கால்நடை குழுவிலிருந்து ஆதரவு.">Support for farmers, farms, and buyers from experienced livestock team.</h2>
+        <p data-en="Alongside our Mecheri lamb availability, The Fat Lamb Co. provides farm management consulting, veterinary support, practical workshops, and feed supplies for farmers and livestock farms." data-ta="மேச்சேரி ஆடுகளின் இருப்புடன், The Fat Lamb Co. பண்ணை மேலாண்மை ஆலோசனை, கால்நடை மருத்துவர் ஆதரவு, நடைமுறை பயிற்சி பட்டறைகள், மற்றும் தீவன பொருட்கள் வழங்கல் சேவைகளையும் தருகிறது.">Alongside our Mecheri lamb availability, The Fat Lamb Co. provides  veterinary support, feed supplies, farm management consulting and practical workshops for farmers and livestock farms.</p>
       </div>
 
       <div class="feature-grid">
@@ -773,7 +833,7 @@ h2 {
         <div>
           <div class="kicker" data-en="Current availability" data-ta="தற்போதைய இருப்பு">Current availability</div>
           <h2 data-en="Mecheri lambs averaging 33 kg, plus expert farm services." data-ta="சராசரி 33 கிலோ மேச்சேரி ஆடுகள் மற்றும் நிபுணர் பண்ணை சேவைகள்.">Mecheri lambs averaging 33 kg, plus expert farm services.</h2>
-          <p class="lead" data-en="For lamb purchase, farm consulting, vet service, or workshop enquiries, call or WhatsApp ahead so we can understand your requirement and schedule the right support." data-ta="ஆடு வாங்குதல், பண்ணை ஆலோசனை, கால்நடை மருத்துவர் சேவை, அல்லது பயிற்சி பட்டறை விசாரணைகளுக்கு முன்கூட்டியே அழைக்கவும் அல்லது வாட்ஸ்அப் செய்யவும்; உங்கள் தேவையை புரிந்து சரியான ஆதரவை ஏற்பாடு செய்கிறோம்.">For lamb purchase, farm consulting, vet service, or workshop enquiries, call or WhatsApp ahead so we can understand your requirement and schedule the right support.</p>
+          <p class="lead" data-en="For lamb purchase, feed supplies, farm consulting, vet service, or workshop enquiries, call or WhatsApp ahead so we can understand your requirement and schedule the right support." data-ta="ஆடு வாங்குதல், தீவன பொருட்கள், பண்ணை ஆலோசனை, கால்நடை மருத்துவர் சேவை, அல்லது பயிற்சி பட்டறை விசாரணைகளுக்கு முன்கூட்டியே அழைக்கவும் அல்லது வாட்ஸ்அப் செய்யவும்; உங்கள் தேவையை புரிந்து சரியான ஆதரவை ஏற்பாடு செய்கிறோம்.">For lamb purchase, feed supplies, farm consulting, vet service, or workshop enquiries, call or WhatsApp ahead so we can understand your requirement and schedule the right support.</p>
         </div>
         <div class="market-list">
           <div class="market-row"><span data-en="Farm" data-ta="பண்ணை">Farm</span><strong>The Fat Lamb Co.</strong></div>
@@ -789,7 +849,7 @@ h2 {
         <div class="contact-copy">
           <div class="kicker" data-en="Visit the farm" data-ta="பண்ணைக்கு வருகை">Visit the farm</div>
           <h2 data-en="Find us at Kombanaipudur." data-ta="கொம்பனைப்புதூரில் எங்களை காணலாம்.">Find us at Kombanaipudur.</h2>
-          <p data-en="Use the map to navigate to the farm location. For lamb availability, consulting, vet services, workshops, pricing, and visit timing, call before you arrive." data-ta="பண்ணை இடத்துக்கு வர வரைபடத்தைப் பயன்படுத்தவும். ஆடு இருப்பு, ஆலோசனை, கால்நடை மருத்துவர் சேவை, பயிற்சி, விலை, வருகை நேரம் ஆகியவற்றுக்கு வருவதற்கு முன் அழைக்கவும்.">Use the map to navigate to the farm location. For lamb availability, consulting, vet services, workshops, pricing, and visit timing, call before you arrive.</p>
+          <p data-en="Use the map to navigate to the farm location. For lamb availability, feed supplies, consulting, vet services, workshops, pricing, and visit timing, call before you arrive." data-ta="பண்ணை இடத்துக்கு வர வரைபடத்தைப் பயன்படுத்தவும். ஆடு இருப்பு, தீவன பொருட்கள், ஆலோசனை, கால்நடை மருத்துவர் சேவை, பயிற்சி, விலை, வருகை நேரம் ஆகியவற்றுக்கு வருவதற்கு முன் அழைக்கவும்.">Use the map to navigate to the farm location. For lamb availability, feed supplies, consulting, vet services, workshops, pricing, and visit timing, call before you arrive.</p>
           <div class="contact-actions">
             <a class="btn btn-primary" href="tel:+917845867125" data-en="Call 7845867125" data-ta="அழைக்க 7845867125">Call 7845867125</a>
             <a class="btn btn-secondary" href="https://wa.me/917845867125" target="_blank" rel="noopener" data-en="WhatsApp 7845867125" data-ta="வாட்ஸ்அப் 7845867125">WhatsApp 7845867125</a>
@@ -821,7 +881,7 @@ h2 {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "The Fat Lamb Co.",
-      "description": "Mecheri lambs, farm management consulting, veterinary services, and farm management workshops in Kombanaipudur.",
+      "description": "Mecheri lambs, farm management consulting, veterinary services, feed supplies, and farm management workshops in Kombanaipudur.",
       "telephone": "+917845867125",
       "url": "/",
       "image": "assets/farm-hero.jpeg",
@@ -872,6 +932,14 @@ h2 {
             "@type": "Service",
             "name": "Farm management workshops",
             "description": "Practical workshops for farmers, farm teams, and livestock farm owners."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Livestock feed supplies",
+            "description": "Feed ingredients, fodder, and supplements supplied for livestock fattening and health."
           }
         }
       ],
