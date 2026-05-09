@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fat Lamb Co. | Pelleted vs Mash TMR</title>
+<meta name="description" content="Bilingual Tamil and English farmer article comparing pelleted TMR and mash TMR for intensive sheep fattening.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1d140b">
+<meta property="og:title" content="The Fat Lamb Co. | Pelleted vs Mash TMR">
+<meta property="og:description" content="Bilingual Tamil and English farmer article comparing pelleted TMR and mash TMR for intensive sheep fattening.">
+<meta property="og:image" content="assets/farm-hero.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d140b;
+  --cream: #fff7e8;
+  --paper: #faf6ee;
+  --leaf: #2d5832;
+  --sun: #e6b65d;
+  --line: rgba(29, 20, 11, .11);
+  --card-shadow: 0 2px 16px rgba(29, 20, 11, .07);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+body.lang-ta { font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif; }
+
+body.lang-ta h1,
+body.lang-ta h2,
+body.lang-ta h3 {
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+body.lang-ta h1 {
+  font-size: clamp(36px, 6.2vw, 68px);
+  line-height: 1.1;
+}
+
+body.lang-ta h2 {
+  font-size: clamp(27px, 3.5vw, 40px);
+  line-height: 1.18;
+}
+
+body.lang-ta .hero p,
+body.lang-ta .article-card p,
+body.lang-ta .article-body {
+  font-size: 16px;
+  line-height: 1.82;
+}
+
+body.lang-ta .article-body h3 {
+  font-size: 20px;
+  line-height: 1.42;
+}
+
+a { color: inherit; }
+
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(1160px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px 10px 20px;
+  background: rgba(29, 20, 11, .84);
+  border: 1px solid rgba(255, 247, 232, .13);
+  border-radius: 999px;
+  backdrop-filter: blur(18px);
+  color: var(--cream);
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+  gap: 18px;
+}
+
+.brand {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-links,
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a,
+.lang-toggle button {
+  border-radius: 999px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  background: rgba(255, 247, 232, .07);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links .current,
+.lang-toggle button.active {
+  background: var(--sun);
+  border-color: var(--sun);
+  color: var(--ink);
+}
+
+.lang-toggle {
+  padding: 3px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, .06);
+}
+
+.lang-toggle button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.hero {
+  background:
+    linear-gradient(90deg, rgba(29,20,11,.94) 0%, rgba(29,20,11,.74) 58%, rgba(29,20,11,.35) 100%),
+    url("assets/farm-feeding.jpeg") center/cover;
+  color: var(--cream);
+  padding: 152px 0 70px;
+}
+
+.wrap {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.eyebrow,
+.kicker {
+  color: var(--sun);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+h1 {
+  max-width: 880px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(40px, 6.6vw, 74px);
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.hero p {
+  max-width: 690px;
+  margin-top: 20px;
+  color: rgba(255, 247, 232, .82);
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.65;
+}
+
+.blog-index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 44px 0 20px;
+}
+
+.article-card {
+  display: block;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--card-shadow);
+  text-decoration: none;
+}
+
+.article-card h2 {
+  margin-top: 10px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.18;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  color: rgba(29, 20, 11, .58);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.article-card p {
+  margin-top: 14px;
+  color: rgba(29, 20, 11, .66);
+  font-size: 14.5px;
+  line-height: 1.72;
+}
+
+.article {
+  padding: 72px 0;
+  border-top: 1px solid var(--line);
+}
+
+.article-page .article {
+  padding-top: 152px;
+}
+
+.article:nth-of-type(odd) {
+  background: #fff;
+}
+
+.article-head {
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+
+.article h2 {
+  margin-top: 10px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(30px, 3.8vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+
+.article-body {
+  max-width: 780px;
+  color: rgba(29, 20, 11, .76);
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.article-body h3 {
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.article-body p,
+.article-body ul,
+.article-body table {
+  margin-top: 16px;
+}
+
+.article-body ul {
+  padding-left: 22px;
+}
+
+.article-body li + li {
+  margin-top: 8px;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.article-body th,
+.article-body td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-body th {
+  background: rgba(45, 88, 50, .08);
+  color: var(--leaf);
+  font-weight: 800;
+}
+
+.article-body tr:last-child td { border-bottom: 0; }
+
+.note {
+  margin-top: 26px;
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  border-left: 4px solid var(--sun);
+  background: rgba(230, 182, 93, .14);
+  color: rgba(29, 20, 11, .78);
+}
+
+.sources {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.sources a {
+  color: var(--leaf);
+  font-weight: 700;
+}
+
+.lang-copy { display: none; }
+body.lang-en .lang-copy.en,
+body.lang-ta .lang-copy.ta { display: block; }
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 36px;
+  border-top: 1px solid var(--line);
+  color: rgba(29, 20, 11, .48);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--leaf);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 860px) {
+  .nav {
+    position: absolute;
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
+
+  .nav-main { width: 100%; }
+
+  .nav-links { flex-wrap: wrap; justify-content: flex-start; }
+
+  .hero { padding: 192px 0 56px; }
+
+  .wrap,
+  .footer { width: calc(100% - 28px); }
+
+  .blog-index { grid-template-columns: 1fr; padding-top: 32px; }
+
+  .article { padding: 56px 0; }
+}
+
+@media (max-width: 560px) {
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .brand { white-space: normal; line-height: 1.2; }
+
+  .hero { padding-top: 272px; }
+
+  .article-card { padding: 22px; }
+
+  .article-body {
+    font-size: 15.5px;
+    line-height: 1.76;
+  }
+
+  body.lang-ta .article-body {
+    font-size: 15.5px;
+    line-height: 1.82;
+  }
+
+  .article-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body class="lang-en article-page">
+<nav class="nav" aria-label="Primary navigation">
+    <div class="nav-main">
+      <a class="brand" href="index.html">The Fat Lamb Co.</a>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+      <a class="current" href="blog.html" aria-current="page" data-en="Blog" data-ta="கட்டுரைகள்">Blog</a>
+      <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
+      <a href="team.html" data-en="Team" data-ta="குழு">Team</a>
+      <a href="tel:+917845867125" data-en="Call" data-ta="அழைக்க">Call</a>
+    </div>
+  </nav>
+
+  <main>
+<article class="article" id="pellet-mash">
+      <div class="wrap">
+        <div class="article-head">
+          <div class="kicker" data-en="Article 02" data-ta="கட்டுரை 02">Article 02</div>
+          <h2 data-en="Pelleted vs. mash TMR for sheep fattening" data-ta="ஆடு கொழுப்பூட்டலில் பெலெட் TMR மற்றும் மாஷ் TMR">Pelleted vs. mash TMR for sheep fattening</h2>
+          <div class="meta"><span data-en="For intensive finishing systems" data-ta="தீவிர கொழுப்பூட்டல் முறைக்கு">For intensive finishing systems</span><span data-en="6 min read" data-ta="6 நிமிட வாசிப்பு">6 min read</span></div>
+        </div>
+
+        <div class="lang-copy en article-body">
+          <p>Total Mixed Ration, or TMR, means the roughage, concentrate, protein source, minerals, and additives are mixed into one ration. The idea is simple: every mouthful should be close to the planned nutrient balance. For fattening sheep, the physical form of that ration matters. The same ingredients can behave differently when offered as mash or as pellets.</p>
+
+          <h3>Quick comparison</h3>
+          <table>
+            <thead><tr><th>Feature</th><th>Pelleted TMR</th><th>Mash TMR</th></tr></thead>
+            <tbody>
+              <tr><td>Growth</td><td>Usually higher daily gain in intensive systems</td><td>Often lower when intake or sorting becomes a problem</td></tr>
+              <tr><td>Feed intake</td><td>More palatable and easier to consume</td><td>Can be limited by dustiness or fine particles</td></tr>
+              <tr><td>Sorting</td><td>Very low; animals cannot easily select ingredients</td><td>Higher risk of animals selecting tasty parts</td></tr>
+              <tr><td>Wastage</td><td>Low, especially in good troughs</td><td>Higher risk from fines, wind, and separation</td></tr>
+              <tr><td>Storage</td><td>Dense and easier to transport</td><td>Bulkier and may separate during handling</td></tr>
+              <tr><td>Initial cost</td><td>Higher because of processing</td><td>Lower because pelleting cost is avoided</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Why pellets often perform better</h3>
+          <p>Research on fattening lambs has shown that pelleted TMR can increase dry matter intake and average daily gain compared with un-pelleted TMR. The reason is not magic; it is behaviour. Pellets are easy to pick up, less dusty, and more uniform. Sheep spend less time sorting and more time consuming the ration that was actually formulated.</p>
+          <p>Pelleting also reduces selective feeding. In mash TMR, sheep may eat more grain or tasty ingredients first and leave fibrous or mineral-rich particles behind. That creates uneven nutrient intake inside the same group. In pellets, the animal receives a more consistent bite, which helps the farm keep the ration closer to the nutritionist's plan.</p>
+
+          <h3>Cost per bag is not the same as cost per kg gain</h3>
+          <p>Mash usually looks cheaper when comparing only the price per bag or per kilogram of feed. But fattening economics should be calculated on cost per kilogram of liveweight gain. If pellets cost more but increase intake, reduce wastage, and shorten the finishing period, they may still be cheaper per kilogram of gain. This is why a farm should track three numbers: feed cost, weight gain, and days to target weight.</p>
+
+          <h3>Where mash TMR can still work</h3>
+          <p>Mash is not useless. It can work when the farm has fresh mixing, good ingredient quality, low dust, short storage time, and careful trough management. It may suit small farms that prepare feed daily and want to avoid pelleting charges. Mash also gives flexibility: ingredients can be adjusted quickly when fodder or concentrate prices change.</p>
+          <p>The weakness is consistency. If the mix is too fine, sheep may cough, waste feed, or reduce intake. If particle sizes are too different, the ration can separate during transport or feeding. If there is not enough bunk space, dominant animals may eat the best portion first.</p>
+
+          <h3>Practical buying checklist</h3>
+          <ul>
+            <li>Ask for crude protein, energy, fibre, calcium, phosphorus, salt, and mineral details.</li>
+            <li>Check pellet hardness: it should not crumble into dust, but it should not be too hard for young animals.</li>
+            <li>Smell for rancidity, mould, or heat damage, especially in stored feed.</li>
+            <li>Introduce any new TMR gradually over 7 to 10 days.</li>
+            <li>Keep roughage and water available; high-concentrate feeding without fibre control can create rumen problems.</li>
+          </ul>
+
+          <h3>Best recommendation for intensive fattening</h3>
+          <p>For fast, uniform finishing, pelleted TMR is usually the stronger choice. It supports higher intake, reduces sorting, lowers wastage, and makes storage easier. Mash TMR can still be economical in low-intensity or daily-mixed systems, but it needs stricter management. For a commercial batch, compare the final result: total feed consumed, total gain, mortality or sickness, days saved, and sale price.</p>
+
+          <div class="note">Practical conclusion: choose pellets when your priority is predictable gain, uniform batches, and lower wastage. Choose mash only when you can control freshness, mixing quality, dust, and feeding space.</div>
+
+          <div class="sources">
+            <strong>Further reading:</strong>
+            <a href="https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.629016/full" target="_blank" rel="noopener">Frontiers in Veterinary Science on pelleted TMR in fattening lambs</a>,
+            <a href="https://www.sciencedirect.com/science/article/pii/S0377840119302366" target="_blank" rel="noopener">Animal Feed Science and Technology study on pelleted and unpelleted TMR</a>.
+          </div>
+        </div>
+
+        <div class="lang-copy ta article-body">
+          <p>Total Mixed Ration அல்லது TMR என்பது வைக்கோல்/பச்சை தீவனம், concentrate, புரத மூலப்பொருள், தாது, மற்றும் சேர்க்கைகள் அனைத்தையும் ஒரே ரேஷனாக கலப்பது. நோக்கம் எளிது: ஒவ்வொரு mouthful-லும் திட்டமிட்ட சத்து சமநிலை இருக்க வேண்டும். கொழுப்பூட்டலில் அதே மூலப்பொருட்கள் மாஷ் வடிவத்திலும், பெலெட் வடிவத்திலும் வேறு விதமாக செயல்படும்.</p>
+
+          <h3>விரைவான ஒப்பீடு</h3>
+          <table>
+            <thead><tr><th>அம்சம்</th><th>பெலெட் TMR</th><th>மாஷ் TMR</th></tr></thead>
+            <tbody>
+              <tr><td>வளர்ச்சி</td><td>தீவிர கொழுப்பூட்டலில் பொதுவாக தினசரி எடை கூடுதல் அதிகம்</td><td>உட்கொள்ளல் அல்லது தேர்வு பிரச்சினை இருந்தால் குறையலாம்</td></tr>
+              <tr><td>தீவன உட்கொள்ளல்</td><td>சாப்பிட எளிது, சுவை ஏற்றுக்கொள்ளல் நல்லது</td><td>தூசி மற்றும் fine particles காரணமாக குறையலாம்</td></tr>
+              <tr><td>தேர்வு செய்து சாப்பிடுதல்</td><td>மிகக் குறைவு</td><td>சுவையான பகுதியை முதலில் சாப்பிடும் அபாயம்</td></tr>
+              <tr><td>வீணாக்கம்</td><td>நல்ல trough இருந்தால் குறைவு</td><td>தூசி, காற்று, பிரிவு காரணமாக அதிகரிக்கலாம்</td></tr>
+              <tr><td>சேமிப்பு</td><td>அடர்த்தி அதிகம்; எடுத்துச் செல்ல எளிது</td><td>பெரிய அளவு; கையாளும் போது பிரியலாம்</td></tr>
+              <tr><td>ஆரம்ப செலவு</td><td>Processing செலவு காரணமாக அதிகம்</td><td>Pelleting செலவு இல்லாததால் குறைவு</td></tr>
+            </tbody>
+          </table>
+
+          <h3>பெலெட் ஏன் பல நேரங்களில் சிறப்பாக செயல்படுகிறது?</h3>
+          <p>கொழுப்பூட்டல் ஆடுகளில் செய்யப்பட்ட ஆய்வுகள், un-pelleted TMR-ஐ விட pelleted TMR dry matter intake மற்றும் average daily gain-ஐ உயர்த்த முடியும் என்பதைக் காட்டுகின்றன. காரணம் நடத்தை. பெலெட் எளிதாக எடுக்க முடியும், தூசி குறைவு, மற்றும் ஒவ்வொரு துகளும் ஒரே மாதிரி இருக்கும். ஆடுகள் தேர்வு செய்வதில் நேரம் செலவழிக்காமல், திட்டமிட்ட ரேஷனை சாப்பிடுகின்றன.</p>
+          <p>பெலெட் selective feeding-ஐ குறைக்கிறது. மாஷ் TMR-ல் ஆடுகள் தானியம் அல்லது சுவையான பகுதியை முதலில் சாப்பிட்டு, நார் அல்லது தாது நிறைந்த துகள்களை விட்டுவிடலாம். இதனால் ஒரே தொகுதிக்குள் சத்து உட்கொள்ளல் மாறுபடும். பெலெட்டில் ஒவ்வொரு கடியும் ஒரே மாதிரி இருப்பதால் nutritionist திட்டத்திற்கு அருகில் ரேஷன் செல்கிறது.</p>
+
+          <h3>ஒரு மூட்டையின் விலை மட்டும் முக்கியமல்ல</h3>
+          <p>மாஷ் பொதுவாக ஒரு கிலோ தீவன விலையில் மலிவாகத் தோன்றும். ஆனால் கொழுப்பூட்டல் கணக்கில் முக்கியமானது ஒரு கிலோ liveweight gain பெற செலவு எவ்வளவு என்பதே. பெலெட் விலை அதிகமாக இருந்தாலும், உட்கொள்ளல் அதிகரித்து, வீணாக்கம் குறைந்து, finishing நாட்கள் குறைந்தால், ஒரு கிலோ எடை கூடுதலுக்கான செலவு குறையலாம். அதனால் பண்ணை மூன்று எண்களை பதிவு செய்ய வேண்டும்: தீவன செலவு, எடை கூடுதல், இலக்கு எடைக்கு எடுத்த நாட்கள்.</p>
+
+          <h3>மாஷ் TMR எப்போது பொருத்தமாக இருக்கும்?</h3>
+          <p>மாஷ் பயன்படாதது அல்ல. தினசரி fresh mixing, நல்ல தரமான மூலப்பொருட்கள், தூசி குறைவு, குறுகிய storage, மற்றும் நல்ல trough management இருந்தால் மாஷ் வேலை செய்யும். சிறிய பண்ணைகள் தினமும் கலக்கி கொடுக்க முடிந்தால் pelleting செலவை தவிர்க்கலாம். விலை மாறும்போது ingredient மாற்றுவதற்கும் மாஷ் flexibility கொடுக்கும்.</p>
+          <p>ஆனால் consistency தான் சவால். மிக fine mix இருந்தால் ஆடுகள் இருமலாம், வீணாக்கலாம், அல்லது intake குறையலாம். particle size வேறுபாடு அதிகமாக இருந்தால் transport அல்லது feeding நேரத்தில் ration பிரிந்து விடும். feeding space போதவில்லை என்றால் வலுவான ஆடுகள் சிறந்த பகுதியை முதலில் சாப்பிடும்.</p>
+
+          <h3>வாங்கும் முன் சரிபார்க்க வேண்டியவை</h3>
+          <ul>
+            <li>Crude protein, energy, fibre, calcium, phosphorus, salt, mineral விவரம் கேளுங்கள்.</li>
+            <li>பெலெட் hardness சரிபார்க்கவும்: தூளாக உடையக்கூடாது; இளம் ஆடுகளுக்கு மிக கடினமாகவும் இருக்கக்கூடாது.</li>
+            <li>பழுப்பு வாசனை, பூஞ்சை, அதிக வெப்ப சேதம் உள்ளதா பார்க்கவும்.</li>
+            <li>புதிய TMR-ஐ 7 முதல் 10 நாட்களில் மெதுவாக அறிமுகப்படுத்தவும்.</li>
+            <li>Roughage மற்றும் தண்ணீர் கிடைக்க வேண்டும்; fibre கட்டுப்பாடு இல்லாத high-concentrate feeding rumen பிரச்சினை தரலாம்.</li>
+          </ul>
+
+          <h3>தீவிர கொழுப்பூட்டலுக்கான பரிந்துரை</h3>
+          <p>வேகமான, ஒரே மாதிரியான finishing வேண்டுமானால் pelleted TMR பொதுவாக வலுவான தேர்வு. அது intake-ஐ உயர்த்தி, sorting-ஐ குறைத்து, wastage-ஐ குறைத்து, storage-ஐ எளிதாக்கும். மாஷ் TMR குறைந்த தீவிரம் அல்லது தினசரி கலவை முறையில் பொருளாதாரமாக இருக்கலாம்; ஆனால் அதற்கு கடுமையான நிர்வாகம் வேண்டும். வணிக தொகுதியில் முடிவை கணக்கிடுங்கள்: மொத்த தீவனம், மொத்த எடை கூடுதல், நோய்/இறப்பு, சேமித்த நாட்கள், விற்பனை விலை.</p>
+
+          <div class="note">நடைமுறை முடிவு: கணக்கான எடை கூடுதல், ஒரே மாதிரி தொகுதி, மற்றும் குறைந்த வீணாக்கம் முக்கியமெனில் பெலெட் தேர்வு நல்லது. Freshness, mixing தரம், தூசி, மற்றும் feeding space-ஐ கட்டுப்படுத்த முடிந்தால் மட்டுமே மாஷ் தேர்வு செய்யவும்.</div>
+
+          <div class="sources">
+            <strong>மேலும் படிக்க:</strong>
+            <a href="https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.629016/full" target="_blank" rel="noopener">Frontiers in Veterinary Science - pelleted TMR ஆய்வு</a>,
+            <a href="https://www.sciencedirect.com/science/article/pii/S0377840119302366" target="_blank" rel="noopener">Animal Feed Science and Technology - pelleted/unpelleted TMR ஆய்வு</a>.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div data-en="The Fat Lamb Co. · Farmer Articles" data-ta="The Fat Lamb Co. · விவசாயி கட்டுரைகள்">The Fat Lamb Co. · Farmer Articles</div>
+    <div>
+      <a href="blog.html" data-en="All Articles" data-ta="அனைத்து கட்டுரைகள்">All Articles</a>
+      <span aria-hidden="true"> · </span>
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+    </div>
+  </footer>
+
+<script>
+    const langButtons = document.querySelectorAll('[data-lang-btn]');
+    const translatable = document.querySelectorAll('[data-en][data-ta]');
+    const titles = {
+      en: 'The Fat Lamb Co. | Pelleted vs Mash TMR',
+      ta: 'The Fat Lamb Co. | பெலெட் TMR vs மாஷ் TMR'
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.classList.toggle('lang-en', lang === 'en');
+      document.body.classList.toggle('lang-ta', lang === 'ta');
+      document.title = titles[lang] || titles.en;
+      translatable.forEach((el) => {
+        el.textContent = el.dataset[lang] || el.dataset.en;
+      });
+      langButtons.forEach((button) => {
+        const active = button.dataset.langBtn === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('fatLambLang', lang);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.langBtn));
+    });
+
+    setLanguage(localStorage.getItem('fatLambLang') || 'en');
+  </script>
+</body>
+</html>
+

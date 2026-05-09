@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fat Lamb Co. | Stall-Fed Fattening vs Grazing</title>
+<meta name="description" content="Bilingual Tamil and English farmer article on the advantages of stall-fed sheep fattening compared with grazing.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1d140b">
+<meta property="og:title" content="The Fat Lamb Co. | Stall-Fed Fattening vs Grazing">
+<meta property="og:description" content="Bilingual Tamil and English farmer article on the advantages of stall-fed sheep fattening compared with grazing.">
+<meta property="og:image" content="assets/farm-hero.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d140b;
+  --cream: #fff7e8;
+  --paper: #faf6ee;
+  --leaf: #2d5832;
+  --sun: #e6b65d;
+  --line: rgba(29, 20, 11, .11);
+  --card-shadow: 0 2px 16px rgba(29, 20, 11, .07);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+body.lang-ta { font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif; }
+
+body.lang-ta h1,
+body.lang-ta h2,
+body.lang-ta h3 {
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+body.lang-ta h1 {
+  font-size: clamp(36px, 6.2vw, 68px);
+  line-height: 1.1;
+}
+
+body.lang-ta h2 {
+  font-size: clamp(27px, 3.5vw, 40px);
+  line-height: 1.18;
+}
+
+body.lang-ta .hero p,
+body.lang-ta .article-card p,
+body.lang-ta .article-body {
+  font-size: 16px;
+  line-height: 1.82;
+}
+
+body.lang-ta .article-body h3 {
+  font-size: 20px;
+  line-height: 1.42;
+}
+
+a { color: inherit; }
+
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(1160px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px 10px 20px;
+  background: rgba(29, 20, 11, .84);
+  border: 1px solid rgba(255, 247, 232, .13);
+  border-radius: 999px;
+  backdrop-filter: blur(18px);
+  color: var(--cream);
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+  gap: 18px;
+}
+
+.brand {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-links,
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a,
+.lang-toggle button {
+  border-radius: 999px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  background: rgba(255, 247, 232, .07);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links .current,
+.lang-toggle button.active {
+  background: var(--sun);
+  border-color: var(--sun);
+  color: var(--ink);
+}
+
+.lang-toggle {
+  padding: 3px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, .06);
+}
+
+.lang-toggle button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.hero {
+  background:
+    linear-gradient(90deg, rgba(29,20,11,.94) 0%, rgba(29,20,11,.74) 58%, rgba(29,20,11,.35) 100%),
+    url("assets/farm-feeding.jpeg") center/cover;
+  color: var(--cream);
+  padding: 152px 0 70px;
+}
+
+.wrap {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.eyebrow,
+.kicker {
+  color: var(--sun);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+h1 {
+  max-width: 880px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(40px, 6.6vw, 74px);
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.hero p {
+  max-width: 690px;
+  margin-top: 20px;
+  color: rgba(255, 247, 232, .82);
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.65;
+}
+
+.blog-index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 44px 0 20px;
+}
+
+.article-card {
+  display: block;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--card-shadow);
+  text-decoration: none;
+}
+
+.article-card h2 {
+  margin-top: 10px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.18;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  color: rgba(29, 20, 11, .58);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.article-card p {
+  margin-top: 14px;
+  color: rgba(29, 20, 11, .66);
+  font-size: 14.5px;
+  line-height: 1.72;
+}
+
+.article {
+  padding: 72px 0;
+  border-top: 1px solid var(--line);
+}
+
+.article-page .article {
+  padding-top: 152px;
+}
+
+.article:nth-of-type(odd) {
+  background: #fff;
+}
+
+.article-head {
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+
+.article h2 {
+  margin-top: 10px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(30px, 3.8vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+
+.article-body {
+  max-width: 780px;
+  color: rgba(29, 20, 11, .76);
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.article-body h3 {
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.article-body p,
+.article-body ul,
+.article-body table {
+  margin-top: 16px;
+}
+
+.article-body ul {
+  padding-left: 22px;
+}
+
+.article-body li + li {
+  margin-top: 8px;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.article-body th,
+.article-body td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-body th {
+  background: rgba(45, 88, 50, .08);
+  color: var(--leaf);
+  font-weight: 800;
+}
+
+.article-body tr:last-child td { border-bottom: 0; }
+
+.note {
+  margin-top: 26px;
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  border-left: 4px solid var(--sun);
+  background: rgba(230, 182, 93, .14);
+  color: rgba(29, 20, 11, .78);
+}
+
+.sources {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.sources a {
+  color: var(--leaf);
+  font-weight: 700;
+}
+
+.lang-copy { display: none; }
+body.lang-en .lang-copy.en,
+body.lang-ta .lang-copy.ta { display: block; }
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 36px;
+  border-top: 1px solid var(--line);
+  color: rgba(29, 20, 11, .48);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--leaf);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 860px) {
+  .nav {
+    position: absolute;
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
+
+  .nav-main { width: 100%; }
+
+  .nav-links { flex-wrap: wrap; justify-content: flex-start; }
+
+  .hero { padding: 192px 0 56px; }
+
+  .wrap,
+  .footer { width: calc(100% - 28px); }
+
+  .blog-index { grid-template-columns: 1fr; padding-top: 32px; }
+
+  .article { padding: 56px 0; }
+}
+
+@media (max-width: 560px) {
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .brand { white-space: normal; line-height: 1.2; }
+
+  .hero { padding-top: 272px; }
+
+  .article-card { padding: 22px; }
+
+  .article-body {
+    font-size: 15.5px;
+    line-height: 1.76;
+  }
+
+  body.lang-ta .article-body {
+    font-size: 15.5px;
+    line-height: 1.82;
+  }
+
+  .article-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body class="lang-en article-page">
+<nav class="nav" aria-label="Primary navigation">
+    <div class="nav-main">
+      <a class="brand" href="index.html">The Fat Lamb Co.</a>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+      <a class="current" href="blog.html" aria-current="page" data-en="Blog" data-ta="கட்டுரைகள்">Blog</a>
+      <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
+      <a href="team.html" data-en="Team" data-ta="குழு">Team</a>
+      <a href="tel:+917845867125" data-en="Call" data-ta="அழைக்க">Call</a>
+    </div>
+  </nav>
+
+  <main>
+<article class="article" id="stall-fed">
+      <div class="wrap">
+        <div class="article-head">
+          <div class="kicker" data-en="Article 01" data-ta="கட்டுரை 01">Article 01</div>
+          <h2 data-en="Advantages of stall-fed method over grazing for fattening" data-ta="கொழுப்பூட்டலில் மேய்ச்சலை விட கொட்டகை முறையின் நன்மைகள்">Advantages of stall-fed method over grazing for fattening</h2>
+          <div class="meta"><span data-en="For sheep farmers and farms" data-ta="ஆடு விவசாயிகள் மற்றும் பண்ணைகளுக்கு">For sheep farmers and farms</span><span data-en="5 min read" data-ta="5 நிமிட வாசிப்பு">5 min read</span></div>
+        </div>
+
+        <div class="lang-copy en article-body">
+          <p>For breeding ewes and long-term low-cost maintenance, grazing has a place. But for a short, planned fattening cycle, the goal is different: buy or select animals, add weight predictably, keep health risk low, and sell a uniform batch at the right market time. For that job, a well-managed stall-fed system usually gives the farmer more control than open grazing.</p>
+
+          <h3>1. More energy goes into weight gain</h3>
+          <p>In grazing, sheep spend part of the day walking, searching, competing, and sometimes eating uneven-quality forage. That movement is useful in extensive systems, but it uses energy that could otherwise support liveweight gain. In stall feeding, animals walk less and receive feed at fixed times. When the ration has enough energy, protein, fibre, minerals, and clean water, more of the animal's daily energy budget can be directed toward growth.</p>
+
+          <h3>2. Intake becomes measurable</h3>
+          <p>The biggest weakness in grazing-based fattening is that the farmer often cannot measure what each batch actually consumed. One day the pasture may be good; the next day it may be dry, wet, overgrazed, or contaminated. Stall feeding allows the farm to record daily feed offered, refusal, cost, and weight gain. That record is what turns fattening from guesswork into a business system.</p>
+
+          <h3>3. Uniform batches are easier to produce</h3>
+          <p>Buyers prefer animals that are similar in weight, body condition, and finish. Grazing animals often split into strong and weak performers because dominant animals graze better patches and weaker animals lag behind. In a stall-fed group, the farm can sort animals by body weight, provide enough feeding space, and adjust ration quantity batch by batch. This makes it easier to produce a buyer-ready lot rather than a mixed group.</p>
+
+          <h3>4. Health problems are noticed earlier</h3>
+          <p>In a stall, the farmer sees each batch closely every day. Reduced appetite, dullness, coughing, loose dung, lameness, bloat risk, or bullying can be spotted quickly. In grazing systems, an animal may look normal from a distance until the problem becomes advanced. Early detection matters because fattening profit depends on days: one untreated sick animal can lose several days of gain and affect the whole batch.</p>
+
+          <h3>5. Parasite and biosecurity pressure can be reduced</h3>
+          <p>Open grazing can expose sheep to internal parasites, contaminated grazing areas, and contact with unknown animals. Stall feeding does not automatically remove disease risk, but it gives the farm better control over floor hygiene, manure removal, quarantine, vaccination timing, and deworming plans. Dry bedding, drainage, and good ventilation are essential; a dirty stall can become worse than grazing. The advantage comes from management, not from walls alone.</p>
+
+          <h3>6. Market timing becomes practical</h3>
+          <p>Fattening profit often depends on selling when demand is strong. Stall feeding helps the farm plan backwards from a target sale date. If the batch needs 45 to 75 days to reach the desired weight, the farm can calculate feed requirement, expected cost, health schedule, and buyer contact timing. Grazing is more dependent on rainfall and pasture quality, so the finishing date can drift.</p>
+
+          <h3>What stall feeding needs to work well</h3>
+          <ul>
+            <li>Enough floor and feeding space, so weaker animals are not pushed away.</li>
+            <li>Clean water at all times; intake drops quickly when water is limited.</li>
+            <li>Roughage plus concentrate or TMR balance, not only grain.</li>
+            <li>Ventilation without cold drafts, and dry flooring to protect feet.</li>
+            <li>Weekly or fortnightly body-weight checks to catch poor performers early.</li>
+          </ul>
+
+          <h3>When grazing still makes sense</h3>
+          <p>Grazing can still be useful for low-cost maintenance, breeding flocks with available land, or farms with excellent pasture and labour for herding. Some farms also use a mixed system: grazing for maintenance animals and stall feeding for the finishing batch. The important point is not that grazing is bad; it is that intensive fattening needs predictable intake and predictable growth.</p>
+
+          <div class="note">Practical conclusion: for commercial fattening, stall feeding is usually the better system when the farm can manage hygiene, ventilation, ration quality, and records. The system gives more control over growth, health, and sale timing.</div>
+        </div>
+
+        <div class="lang-copy ta article-body">
+          <p>இனப்பெருக்க ஆடுகள் அல்லது குறைந்த செலவில் நீண்ட நாள் பராமரிப்புக்கு மேய்ச்சல் பயன்படும். ஆனால் குறுகிய கால கொழுப்பூட்டலில் நோக்கம் வேறு: ஆடுகளை தேர்வு செய்து, கணக்காக எடை கூட்டி, ஆரோக்கிய அபாயத்தை குறைத்து, ஒரே அளவான தொகுதியை சரியான சந்தை நேரத்தில் விற்பது. இந்த நோக்கத்திற்கு, நன்றாக நிர்வகிக்கப்படும் கொட்டகை முறை பொதுவாக மேய்ச்சலை விட அதிக கட்டுப்பாட்டைக் கொடுக்கிறது.</p>
+
+          <h3>1. சக்தி அதிகமாக எடை கூடுதலுக்கு செல்கிறது</h3>
+          <p>மேய்ச்சலில் ஆடுகள் நடக்க வேண்டும், தேட வேண்டும், போட்டி போட்டு சாப்பிட வேண்டும். இது விரிவான வளர்ப்பு முறையில் இயல்பானது. ஆனால் கொழுப்பூட்டலில் அந்த நடப்பதால் சக்தி செலவாகிறது. கொட்டகையில் நடப்பு குறைவாக இருக்கும்; தீவனம் நிரந்தர நேரத்தில் கிடைக்கும். தீவனத்தில் சக்தி, புரதம், நார், தாது, சுத்தமான தண்ணீர் சரியாக இருந்தால் தினசரி சக்தியின் பெரிய பகுதி வளர்ச்சிக்கு செல்கிறது.</p>
+
+          <h3>2. தீவன உட்கொள்ளலை அளவிட முடியும்</h3>
+          <p>மேய்ச்சல் முறையின் பெரிய குறை, ஒரு தொகுதி உண்மையில் எவ்வளவு சாப்பிட்டது என்பதை விவசாயி சரியாக அறிய முடியாதது. ஒரு நாள் புல் நல்லது; மறுநாள் உலர்ந்தது, ஈரமானது, அல்லது தரம் குறைந்தது இருக்கலாம். கொட்டகையில் தினசரி கொடுத்த தீவனம், மீதம், செலவு, எடை கூடுதல் ஆகியவற்றை பதிவு செய்யலாம். இந்த பதிவு தான் கொழுப்பூட்டலை கணக்கு கொண்ட தொழிலாக மாற்றுகிறது.</p>
+
+          <h3>3. ஒரே அளவான தொகுதி உருவாக்க எளிது</h3>
+          <p>வாங்குபவர்கள் எடை, உடல் நிலை, மற்றும் முடிவு ஒரே மாதிரியாக உள்ள ஆடுகளை விரும்புவார்கள். மேய்ச்சலில் வலுவான ஆடுகள் நல்ல புல் பகுதிகளை அதிகமாக சாப்பிடலாம்; பலவீனமானவை பின்தங்கலாம். கொட்டகையில் எடை அடிப்படையில் பிரித்து, போதுமான தீவன இடம் கொடுத்து, ஒவ்வொரு தொகுதிக்கும் அளவை மாற்றலாம். இதனால் கலவையான குழுவை விட விற்பனைக்கு தயாரான ஒரே மாதிரி தொகுதி உருவாகும்.</p>
+
+          <h3>4. ஆரோக்கிய பிரச்சினை விரைவில் தெரியும்</h3>
+          <p>கொட்டகையில் விவசாயி தினமும் ஒவ்வொரு தொகுதியையும் அருகில் பார்க்கிறார். சாப்பிடாமை, சோர்வு, இருமல், வயிற்றுப்போக்கு, கால் வலி, குடல் வீக்கம், அல்லது ஆதிக்கம் செலுத்தும் ஆடுகள் போன்றவை சீக்கிரம் தெரியும். மேய்ச்சலில் தொலைவில் பார்த்தால் பிரச்சினை தாமதமாக தெரியும். கொழுப்பூட்டலில் ஒவ்வொரு நாளும் முக்கியம்; ஒரு நோயுற்ற ஆடு பல நாட்கள் எடை கூடுதலை இழக்கச் செய்யலாம்.</p>
+
+          <h3>5. பராசைட் மற்றும் நோய் அபாயத்தை கட்டுப்படுத்தலாம்</h3>
+          <p>மேய்ச்சலில் உள் புழுக்கள், மாசான மேய்ச்சல் இடம், மற்றும் தெரியாத ஆடுகளுடன் தொடர்பு போன்ற அபாயங்கள் இருக்கலாம். கொட்டகை முறை இதை முழுமையாக நீக்காது; ஆனால் தரை சுத்தம், சாணம் அகற்றல், தனிமைப்படுத்தல், தடுப்பூசி நேரம், புழு மருந்து திட்டம் ஆகியவற்றை கட்டுப்படுத்த உதவும். உலர்ந்த படுக்கை, வடிகால், காற்றோட்டம் அவசியம். அழுக்கு கொட்டகை மேய்ச்சலை விட மோசமாகும்; நன்மை நிர்வாகத்தில்தான் உள்ளது.</p>
+
+          <h3>6. சந்தை நேரத்தை திட்டமிட முடியும்</h3>
+          <p>கொழுப்பூட்டலில் லாபம் பல நேரங்களில் சரியான தேவை காலத்தில் விற்பதில்தான் உள்ளது. கொட்டகை முறை இலக்கு விற்பனை தேதியிலிருந்து பின்னோக்கி திட்டமிட உதவும். ஒரு தொகுதி தேவையான எடைக்கு 45 முதல் 75 நாட்கள் வேண்டும் என்றால், தீவன தேவை, செலவு, ஆரோக்கிய அட்டவணை, வாங்குபவர் தொடர்பு ஆகியவற்றை கணக்கிடலாம். மேய்ச்சலில் மழை மற்றும் புல் தரம் காரணமாக முடிவு தேதி மாறலாம்.</p>
+
+          <h3>கொட்டகை முறை வெற்றி பெற வேண்டியவை</h3>
+          <ul>
+            <li>பலவீனமான ஆடுகள் தள்ளப்படாத அளவு தரை மற்றும் தீவன இடம்.</li>
+            <li>எப்போதும் சுத்தமான தண்ணீர்; தண்ணீர் குறைந்தால் தீவன உட்கொள்ளல் உடனே குறையும்.</li>
+            <li>வைக்கோல்/பச்சை தீவனம் மற்றும் concentrate/TMR சமநிலை; தானியம் மட்டும் அல்ல.</li>
+            <li>காற்றோட்டம், உலர்ந்த தரை, மற்றும் கால் ஆரோக்கியம்.</li>
+            <li>வாரம் அல்லது 15 நாட்களுக்கு ஒருமுறை எடை பார்த்து மெதுவாக வளர்பவர்களை கண்டறிதல்.</li>
+          </ul>
+
+          <h3>மேய்ச்சல் எப்போது பொருத்தம்?</h3>
+          <p>நிலம் மற்றும் நல்ல புல் கிடைக்கும் பண்ணைகளில் பராமரிப்பு ஆடுகள், இனப்பெருக்க ஆடுகள், அல்லது குறைந்த செலவு வளர்ப்புக்கு மேய்ச்சல் பொருந்தும். சில பண்ணைகள் கலப்பு முறையைப் பயன்படுத்தலாம்: பராமரிப்பு ஆடுகளுக்கு மேய்ச்சல், கொழுப்பூட்டல் தொகுதிக்கு கொட்டகை. முக்கிய கருத்து: மேய்ச்சல் தவறு அல்ல; ஆனால் தீவிர கொழுப்பூட்டலுக்கு கணக்கான தீவன உட்கொள்ளலும் வளர்ச்சியும் தேவை.</p>
+
+          <div class="note">நடைமுறை முடிவு: சுத்தம், காற்றோட்டம், தீவன தரம், மற்றும் பதிவு சரியாக இருந்தால், வணிக கொழுப்பூட்டலுக்கு கொட்டகை முறை அதிக கட்டுப்பாடு தரும்.</div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div data-en="The Fat Lamb Co. · Farmer Articles" data-ta="The Fat Lamb Co. · விவசாயி கட்டுரைகள்">The Fat Lamb Co. · Farmer Articles</div>
+    <div>
+      <a href="blog.html" data-en="All Articles" data-ta="அனைத்து கட்டுரைகள்">All Articles</a>
+      <span aria-hidden="true"> · </span>
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+    </div>
+  </footer>
+
+<script>
+    const langButtons = document.querySelectorAll('[data-lang-btn]');
+    const translatable = document.querySelectorAll('[data-en][data-ta]');
+    const titles = {
+      en: 'The Fat Lamb Co. | Stall-Fed Fattening vs Grazing',
+      ta: 'The Fat Lamb Co. | கொட்டகை கொழுப்பூட்டல் vs மேய்ச்சல்'
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.classList.toggle('lang-en', lang === 'en');
+      document.body.classList.toggle('lang-ta', lang === 'ta');
+      document.title = titles[lang] || titles.en;
+      translatable.forEach((el) => {
+        el.textContent = el.dataset[lang] || el.dataset.en;
+      });
+      langButtons.forEach((button) => {
+        const active = button.dataset.langBtn === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('fatLambLang', lang);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.langBtn));
+    });
+
+    setLanguage(localStorage.getItem('fatLambLang') || 'en');
+  </script>
+</body>
+</html>
+

@@ -195,6 +195,15 @@ body::before {
 .tile-planner::before { background: linear-gradient(90deg, #2d6a2f, var(--lime)); }
 .tile-planner:hover { border-color: rgba(122,182,72,.62); }
 
+.tile-breeds {
+  background: rgba(40,22,60,.52);
+  border-color: rgba(138,90,181,.28);
+}
+.tile-breeds::before { background: linear-gradient(90deg, #5a2a8a, #9a5ab5); }
+.tile-breeds:hover { border-color: rgba(154,90,181,.62); }
+.tile-breeds .tile-label { color: #c090e8; }
+.tile-breeds .pill { background: rgba(138,90,181,.16); color: #c090e8; border: 1px solid rgba(138,90,181,.24); }
+
 .tile-icon { font-size: 40px; margin-bottom: 16px; display: block; line-height: 1; }
 
 .tile-label {
@@ -259,6 +268,7 @@ body::before {
 .tile { animation: fadeUp .5s ease both; }
 .tile:nth-child(1) { animation-delay: .12s; }
 .tile:nth-child(2) { animation-delay: .22s; }
+.tile:nth-child(3) { animation-delay: .32s; }
 
 @media (max-width: 720px) {
   body { padding: 0 16px 44px; }
@@ -305,6 +315,7 @@ body::before {
     <a class="nav-brand" href="index.html">The Fat Lamb Co.</a>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
       <a href="team.html">Team</a>
       <a class="current" href="farm-tools.html" aria-current="page">Farm Tools</a>
       <a class="whatsapp" href="https://wa.me/917845867125" target="_blank" rel="noopener">WhatsApp</a>
@@ -349,6 +360,21 @@ body::before {
         <span class="pill">Sell / Hold Advisor</span>
         <span class="pill">Days to Festival</span>
         <span class="pill">Profit Estimate</span>
+      </div>
+      <div class="tile-arrow">↗</div>
+    </a>
+
+    <a class="tile tile-breeds" href="breeds.html">
+      <span class="tile-icon">🐑</span>
+      <div class="tile-label">Breed Intelligence</div>
+      <div class="tile-title">TN Breeds Guide</div>
+      <span class="tile-title-ta">ஆட்டு இன வழிகாட்டி</span>
+      <div class="tile-desc">Popular sheep and goat breeds of Tamil Nadu. Max weights, prevalent districts, fattening tips, and buy/sell strategies — bilingual, for every farmer in the region.</div>
+      <div class="tile-pills">
+        <span class="pill">8 Breeds</span>
+        <span class="pill">Sheep · Goat</span>
+        <span class="pill">Buy/Sell Tips</span>
+        <span class="pill">தமிழ் · English</span>
       </div>
       <div class="tile-arrow">↗</div>
     </a>

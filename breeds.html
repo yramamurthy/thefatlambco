@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ஆட்டு இன வழிகாட்டி — TN Breeds Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --soil:    #1c1209;
+  --bark:    #2d1e0a;
+  --earth:   #3d2b12;
+  --sand:    #c4a882;
+  --cream:   #f5edd8;
+  --leaf:    #4a8c3f;
+  --lime:    #7ab648;
+  --sage:    #a8c87a;
+  --amber:   #d4820a;
+  --gold:    #f0a020;
+  --saffron: #f5c040;
+  --sun:     #e6b65d;
+  --ink:     #1d140b;
+  --violet:  #8a5ab5;
+  --purple:  #6a3a8a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--soil);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--cream);
+  font-size: 14px;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+/* NAV */
+.site-nav {
+  position: relative; z-index: 10;
+  width: min(1100px, calc(100% - 0px));
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 14px 12px 20px;
+  margin: 20px auto 40px;
+  background: rgba(29,20,11,.82);
+  border: 1px solid rgba(255,247,232,.12);
+  border-radius: 999px;
+  backdrop-filter: blur(18px);
+}
+.nav-brand {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700; font-size: 15px;
+  white-space: nowrap; text-decoration: none; color: var(--cream); flex-shrink: 0;
+}
+.nav-links { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.nav-links a {
+  border-radius: 999px; padding: 7px 13px;
+  border: 1px solid rgba(255,247,232,.15);
+  background: rgba(255,247,232,.07);
+  color: var(--cream); font-size: 12px; font-weight: 600;
+  text-decoration: none;
+  transition: background .18s, border-color .18s, transform .15s;
+}
+.nav-links a:hover { background: rgba(255,247,232,.16); border-color: rgba(255,247,232,.35); transform: translateY(-1px); }
+.nav-links .current { background: var(--sun); border-color: var(--sun); color: var(--ink); font-weight: 700; }
+.nav-links .whatsapp { background: #22c55e; border-color: #22c55e; color: #052e16; }
+.lang-select {
+  margin-left: auto;
+  background: rgba(28,18,9,.8);
+  border: 1px solid rgba(196,168,130,.22);
+  border-radius: 100px;
+  color: var(--cream);
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 600;
+  padding: 8px 14px; outline: none; cursor: pointer;
+}
+
+/* WRAP */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px 80px; position: relative; z-index: 1; }
+
+/* CONTROLS */
+.top-controls {
+  display: flex; justify-content: center; align-items: center; gap: 14px;
+  flex-wrap: wrap; margin-bottom: 32px;
+}
+.animal-toggle {
+  display: inline-flex;
+  background: rgba(28,18,9,.8);
+  border: 1px solid rgba(196,168,130,.2);
+  border-radius: 100px; padding: 4px; gap: 2px;
+}
+.toggle-btn {
+  padding: 9px 24px; border-radius: 100px; border: none; background: none;
+  color: rgba(196,168,130,.55);
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all .2s; white-space: nowrap;
+}
+.toggle-btn:hover { color: var(--cream); }
+.toggle-btn.sheep-active { background: rgba(240,160,32,.2); color: var(--saffron); box-shadow: 0 2px 14px rgba(240,160,32,.15); }
+.toggle-btn.goat-active  { background: rgba(122,182,72,.2);  color: var(--sage);    box-shadow: 0 2px 14px rgba(122,182,72,.15); }
+
+/* HEADER */
+.hdr { text-align: center; margin-bottom: 44px; }
+.hdr-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(138,90,181,.14); border: 1px solid rgba(138,90,181,.28);
+  border-radius: 100px; padding: 5px 16px; margin-bottom: 18px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: #c090e8;
+}
+.hdr h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(26px, 4vw, 38px); line-height: 1.18; color: var(--cream); margin-bottom: 8px;
+}
+.hdr h1 span { color: var(--gold); font-style: italic; }
+.hdr-tamil {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 15px; line-height: 1.6; color: var(--sand); margin-bottom: 10px;
+}
+.hdr-sub { font-size: 13px; color: rgba(196,168,130,.75); }
+
+/* BREED GRID */
+.breed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  gap: 24px;
+}
+
+/* BREED CARD */
+.breed-card {
+  background: rgba(45,30,10,.45);
+  border: 1px solid rgba(196,168,130,.12);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  animation: fadeUp .5s ease both;
+}
+.breed-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 56px rgba(0,0,0,.5);
+  border-color: rgba(196,168,130,.28);
+}
+
+/* IMAGE */
+.breed-img-wrap {
+  position: relative; height: 220px; overflow: hidden;
+}
+.breed-img-fallback {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+}
+.bi-emoji { font-size: 56px; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,.5)); }
+.bi-name {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px; font-weight: 700;
+  color: rgba(255,247,232,.9);
+  text-shadow: 0 2px 8px rgba(0,0,0,.6);
+  letter-spacing: .02em;
+}
+.bi-altname {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 12px;
+  color: rgba(255,247,232,.6);
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
+}
+.breed-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 1;
+}
+.breed-img-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  height: 3px;
+}
+
+/* CARD BODY */
+.breed-body { padding: 22px 24px 26px; }
+
+.breed-names { margin-bottom: 16px; }
+.breed-name-ta {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: 20px; font-weight: 700; color: var(--cream); line-height: 1.28;
+}
+.breed-name-en {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 16px; color: var(--sand); margin-top: 2px;
+}
+.breed-altname-text {
+  font-size: 11.5px; color: rgba(196,168,130,.55); margin-top: 3px;
+  font-family: 'Noto Sans Tamil', sans-serif;
+}
+
+/* WEIGHT BADGES */
+.breed-weights {
+  display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap;
+}
+.weight-badge {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 100px;
+  font-size: 13px; font-weight: 700;
+}
+.weight-badge.male {
+  background: rgba(42,90,138,.25); color: #8ab8d8;
+  border: 1px solid rgba(42,90,138,.35);
+}
+.weight-badge.female {
+  background: rgba(184,50,100,.22); color: #f090b0;
+  border: 1px solid rgba(184,50,100,.3);
+}
+.weight-badge .wb-icon { font-size: 15px; }
+.weight-badge .wb-label { font-size: 10px; font-weight: 500; opacity: .75; margin-left: 2px; }
+
+/* SECTIONS */
+.breed-section { margin-bottom: 16px; }
+.breed-section:last-child { margin-bottom: 0; }
+.sec-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(196,168,130,.55); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* AREA TAGS */
+.area-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.area-tag {
+  font-size: 11px; font-weight: 600;
+  padding: 4px 10px; border-radius: 100px;
+  background: rgba(196,168,130,.1);
+  border: 1px solid rgba(196,168,130,.18);
+  color: var(--sand);
+  font-family: 'Noto Sans Tamil', sans-serif;
+}
+
+/* SUITABLE FOR */
+.suitable-text {
+  font-size: 12.5px; color: rgba(196,168,130,.8);
+  font-family: 'Noto Sans Tamil', sans-serif;
+  line-height: 1.7;
+}
+
+/* TIPS LIST */
+.tips-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.tips-list li {
+  font-size: 12.5px;
+  color: rgba(245,237,216,.82);
+  line-height: 1.65;
+  padding-left: 16px;
+  position: relative;
+  font-family: 'Noto Sans Tamil', sans-serif;
+}
+.tips-list li::before {
+  content: '•';
+  position: absolute; left: 0;
+  color: var(--lime); font-weight: 700;
+}
+.buysell .tips-list li::before { color: var(--gold); }
+
+/* DIVIDER */
+.card-divider {
+  height: 1px;
+  background: rgba(196,168,130,.1);
+  margin: 16px 0;
+}
+
+/* FOOTER */
+.page-footer {
+  text-align: center;
+  margin-top: 52px;
+  font-size: 11px;
+  color: rgba(196,168,130,.38);
+  line-height: 1.85;
+  font-family: 'Noto Sans Tamil', sans-serif;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.breed-card:nth-child(1) { animation-delay: .08s; }
+.breed-card:nth-child(2) { animation-delay: .16s; }
+.breed-card:nth-child(3) { animation-delay: .24s; }
+.breed-card:nth-child(4) { animation-delay: .32s; }
+
+@media (max-width: 780px) {
+  .breed-grid { grid-template-columns: 1fr; gap: 16px; }
+  .site-nav { margin: 12px 20px 32px; flex-wrap: wrap; border-radius: 18px; padding: 10px; }
+  .nav-brand { font-size: 14px; }
+  .nav-links { width: 100%; gap: 5px; }
+  .nav-links a { padding: 7px 11px; font-size: 11px; }
+  .lang-select { margin-left: 0; }
+  .toggle-btn { padding: 8px 16px; font-size: 12px; }
+  .breed-img-wrap { height: 180px; }
+  .breed-body { padding: 18px 18px 22px; }
+}
+@media (max-width: 380px) {
+  .wrap { padding-left: 12px; padding-right: 12px; }
+  .breed-body { padding: 14px 14px 18px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Primary navigation">
+  <a class="nav-brand" href="index.html">The Fat Lamb Co.</a>
+  <div class="nav-links">
+    <a href="index.html" id="navHome">Home</a>
+    <a href="blog.html" id="navBlog">Blog</a>
+    <a href="farm-tools.html" id="navTools">Farm Tools</a>
+    <a class="current" href="breeds.html" aria-current="page" id="navCurrent">Breeds Guide</a>
+    <a href="team.html" id="navTeam">Team</a>
+    <a class="whatsapp" href="https://wa.me/917845867125" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="tel:+917845867125" id="navCall">Call</a>
+  </div>
+  <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)" aria-label="Language">
+    <option value="ta">தமிழ் / English</option>
+    <option value="en">English / தமிழ்</option>
+  </select>
+</nav>
+
+<div class="wrap">
+
+  <div class="top-controls">
+    <div class="animal-toggle">
+      <button class="toggle-btn sheep-active" id="btn-sheep" onclick="switchAnimal('sheep')">🐑 செம்மறி ஆடு · Sheep</button>
+      <button class="toggle-btn" id="btn-goat" onclick="switchAnimal('goat')">🐐 வெள்ளாடு · Goat</button>
+    </div>
+  </div>
+
+  <div class="hdr">
+    <div class="hdr-badge" id="hdrBadge">🐑 தமிழ்நாடு செம்மறி இனங்கள்</div>
+    <h1 id="hdrTitle">Tamil Nadu <span id="hdrSpan">Sheep Breeds</span> Guide</h1>
+    <div class="hdr-tamil" id="hdrTamil">தமிழ்நாட்டில் பரவலாக வளர்க்கப்படும் முக்கிய ஆட்டு இனங்கள்</div>
+    <div class="hdr-sub" id="hdrSub">எடை · பரவல் பகுதிகள் · கொழுப்பூட்டல் உத்திகள் · வாங்கல்/விற்பனை வழிகாட்டி</div>
+  </div>
+
+  <div class="breed-grid" id="breedGrid"></div>
+
+  <div class="page-footer" id="pageFooter">
+    கொம்பனைப்புதூர் பண்ணை · ஈரோடு மாவட்டம் · 2026<br>
+    தரவு: TANUVAS · CIRG · Erode/Salem Market Observations
+  </div>
+
+</div>
+
+<script>
+var currentAnimal = 'sheep';
+var currentLang = 'ta';
+
+var I18N = {
+  ta: {
+    navHome: 'Home', navBlog: 'கட்டுரைகள்', navTools: 'Farm Tools', navCurrent: 'Breeds Guide', navTeam: 'Team', navCall: 'Call',
+    btnSheep: '🐑 செம்மறி ஆடு · Sheep', btnGoat: '🐐 வெள்ளாடு · Goat',
+    badge: { sheep: '🐑 தமிழ்நாடு செம்மறி இனங்கள்', goat: '🐐 தமிழ்நாடு வெள்ளாடு இனங்கள்' },
+    hdrSpan: { sheep: 'Sheep Breeds', goat: 'Goat Breeds' },
+    hdrTamil: {
+      sheep: 'தமிழ்நாட்டில் பரவலாக வளர்க்கப்படும் முக்கிய செம்மறி இனங்கள்',
+      goat:  'தமிழ்நாட்டில் பரவலாக வளர்க்கப்படும் முக்கிய வெள்ளாடு இனங்கள்'
+    },
+    hdrSub: 'எடை · பரவல் பகுதிகள் · கொழுப்பூட்டல் உத்திகள் · வாங்கல்/விற்பனை வழிகாட்டி',
+    lblWeight: 'அதிகபட்ச எடை',
+    lblMale: 'ஆண்', lblFemale: 'பெண்',
+    lblAreas: '📍 பரவலான பகுதிகள்',
+    lblSuitable: '🏠 ஏற்ற இடங்கள்',
+    lblTips: '💡 உதவிக்குறிப்புகள் & உத்திகள்',
+    lblBuySell: '📊 வாங்கல் / விற்பனை உத்திகள்',
+    footer: 'கொம்பனைப்புதூர் பண்ணை · ஈரோடு மாவட்டம் · 2026<br>தரவு: TANUVAS · CIRG · Erode/Salem Market Observations'
+  },
+  en: {
+    navHome: 'Home', navBlog: 'Blog', navTools: 'Farm Tools', navCurrent: 'Breeds Guide', navTeam: 'Team', navCall: 'Call',
+    btnSheep: '🐑 Sheep', btnGoat: '🐐 Goat',
+    badge: { sheep: '🐑 Tamil Nadu Sheep Breeds', goat: '🐐 Tamil Nadu Goat Breeds' },
+    hdrSpan: { sheep: 'Sheep Breeds', goat: 'Goat Breeds' },
+    hdrTamil: {
+      sheep: 'Popular sheep breeds farmed across Tamil Nadu',
+      goat:  'Popular goat breeds farmed across Tamil Nadu'
+    },
+    hdrSub: 'Max Weight · Prevalent Areas · Fattening Strategies · Buy / Sell Guide',
+    lblWeight: 'Max Weight',
+    lblMale: 'Male', lblFemale: 'Female',
+    lblAreas: '📍 Prevalent Areas',
+    lblSuitable: '🏠 Suitable For',
+    lblTips: '💡 Tips & Strategies',
+    lblBuySell: '📊 Buy / Sell Strategies',
+    footer: 'Kombanipudur Farm · Erode District · 2026<br>Data: TANUVAS · CIRG · Erode/Salem Market Observations'
+  }
+};
+
+function t(key) {
+  var v = I18N[currentLang] && I18N[currentLang][key];
+  return v !== undefined ? v : (I18N.ta[key] || '');
+}
+function p(obj) {
+  if (!obj) return '';
+  if (typeof obj === 'string') return obj;
+  return obj[currentLang] || obj.ta || obj.en || '';
+}
+
+var BREEDS = {
+  sheep: [
+    {
+      id: 'madras-red',
+      gradient: 'linear-gradient(150deg,#7a1a10 0%,#b03018 55%,#d84828 100%)',
+      imgFile: 'madras-red.jpg',
+      emoji: '🐑',
+      name: { ta: 'மதராஸ் சிவப்பு', en: 'Madras Red' },
+      altName: { ta: 'செந்நிற ஆடு', en: 'Red Sheep of Madras' },
+      weight: { male: 42, female: 30 },
+      areas: [
+        { ta: 'ஈரோடு', en: 'Erode' },
+        { ta: 'சேலம்', en: 'Salem' },
+        { ta: 'நாமக்கல்', en: 'Namakkal' },
+        { ta: 'திருப்பூர்', en: 'Tiruppur' },
+        { ta: 'கோயம்புத்தூர்', en: 'Coimbatore' },
+        { ta: 'பவானி, சங்ககிரி', en: 'Bhavani, Sankagiri' }
+      ],
+      suitableFor: {
+        ta: 'வறண்ட நிலம் · கொழுப்பூட்டல் பண்ணை · அரை-வறண்ட பகுதி · தமிழ்நாடு முழுவதும்',
+        en: 'Dryland farming · Fattening operations · Semi-arid zones · All TN districts'
+      },
+      tips: [
+        { ta: 'தமிழ்நாட்டு செம்மறி இனங்களில் சிறந்த FCR விகிதம் — நல்ல தீவனத்தில் நாளொன்றுக்கு 200 கிராம் எடை கூடும்.', en: 'Best FCR among TN sheep breeds — gains 200g/day on quality feed.' },
+        { ta: 'வெப்பம் தாங்கும் திறன் அதிகம்; திறந்த கொட்டில் முறையில் நன்கு வளரும்.', en: 'Highly heat-tolerant; thrives in open-shed systems without special cooling.' },
+        { ta: '12–15 கிலோ எடையில் தொடங்கி 4–5 மாதங்களில் சந்தை எடை (35–40 கிலோ) அடையும்.', en: 'Starter lambs at 12–15 kg reach market weight 35–40 kg in 4–5 months.' },
+        { ta: 'பக்ரீத், தீபாவளி, பொங்கல் — மூன்று திருவிழாக்களிலும் வலுவான தேவை உள்ளது.', en: 'Strong festival demand at Bakrid, Deepavali, and Pongal — plan batches accordingly.' },
+        { ta: 'ஈரோடு-சேலம் வழித்தடத்திலுள்ள பண்ணைகளுக்கு இது மிகவும் ஏற்றது; பவானி மண்டியில் அதிக வர்த்தகம்.', en: 'Ideal for Erode–Salem corridor farms; most-traded breed at Bhavani mandi.' }
+      ],
+      buySell: [
+        { ta: '3 மாத ஆட்டுக் குட்டிகளை பவானி / சங்ககிரி சந்தையில் ₹3,500–4,500-க்கு வாங்கலாம்.', en: 'Buy 3-month-old lambs at ₹3,500–4,500 from Bhavani/Sankagiri markets.' },
+        { ta: 'பக்ரீத் முன் 35–40 கிலோ எடை அடையுமாறு திட்டமிட்டு விற்பனை செய்யவும்.', en: 'Target 35–40 kg live weight for premium Bakrid prices.' },
+        { ta: '10 அல்லது அதிக ஆடுகளை குழுவாக விற்பது மொத்த விலையில் சிறந்த விலை பெற உதவும்.', en: 'Sell in groups of 10+ for better wholesale rates from contractors.' },
+        { ta: 'ஜூன்–ஜூலை மாதங்களில் விற்பனை தவிர்க்கவும்; ஆகஸ்ட்–செப்டம்பர் உச்சத்திற்காக காத்திருக்கவும்.', en: 'Avoid selling June–July (low demand); hold for Aug–Sep festival spike.' },
+        { ta: 'விற்காத ஆண் ஆடுகளை 2–3 மாதம் கூடுதலாக வளர்த்து அதிக விலையில் விற்கலாம்.', en: 'Unsold males can be held 2–3 extra months for higher weight and price.' }
+      ]
+    },
+    {
+      id: 'mecheri',
+      gradient: 'linear-gradient(150deg,#6a4810 0%,#a07030 55%,#c89040 100%)',
+      imgFile: 'mecheri.jpg',
+      emoji: '🐑',
+      name: { ta: 'மேச்சேரி', en: 'Mecheri' },
+      altName: { ta: 'சேலம் ஆடு', en: 'Salem Sheep' },
+      weight: { male: 40, female: 27 },
+      areas: [
+        { ta: 'சேலம் (மேச்சேரி, ஒமலூர்)', en: 'Salem (Mecheri, Omalur)' },
+        { ta: 'எடப்பாடி, சங்ககிரி', en: 'Edappadi, Sankagiri' },
+        { ta: 'நாமக்கல்', en: 'Namakkal' },
+        { ta: 'ஈரோடு', en: 'Erode' }
+      ],
+      suitableFor: {
+        ta: 'வறண்ட புதர் நிலம் · குறைந்த முதலீட்டு பண்ணை · சேலம்-ஈரோடு வழித்தடம்',
+        en: 'Dryland scrub farms · Low-input operations · Salem–Erode corridor'
+      },
+      tips: [
+        { ta: 'சேலம் மாவட்டம் தோற்றம்; வறட்சி மற்றும் வெப்பத்தை மிகவும் தாங்கும் தனித்துவமான இனம்.', en: 'Indigenous Salem breed — excellent heat and drought tolerance, uniquely hardy.' },
+        { ta: 'இரட்டை பயன்: நுண்மையான ஆட்டுமயிர் + இறைச்சி; மயிர் ஆண்டுக்கு ₹200–400 கூடுதல் வருமானம்.', en: 'Dual-purpose: fine wool + meat; wool adds ₹200–400/animal/year income.' },
+        { ta: 'மதராஸ் சிவப்பை விட மெதுவான வளர்ச்சி — 5–6 மாதங்கள் கொழுப்பூட்டல் சுழற்சி திட்டமிடவும்.', en: 'Slower growth than Madras Red — plan a 5–6 month fattening cycle.' },
+        { ta: 'நோய் எதிர்ப்பு சக்தி அதிகம்; கால்நடை மருத்துவ செலவு குறைவு.', en: 'Highly disease-resistant; significantly lower veterinary costs.' },
+        { ta: 'புதர் மேய்ச்சலில் நன்கு வளரும்; கூடுதல் தீவன செலவு குறைவாக இருக்கும்.', en: 'Thrives on browse and scrub; lower supplementary feed costs.' }
+      ],
+      buySell: [
+        { ta: 'நேரடியாக மேச்சேரி / சங்ககிரி மண்டிகளிலிருந்து தரமான இனம் வாங்கவும்.', en: 'Source directly from Mecheri/Sankagiri mandis for authentic purebred stock.' },
+        { ta: 'சேலம் உள்ளூர் சந்தையில் மதராஸ் சிவப்பை விட 10–15% அதிக விலை கிடைக்கும்.', en: 'Commands 10–15% price premium over Madras Red at Salem local market.' },
+        { ta: 'மயிர் கத்தரிப்பு வருடம் ஒரு முறை: ₹200–400 கூடுதல் வருமானம்.', en: 'Annual wool clip yields ₹200–400 extra income per animal.' },
+        { ta: 'அக்டோபர்–ஜனவரி திருவிழா காலம் விற்பனைக்கு சிறந்தது.', en: 'Best sold Oct–Jan during peak festival season for top prices.' },
+        { ta: 'தூய்மையான இனப்பெருக்க ஆட்டுக்கடா ₹12,000–18,000 கிடைக்கும்.', en: 'Purebred breeding rams command ₹12,000–18,000 in the stud market.' }
+      ]
+    },
+    {
+      id: 'vembur',
+      gradient: 'linear-gradient(150deg,#502808 0%,#8a4818 55%,#b06030 100%)',
+      imgFile: 'vembur.jpg',
+      emoji: '🐑',
+      name: { ta: 'வேம்பூர்', en: 'Vembur' },
+      altName: { ta: 'வேம்பூர் ஆடு', en: 'Vembur Sheep' },
+      weight: { male: 45, female: 32 },
+      areas: [
+        { ta: 'விருதுநகர்', en: 'Virudhunagar' },
+        { ta: 'ராமநாதபுரம்', en: 'Ramanathapuram' },
+        { ta: 'தூத்துக்குடி', en: 'Thoothukudi' },
+        { ta: 'சிவகங்கை', en: 'Sivaganga' },
+        { ta: 'மதுரை', en: 'Madurai' }
+      ],
+      suitableFor: {
+        ta: 'தென் தமிழ்நாடு வெப்ப வறண்ட கரையோர பகுதிகள் · இயற்கை மேய்ச்சல் முறை',
+        en: 'Hot dry coastal areas of South TN · Extensive grazing systems'
+      },
+      tips: [
+        { ta: 'தமிழ்நாட்டு செம்மறி இனங்களில் மிகவும் கனமான இனம் — ஒரு ஆடில் இறைச்சி விளைவு அதிகம்.', en: 'Heaviest TN sheep breed — best meat yield per animal overall.' },
+        { ta: 'தென் தமிழ்நாட்டின் வெப்பமான, வறண்ட காலநிலைக்கு மிகவும் பொருத்தமான இனம்.', en: 'Best adapted to South TN\'s hot dry climate; tolerates poor pasture.' },
+        { ta: 'கொழுப்பூட்டல் மற்றும் இனப்பெருக்கம் இரண்டிற்கும் ஏற்றது.', en: 'Suited for both fattening operations and breeding stock maintenance.' },
+        { ta: 'கூடுதல் தீவனத்துடன் 5–6 மாதங்களில் 40+ கிலோ எடை அடையலாம்.', en: 'Males reach 40+ kg in 5–6 months with supplementary concentrate feeding.' },
+        { ta: 'தென் தமிழ்நாட்டில் திருமணம் / திருவிழாக்களில் உள்ளூர் தேவை மிகவும் அதிகம்.', en: 'Very strong local demand in South TN for weddings and festivals.' }
+      ],
+      buySell: [
+        { ta: 'ராமநாதபுரம் அல்லது விருதுநகர் வாராந்திர சந்தைகளில் வாங்கவும்.', en: 'Buy from Ramanathapuram or Virudhunagar weekly livestock markets.' },
+        { ta: 'பெரிய கட்டமைப்பு காரணமாக மதராஸ் சிவப்பை விட குறைந்தபட்ச விலை அதிகமாக இருக்கும்.', en: 'Commands a higher price floor than Madras Red due to larger frame.' },
+        { ta: 'மதுரை / தூத்துக்குடி அருகே உள்ள பண்ணைகளுக்கு சிறந்த வருமான இனம்.', en: 'Excellent choice for farms near Madurai/Tuticorin for high local demand.' },
+        { ta: 'பக்ரீத்திற்கு 3–4 வாரங்கள் முன் இறைச்சி ஒப்பந்தக்காரர்களுக்கு விற்கவும்.', en: 'Sell to meat contractors 3–4 weeks before Bakrid for best advance prices.' },
+        { ta: 'மதுரை மொத்த வியாபாரிகளுக்கு மாவட்டம் கடந்த விற்பனை சிறந்த லாபம் தரும்.', en: 'Cross-district sales to Madurai wholesalers yield better margins.' }
+      ]
+    },
+    {
+      id: 'ramnad-white',
+      gradient: 'linear-gradient(150deg,#504030 0%,#907860 55%,#c0a888 100%)',
+      imgFile: 'ramnad-white.jpg',
+      emoji: '🐑',
+      name: { ta: 'ராமநாடு வெள்ளை', en: 'Ramnad White' },
+      altName: { ta: 'ராமநாடு ஆடு', en: 'Ramnad Sheep' },
+      weight: { male: 38, female: 25 },
+      areas: [
+        { ta: 'ராமநாதபுரம்', en: 'Ramanathapuram' },
+        { ta: 'சிவகங்கை', en: 'Sivaganga' },
+        { ta: 'விருதுநகர்', en: 'Virudhunagar' },
+        { ta: 'புதுக்கோட்டை', en: 'Pudukkottai' }
+      ],
+      suitableFor: {
+        ta: 'கரையோர / வறண்ட தென் தமிழ்நாடு · கிராம பண்ணை · மத சடங்கு விற்பனை',
+        en: 'Coastal/dry South TN · Low-input village farms · Religious/ceremonial sales'
+      },
+      tips: [
+        { ta: 'வெள்ளை ஆட்டுக்கு மத/சடங்கு விற்பனையில் கூடுதல் விலை கிடைக்கும்.', en: 'White fleece commands a premium in religious and ceremonial livestock sales.' },
+        { ta: 'மோசமான மேய்ச்சல் நிலத்தில் கரையோர மேய்ச்சலுக்கு பொருத்தமான இனம்.', en: 'Adapted to coastal grazing on poor pastures; resilient under minimal care.' },
+        { ta: 'மிதமான வளர்ச்சி — 5–6 மாதங்கள் கொழுப்பூட்டல் சுழற்சி திட்டமிடவும்.', en: 'Moderate growth rate — plan a 5–6 month fattening cycle.' },
+        { ta: 'குறைந்தபட்ச வளர்ப்பு நிலைமைகளில் தாங்கும்; பாரம்பரிய கிராம பண்ணைகளுக்கு ஏற்றது.', en: 'Hardy under minimal input conditions; ideal for traditional village farms.' },
+        { ta: 'மத பலி விற்பனையில் (ஆடி, கார்த்திகை) சிறப்பான விலை கிடைக்கும்.', en: 'Premium prices for religious sacrifice use during Aadi and Karthigai months.' }
+      ],
+      buySell: [
+        { ta: 'வெள்ளை நிற ஆடுகளுக்கு மத சந்தையில் 15–20% கூடுதல் விலை கிடைக்கும்.', en: 'White-coloured animals fetch 15–20% premium in religious livestock markets.' },
+        { ta: 'ராமநாதபுரம் மாவட்ட வாராந்திர சந்தைகளில் விற்பனை சிறந்தது.', en: 'Best selling venue: Ramanathapuram district weekly livestock shandies.' },
+        { ta: 'பாம்பன் / ராமேஸ்வரம் பகுதி பண்ணையாளரிடமிருந்து தரமான இனப்பெருக்க மறிகள் வாங்கவும்.', en: 'Source quality breeding ewes from Pamban/Rameswaram area breeders.' },
+        { ta: 'கார்த்திகை தீபம் மற்றும் ஆடி மாத திருவிழாக்களில் சிறப்பான தேவை உள்ளது.', en: 'Strong demand during Karthigai Deepam and Aadi month festivals.' },
+        { ta: 'அரிய தூய வெள்ளை ஆடுகளை தனியாக வைத்து அதிக விலையில் நேரடியாக விற்கவும்.', en: 'Segregate pure white animals for direct sale at premium ceremonial prices.' }
+      ]
+    }
+  ],
+  goat: [
+    {
+      id: 'kanni',
+      gradient: 'linear-gradient(150deg,#12121e 0%,#252548 55%,#383870 100%)',
+      imgFile: 'kanni-aadu.jpg',
+      emoji: '🐐',
+      name: { ta: 'கண்ணி ஆடு', en: 'Kanni Aadu' },
+      altName: { ta: 'சேலம் கருப்பு வெள்ளாடு', en: 'Salem Black Goat' },
+      weight: { male: 38, female: 28 },
+      areas: [
+        { ta: 'சேலம்', en: 'Salem' },
+        { ta: 'நாமக்கல்', en: 'Namakkal' },
+        { ta: 'தர்மபுரி', en: 'Dharmapuri' },
+        { ta: 'கிருஷ்ணகிரி', en: 'Krishnagiri' },
+        { ta: 'ஈரோடு', en: 'Erode' }
+      ],
+      suitableFor: {
+        ta: 'அரை-வறண்ட புதர் நிலம் · மலை பகுதிகள் · சிறு மற்றும் நடுத்தர பண்ணைகள்',
+        en: 'Semi-arid scrubland · Hill tracts · Small and medium farms'
+      },
+      tips: [
+        { ta: 'கடினமான கருப்பு-நிற ஆடு; வறண்ட புதரில் மிகவும் சிறப்பாக மேயும் திறன் உடையது.', en: 'Hardy black-coated breed; excellent forager on dry scrub and hill terrain.' },
+        { ta: 'நோய் எதிர்ப்பு சக்தி அதிகம்; கால்நடை மருத்துவ செலவு குறைவு.', en: 'Good disease resistance; significantly lower veterinary and management costs.' },
+        { ta: 'இரட்டை பயன்: பால் (1–1.2 லி/நாள்) + இறைச்சி; கூடுதல் வருமான வாய்ப்பு.', en: 'Dual purpose: milk (1–1.2 L/day) + meat; dual income stream potential.' },
+        { ta: 'ஆண் ஆடுகள் மெதுவாக வளரும் — சந்தை எடைக்கு 6–7 மாதங்கள் திட்டமிடவும்.', en: 'Males grow slowly — plan 6–7 months for marketable weight.' },
+        { ta: 'சேலம் / நாமக்கல் பகுதியில் சடங்கு பயன்பாட்டிற்கு உள்ளூர் தேவை மிக அதிகம்.', en: 'Very high local ceremonial demand in Salem/Namakkal area year-round.' }
+      ],
+      buySell: [
+        { ta: 'சேலம் மாவட்ட வாராந்திர சந்தைகளில் (திங்கள் / வியாழன்) வாங்கவும்.', en: 'Best source: Salem district weekly markets (Mon/Thu) for variety and price.' },
+        { ta: 'வெள்ளை கோடுகள் இல்லாத தூய கருப்பு ஆடுகளுக்கு சிறப்பு விலை கிடைக்கும்.', en: 'Premium price for jet-black animals with no white markings whatsoever.' },
+        { ta: 'முஹர்ரம் / மத சடங்கு நேரங்களில் இறைச்சி தேவை மிக அதிகம்; விலை அதிகரிக்கும்.', en: 'Meat demand spikes sharply during Muharram and religious occasions.' },
+        { ta: '4–5 மாத குட்டிகளை கிராம சடங்கு வாங்குவோருக்கு நேரடியாக விற்கவும்.', en: 'Sell kids at 4–5 months directly to village ceremonial buyers for best price.' },
+        { ta: 'சான்றிதழ் பெற்ற தூய இன ஆண் ஆடு ₹15,000–25,000 கிடைக்கும்.', en: 'Certified purebred breeding males command ₹15,000–25,000 in stud market.' }
+      ]
+    },
+    {
+      id: 'tellicherry',
+      gradient: 'linear-gradient(150deg,#3d0808 0%,#7a1818 55%,#a83030 100%)',
+      imgFile: 'tellicherry.jpg',
+      emoji: '🐐',
+      name: { ta: 'தெலிச்சேரி', en: 'Tellicherry' },
+      altName: { ta: 'மலபாரி வெள்ளாடு', en: 'Malabari Goat' },
+      weight: { male: 55, female: 40 },
+      areas: [
+        { ta: 'கோயம்புத்தூர்', en: 'Coimbatore' },
+        { ta: 'திருப்பூர்', en: 'Tiruppur' },
+        { ta: 'நீலகிரி', en: 'Nilgiris' },
+        { ta: 'தர்மபுரி', en: 'Dharmapuri' },
+        { ta: 'கிருஷ்ணகிரி', en: 'Krishnagiri' }
+      ],
+      suitableFor: {
+        ta: 'மேற்கு தமிழ்நாடு · அதிக மழை பகுதிகள் · தீவிர / அரை-தீவிர கொட்டில் பண்ணை',
+        en: 'Western TN · High rainfall zones · Intensive/semi-intensive stall-fed farms'
+      },
+      tips: [
+        { ta: 'தமிழ்நாட்டில் கிடைக்கும் வணிக வெள்ளாடு இனங்களில் மிகவும் கனமானது.', en: 'Heaviest commercial goat breed available in Tamil Nadu market.' },
+        { ta: 'இறைச்சி-எலும்பு விகிதம் சிறந்தது; கசாப்பு கடைகள் கிலோவிற்கு கூடுதல் விலை தரும்.', en: 'Excellent meat-to-bone ratio; butchers and hotels pay premium per kg.' },
+        { ta: 'ஆடு ஆண்டில் இரு முறை ஈன்றெடுக்கும்; இரட்டையடித்தல் சாதாரணம் — நல்ல இனப்பெருக்க திறன்.', en: 'Does kid twice/year; twins are common — excellent prolificacy for breeding.' },
+        { ta: 'முழு வளர்ச்சிக்கு தரமான தீவனம் தேவை: சைலேஜ், கான்சன்ட்ரேட், கனிம கட்டி.', en: 'Requires quality feed: silage, concentrates, mineral blocks for full potential.' },
+        { ta: 'தீவிர கொட்டில் முறைக்கு மிகவும் பொருத்தமானது.', en: 'Best suited to stall-fed intensive systems with controlled feeding regime.' }
+      ],
+      buySell: [
+        { ta: 'உள்ளூர் இனங்களை விட ₹50–80/கிலோ நேரடி எடை கூடுதல் விலை கிடைக்கும்.', en: 'Commands ₹50–80/kg live weight premium over local country breeds.' },
+        { ta: 'கோயம்புத்தூர் நகரில் உள்ள ஹோட்டல்கள் மற்றும் இறைச்சி கடைகளில் நேரடி வலுவான தேவை.', en: 'Strong direct demand from hotels and meat shops in Coimbatore city.' },
+        { ta: 'கேரளா எல்லையோரம் உள்ள தரமான பண்ணைகளிலிருந்து இனப்பெருக்க ஆடுகள் வாங்கவும்.', en: 'Source quality breeding stock from farms near the Kerala border.' },
+        { ta: 'தீவிர தீவனத்துடன் 5–6 மாதங்களில் 45–50 கிலோ எடை அடையும்.', en: 'Males reach 45–50 kg in 5–6 months on intensive concentrate feed.' },
+        { ta: 'நம்பகமான தீவன / நீர் வழங்கல் உள்ள பண்ணைகளுக்கு மட்டும் சிறந்தது.', en: 'Best for farms with reliable year-round feed and water supply only.' }
+      ]
+    },
+    {
+      id: 'osmanabadi',
+      gradient: 'linear-gradient(150deg,#2d1a08 0%,#5a3418 55%,#8a5428 100%)',
+      imgFile: 'osmanabadi.jpg',
+      emoji: '🐐',
+      name: { ta: 'ஓஸ்மானாபாதி', en: 'Osmanabadi' },
+      altName: { ta: 'கருப்பு வெள்ளாடு', en: 'Black Osmanabadi' },
+      weight: { male: 50, female: 35 },
+      areas: [
+        { ta: 'ஈரோடு', en: 'Erode' },
+        { ta: 'திருப்பூர்', en: 'Tiruppur' },
+        { ta: 'கோயம்புத்தூர்', en: 'Coimbatore' },
+        { ta: 'சேலம்', en: 'Salem' },
+        { ta: 'வேலூர்', en: 'Vellore' },
+        { ta: 'திருவண்ணாமலை', en: 'Tiruvannamalai' }
+      ],
+      suitableFor: {
+        ta: 'தமிழ்நாட்டின் எல்லா பகுதிகளும் · தீவிர கொழுப்பூட்டல் · அனைத்து காலநிலை மண்டலங்களும்',
+        en: 'All TN agro-climatic zones · Intensive fattening · Universal adaptability'
+      },
+      tips: [
+        { ta: 'தமிழ்நாட்டில் மிகவும் அதிகமாக வர்த்தகம் செய்யப்படும் இறைச்சி வெள்ளாடு இனம்.', en: 'Most widely traded meat goat breed across Tamil Nadu — maximum market liquidity.' },
+        { ta: 'பெரிய உடல் கட்டமைப்பு; பக்ரீத் சந்தையில் சிறப்பு விலை.', en: 'Heavy body frame commands premium price at Bakrid and festival markets.' },
+        { ta: 'மும்முறை பயன்: இறைச்சி + பால் (1.5–2 லி/நாள்) + வலுவான இனப்பெருக்க திறன்.', en: 'Triple-purpose: meat + milk (1.5–2 L/day) + excellent breeding performance.' },
+        { ta: 'தமிழ்நாட்டின் அனைத்து கால்நடை-காலநிலை மண்டலங்களுக்கும் ஏற்றது.', en: 'Adapts to all agro-climatic zones of Tamil Nadu — highly versatile.' },
+        { ta: 'தீவிர தீவனத்தில் சிறந்த பதில்: நாளொன்றுக்கு 250–300 கிராம் எடை கூடும்.', en: 'Best response to intensive feeding: 250–300g daily weight gain on TMR ration.' }
+      ],
+      buySell: [
+        { ta: 'எல்லா தமிழ்நாடு மண்டிகளிலும் ஏற்கப்படுகிறது; எந்நேரமும் தாமதமின்றி விற்கலாம்.', en: 'Accepted at all TN mandis; most liquid market — buy/sell any time without delay.' },
+        { ta: '40–45 கிலோ எடையில் மொத்த விலையில் சிறந்த ₹/கிலோ கிடைக்கும்.', en: 'Target 40–45 kg live weight for best ₹/kg returns at wholesale market.' },
+        { ta: 'நல்ல கொழுப்பூட்டல் லாபம்: ₹160/கிலோவில் வாங்கி, 60 நாட்களில் ₹220–250/கிலோவில் விற்கலாம்.', en: 'Good fattening margin: buy ₹160/kg, sell ₹220–250/kg after 60 days of feeding.' },
+        { ta: 'முக்கிய சந்தைகள்: ஈரோடு, சேலம், மதுரை, சென்னை கோட்டவல் சாவடி.', en: 'Key markets: Erode, Salem, Madurai, Chennai Kothaval Chavadi.' },
+        { ta: 'பக்ரீத்திற்கு 30 நாட்கள் முன் முன்பதிவு செய்வது அதிக விலை உறுதிப்படுத்தும்.', en: 'Pre-booking 30 days before Bakrid secures guaranteed premium prices.' }
+      ]
+    },
+    {
+      id: 'boer',
+      gradient: 'linear-gradient(150deg,#0a2a10 0%,#1a5a20 55%,#2a8a30 100%)',
+      imgFile: 'boer-cross.jpg',
+      emoji: '🐐',
+      name: { ta: 'போர் கலப்பினம்', en: 'Boer Cross' },
+      altName: { ta: 'போர் × உள்ளூர் கலப்பு', en: 'Boer × Local Cross' },
+      weight: { male: 90, female: 65 },
+      areas: [
+        { ta: 'ஈரோடு (தீவிர பண்ணைகள்)', en: 'Erode (progressive farms)' },
+        { ta: 'கோயம்புத்தூர்', en: 'Coimbatore' },
+        { ta: 'சேலம்', en: 'Salem' },
+        { ta: 'திருப்பூர்', en: 'Tiruppur' }
+      ],
+      suitableFor: {
+        ta: 'அரை-தீவிர / தீவிர கொட்டில் பண்ணை · தரமான தீவன வசதி உள்ள பண்ணைகள் · அனுபவமிக்க விவசாயிகள்',
+        en: 'Semi-intensive/intensive stall-fed farms · Quality feed access essential · Experienced farmers'
+      },
+      tips: [
+        { ta: 'மிகவும் வேகமான வளர்ச்சி விகிதம்: நல்ல TMR ரேஷனில் நாளொன்றுக்கு 350–400 கிராம்.', en: 'Fastest growth rate: 350–400g/day on good TMR ration — unmatched in TN.' },
+        { ta: '50% போர் கலப்பு குட்டி வெறும் 3–4 மாதங்களில் 35–40 கிலோ அடையும்.', en: '50% Boer cross reaches 35–40 kg in just 3–4 months on intensive feed.' },
+        { ta: 'தரமான தீவனம் அவசியம்: சைலேஜ், கான்சன்ட்ரேட் கலவை, கனிம கட்டி.', en: 'Quality feed is non-negotiable: silage, concentrate mix, mineral lick blocks.' },
+        { ta: 'அதிக கொள்முதல் செலவு — ஆனால் பக்ரீத் சிறப்பு விலையில் முதலீட்டு வருவாய் சிறந்தது.', en: 'High purchase cost but exceptional ROI at Bakrid premium prices.' },
+        { ta: 'ஈரோடு-கோயம்புத்தூர் வளைப்பிலுள்ள முன்னேறிய பண்ணைகளுக்கு மிகவும் ஏற்றது.', en: 'Best suited for progressive farms in the Erode–Coimbatore belt.' }
+      ],
+      buySell: [
+        { ta: 'F1 கலப்பு குட்டிகளை நிறுவப்பட்ட இனப்பெருக்கியாளரிடம் ₹6,000–9,000-க்கு வாங்கவும்.', en: 'Buy F1 cross kids from established certified breeders at ₹6,000–9,000.' },
+        { ta: 'பக்ரீத் நேரத்தில் உள்ளூர் இனங்களுக்கு ₹220 vs போர் கலப்பிற்கு ₹300–350/கிலோ கிடைக்கும்.', en: 'Commands ₹300–350/kg live at Bakrid vs ₹220 for local breeds — 35% premium.' },
+        { ta: 'வழக்கமான வாராந்திர மண்டிகளில் விற்கவேண்டாம் — நேரடியாக கசாப்பு கடை / ஹோட்டல்களுக்கு விற்கவும்.', en: 'Avoid regular weekly mandis — sell directly to butchers/hotels for best price.' },
+        { ta: 'பக்ரீத்திற்கு 30 நாட்கள் முன் கட்டாயம் முன்பதிவு செய்து சிறப்பு விலை உறுதிப்படுத்தவும்.', en: 'Pre-booking 30 days before Bakrid is essential for guaranteed premium prices.' },
+        { ta: 'சான்றிதழ் பெற்ற தூய போர் இனப்பெருக்க ஆட்டுக்கடா: ₹40,000–80,000.', en: 'Pure Boer breeding bucks from certified farms: ₹40,000–80,000.' }
+      ]
+    }
+  ]
+};
+
+function renderBreeds(animal) {
+  var grid = document.getElementById('breedGrid');
+  grid.innerHTML = '';
+  BREEDS[animal].forEach(function(b, i) {
+    var name = p(b.name);
+    var altName = p(b.altName);
+    var card = document.createElement('div');
+    card.className = 'breed-card';
+    card.style.animationDelay = (0.08 + i * 0.1) + 's';
+
+    var areasHtml = b.areas.map(function(a) {
+      return '<span class="area-tag">' + p(a) + '</span>';
+    }).join('');
+
+    var tipsHtml = b.tips.map(function(tip) {
+      return '<li>' + p(tip) + '</li>';
+    }).join('');
+
+    var buySellHtml = b.buySell.map(function(s) {
+      return '<li>' + p(s) + '</li>';
+    }).join('');
+
+    card.innerHTML =
+      '<div class="breed-img-wrap">' +
+        '<div class="breed-img-fallback" style="background:' + b.gradient + '">' +
+          '<span class="bi-emoji">' + b.emoji + '</span>' +
+          '<span class="bi-name">' + p(b.name) + '</span>' +
+          '<span class="bi-altname">' + p(b.altName) + '</span>' +
+        '</div>' +
+        '<img class="breed-img" src="assets/breeds/' + b.imgFile + '" alt="' + name + '" loading="lazy" onerror="this.style.display=\'none\'">' +
+        '<div class="breed-img-bar" style="background:' + b.gradient + '"></div>' +
+      '</div>' +
+      '<div class="breed-body">' +
+        '<div class="breed-names">' +
+          '<div class="breed-name-ta">' + p(b.name) + '</div>' +
+          '<div class="breed-name-en">' + (currentLang === 'ta' ? p({ta: b.name.en, en: b.name.ta}) : p({en: b.name.ta, ta: b.name.en})) + '</div>' +
+          '<div class="breed-altname-text">' + altName + '</div>' +
+        '</div>' +
+        '<div class="breed-weights">' +
+          '<div class="weight-badge male"><span class="wb-icon">♂</span> ' + t('lblMale') + '<span class="wb-label"> Max</span>&nbsp;' + b.weight.male + ' kg</div>' +
+          '<div class="weight-badge female"><span class="wb-icon">♀</span> ' + t('lblFemale') + '<span class="wb-label"> Max</span>&nbsp;' + b.weight.female + ' kg</div>' +
+        '</div>' +
+        '<div class="breed-section">' +
+          '<div class="sec-lbl">' + t('lblAreas') + '</div>' +
+          '<div class="area-tags">' + areasHtml + '</div>' +
+        '</div>' +
+        '<div class="breed-section">' +
+          '<div class="sec-lbl">' + t('lblSuitable') + '</div>' +
+          '<div class="suitable-text">' + p(b.suitableFor) + '</div>' +
+        '</div>' +
+        '<div class="card-divider"></div>' +
+        '<div class="breed-section">' +
+          '<div class="sec-lbl">' + t('lblTips') + '</div>' +
+          '<ul class="tips-list">' + tipsHtml + '</ul>' +
+        '</div>' +
+        '<div class="card-divider"></div>' +
+        '<div class="breed-section buysell">' +
+          '<div class="sec-lbl">' + t('lblBuySell') + '</div>' +
+          '<ul class="tips-list">' + buySellHtml + '</ul>' +
+        '</div>' +
+      '</div>';
+
+    grid.appendChild(card);
+  });
+}
+
+function applyI18n(animal) {
+  document.documentElement.lang = currentLang;
+  document.getElementById('hdrBadge').textContent = t('badge')[animal];
+  document.getElementById('hdrSpan').textContent = t('hdrSpan')[animal];
+  document.getElementById('hdrTamil').textContent = t('hdrTamil')[animal];
+  document.getElementById('hdrSub').textContent = t('hdrSub');
+  document.getElementById('navHome').textContent = t('navHome');
+  document.getElementById('navBlog').textContent = t('navBlog');
+  document.getElementById('navTools').textContent = t('navTools');
+  document.getElementById('navCurrent').textContent = t('navCurrent');
+  document.getElementById('navTeam').textContent = t('navTeam');
+  document.getElementById('navCall').textContent = t('navCall');
+  document.getElementById('btn-sheep').textContent = t('btnSheep');
+  document.getElementById('btn-goat').textContent = t('btnGoat');
+  document.getElementById('pageFooter').innerHTML = t('footer');
+}
+
+function renderAll(animal) {
+  currentAnimal = animal;
+  applyI18n(animal);
+  renderBreeds(animal);
+  document.getElementById('btn-sheep').className = 'toggle-btn' + (animal === 'sheep' ? ' sheep-active' : '');
+  document.getElementById('btn-goat').className  = 'toggle-btn' + (animal === 'goat'  ? ' goat-active'  : '');
+}
+
+function switchAnimal(animal) { renderAll(animal); }
+
+function switchLanguage(lang) {
+  currentLang = I18N[lang] ? lang : 'ta';
+  document.getElementById('langSelect').value = currentLang;
+  renderAll(currentAnimal);
+}
+
+renderAll('sheep');
+</script>
+</body>
+</html>

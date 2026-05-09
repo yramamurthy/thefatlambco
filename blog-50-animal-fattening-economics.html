@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fat Lamb Co. | 50-Animal Fattening Economics</title>
+<meta name="description" content="Bilingual Tamil and English farmer article explaining sheep fattening unit economics for a 50-animal batch using Batch 1 data.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1d140b">
+<meta property="og:title" content="The Fat Lamb Co. | 50-Animal Fattening Economics">
+<meta property="og:description" content="Batch cost, revenue, mortality, break-even price, profit per animal, and ROI for a 50-animal sheep fattening batch.">
+<meta property="og:image" content="assets/farm-hero.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d140b;
+  --cream: #fff7e8;
+  --paper: #faf6ee;
+  --leaf: #2d5832;
+  --sun: #e6b65d;
+  --line: rgba(29, 20, 11, .11);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+body.lang-ta { font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif; }
+body.lang-ta h1,
+body.lang-ta h2,
+body.lang-ta h3 {
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+body.lang-ta h1 { font-size: clamp(36px, 6.2vw, 68px); line-height: 1.1; }
+body.lang-ta h2 { font-size: clamp(27px, 3.5vw, 40px); line-height: 1.18; }
+body.lang-ta .article-body { font-size: 16px; line-height: 1.82; }
+body.lang-ta .article-body h3 { font-size: 20px; line-height: 1.42; }
+a { color: inherit; }
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(1160px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px 10px 20px;
+  background: rgba(29, 20, 11, .84);
+  border: 1px solid rgba(255, 247, 232, .13);
+  border-radius: 999px;
+  backdrop-filter: blur(18px);
+  color: var(--cream);
+}
+.nav-main { display: flex; align-items: center; justify-content: space-between; flex: 1; min-width: 0; gap: 18px; }
+.brand {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.nav-links,
+.lang-toggle { display: flex; align-items: center; gap: 6px; }
+.nav-links a,
+.lang-toggle button {
+  border-radius: 999px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  background: rgba(255, 247, 232, .07);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.nav-links .current,
+.lang-toggle button.active { background: var(--sun); border-color: var(--sun); color: var(--ink); }
+.lang-toggle {
+  padding: 3px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, .06);
+}
+.lang-toggle button { border: 0; background: transparent; cursor: pointer; min-width: 40px; }
+.wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+.kicker {
+  color: var(--sun);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.article {
+  padding: 152px 0 72px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+.article-head { max-width: 900px; margin-bottom: 28px; }
+.article h2 {
+  margin-top: 10px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(30px, 3.8vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  color: rgba(29, 20, 11, .58);
+  font-size: 13px;
+  font-weight: 700;
+}
+.article-body {
+  max-width: 780px;
+  color: rgba(29, 20, 11, .76);
+  font-size: 16px;
+  line-height: 1.78;
+}
+.article-body h3 {
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.35;
+}
+.article-body p,
+.article-body ul,
+.article-body table { margin-top: 16px; }
+.article-body ul { padding-left: 22px; }
+.article-body li + li { margin-top: 8px; }
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.article-body th,
+.article-body td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.article-body th { background: rgba(45, 88, 50, .08); color: var(--leaf); font-weight: 800; }
+.article-body tr:last-child td { border-bottom: 0; }
+.note {
+  margin-top: 26px;
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  border-left: 4px solid var(--sun);
+  background: rgba(230, 182, 93, .14);
+  color: rgba(29, 20, 11, .78);
+}
+.lang-copy { display: none; }
+body.lang-en .lang-copy.en,
+body.lang-ta .lang-copy.ta { display: block; }
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 36px;
+  border-top: 1px solid var(--line);
+  color: rgba(29, 20, 11, .48);
+  font-size: 13px;
+}
+.footer a { color: var(--leaf); font-weight: 800; text-decoration: none; }
+@media (max-width: 860px) {
+  .nav {
+    position: absolute;
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
+  .nav-main { width: 100%; }
+  .nav-links { flex-wrap: wrap; justify-content: flex-start; }
+  .wrap,
+  .footer { width: calc(100% - 28px); }
+  .article { padding: 192px 0 56px; }
+}
+@media (max-width: 560px) {
+  .nav-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .brand { white-space: normal; line-height: 1.2; }
+  .article { padding-top: 272px; }
+  .article-body { font-size: 15.5px; line-height: 1.76; }
+  body.lang-ta .article-body { font-size: 15.5px; line-height: 1.82; }
+  .article-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  .footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body class="lang-en">
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="nav-main">
+      <a class="brand" href="index.html">The Fat Lamb Co.</a>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+      <a class="current" href="blog.html" data-en="Blog" data-ta="கட்டுரைகள்">Blog</a>
+      <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
+      <a href="team.html" data-en="Team" data-ta="குழு">Team</a>
+      <a href="tel:+917845867125" data-en="Call" data-ta="அழைக்க">Call</a>
+    </div>
+  </nav>
+
+  <main>
+    <article class="article" id="fattening-economics">
+      <div class="wrap">
+        <div class="article-head">
+          <div class="kicker" data-en="Farm Economics" data-ta="பண்ணை பொருளாதாரம்">Farm Economics</div>
+          <h2 data-en="Unit economics of a 50-animal fattening batch" data-ta="50 ஆடுகள் கொண்ட கொழுப்பூட்டல் தொகுதியின் யூனிட் பொருளாதாரம்">Unit economics of a 50-animal fattening batch</h2>
+          <div class="meta"><span data-en="Based on Batch 1 data" data-ta="Batch 1 தரவை அடிப்படையாகக் கொண்டது">Based on Batch 1 data</span><span data-en="6 min read" data-ta="6 நிமிட வாசிப்பு">6 min read</span></div>
+        </div>
+
+        <div class="lang-copy en article-body">
+          <p>A fattening batch should be judged like a small business unit. The question is not only “Did the animals sell for more than purchase cost?” The real question is: after feed, fodder, labour, vet care, medicine, land, transport, and mortality, how much profit did the batch create, and how much working capital was locked for those 100 days?</p>
+
+          <h3>Batch 1 snapshot</h3>
+          <table>
+            <tbody>
+              <tr><th>Starting animals</th><td>50</td></tr>
+              <tr><th>Purchase cost</th><td>₹3,37,500</td></tr>
+              <tr><th>TMR cost</th><td>₹1,50,000</td></tr>
+              <tr><th>Dry fodder cost</th><td>₹25,000</td></tr>
+              <tr><th>Labour, vet, medicine, lease, transport</th><td>₹87,219</td></tr>
+              <tr><th>Total batch cost</th><td>₹5,99,719</td></tr>
+              <tr><th>Mortality</th><td>3 animals</td></tr>
+              <tr><th>Net animals sold</th><td>47</td></tr>
+              <tr><th>Sale revenue</th><td>₹6,97,950</td></tr>
+              <tr><th>Batch profit</th><td>₹98,231</td></tr>
+            </tbody>
+          </table>
+
+          <h3>1. Cost per starting animal</h3>
+          <p>Total batch cost divided by starting animals gives the capital needed per animal slot.</p>
+          <p><strong>₹5,99,719 / 50 = ₹11,994 per starting animal.</strong> This number is useful for planning how much money is required to start a similar 50-animal batch. It includes purchase, feed, labour, health, lease, and transport costs.</p>
+
+          <h3>2. Revenue per sold animal</h3>
+          <p>The batch sold 47 animals and generated ₹6,97,950 revenue.</p>
+          <p><strong>₹6,97,950 / 47 = ₹14,850 per sold animal.</strong> This matches a 33 kg finished animal at about ₹450 per kg liveweight. The sale price looks healthy, but mortality means the revenue from 47 animals has to cover the cost of all 50 animals.</p>
+
+          <h3>3. Profit per animal</h3>
+          <p>There are two useful ways to read profit per animal. On the original batch size, profit is <strong>₹98,231 / 50 = ₹1,965 per starting animal</strong>. On animals actually sold, profit is <strong>₹98,231 / 47 = ₹2,090 per sold animal</strong>.</p>
+          <p>For farm planning, the first number is usually more honest because every batch slot consumes capital and risk from day one. The second number is useful for comparing sale lots.</p>
+
+          <h3>4. Break-even sale price</h3>
+          <p>Break-even tells the farmer the minimum sale price needed to avoid loss.</p>
+          <p><strong>₹5,99,719 total cost / 47 sold animals = ₹12,760 per sold animal.</strong> If each sold animal averages 33 kg, break-even liveweight price is <strong>₹12,760 / 33 = about ₹387 per kg</strong>.</p>
+          <p>This is the most important risk number in the sheet. Batch 1 sold at about ₹450/kg, so it had a cushion of roughly ₹63/kg above break-even. If the market dropped below ₹387/kg, the same batch would move into loss.</p>
+
+          <h3>5. ROI and margin</h3>
+          <p>Batch profit was ₹98,231 on a total batch cost of ₹5,99,719. That gives a batch ROI of <strong>about 16.4%</strong> for the cycle. Profit margin on sale revenue is <strong>about 14.1%</strong>.</p>
+          <p>If the fattening period is around 100 days, this is strong, but it depends on repeating the system without increasing mortality, feed wastage, or purchase price. ROI becomes meaningful only when the farm can repeat it batch after batch.</p>
+
+          <h3>6. What mortality did to the batch</h3>
+          <p>Three animals died or were unavailable for sale. At ₹14,850 expected sale revenue per animal, those three animals represent about <strong>₹44,550 of lost potential revenue</strong>. If mortality had been zero and all 50 animals sold at the same value, revenue could have been ₹7,42,500 and profit could have been about ₹1,42,781.</p>
+          <p>This does not mean every death is avoidable, but it shows why quarantine, early treatment, ventilation, deworming discipline, water, and feed transition are economic decisions, not just animal-care decisions.</p>
+
+          <h3>7. Feed cost discipline</h3>
+          <p>TMR plus dry fodder cost was ₹1,75,000. That is about <strong>29% of total batch cost</strong>. Feed is large enough that wastage, wrong ration density, or poor intake can change the batch result quickly. But feed should not be reduced blindly. The goal is not the cheapest feed per kg; it is the lowest feed cost per kg of gain with healthy rumen function.</p>
+
+          <h3>How to use this for the next batch</h3>
+          <ul>
+            <li>Know the break-even price before buying animals.</li>
+            <li>Track mortality as a financial loss, not only as a headcount loss.</li>
+            <li>Record feed cost separately for TMR and roughage.</li>
+            <li>Compare profit per starting animal between batches.</li>
+            <li>Do not scale from 50 to 100 animals unless labour, shed space, water, and health monitoring can scale with it.</li>
+          </ul>
+
+          <div class="note">Practical conclusion: Batch 1 is profitable because sale price, weight gain, and cost control were strong enough to absorb 3 mortalities. For the next batch, the biggest levers are purchase discipline, mortality reduction, feed efficiency, and selling above the ₹387/kg break-even zone.</div>
+        </div>
+
+        <div class="lang-copy ta article-body">
+          <p>கொழுப்பூட்டல் தொகுதியை ஒரு சிறிய தொழில் அலகாக பார்க்க வேண்டும். “வாங்கிய விலையை விட அதிகமாக விற்றோமா?” என்பது மட்டும் கேள்வி அல்ல. தீவனம், வைக்கோல், வேலைச்செலவு, மருத்துவர், மருந்து, நில lease, transport, மற்றும் mortality கழித்த பிறகு அந்த தொகுதி எவ்வளவு லாபம் தந்தது என்பதே முக்கியம்.</p>
+
+          <h3>Batch 1 சுருக்கம்</h3>
+          <table>
+            <tbody>
+              <tr><th>தொடக்க ஆடுகள்</th><td>50</td></tr>
+              <tr><th>வாங்கிய செலவு</th><td>₹3,37,500</td></tr>
+              <tr><th>TMR செலவு</th><td>₹1,50,000</td></tr>
+              <tr><th>உலர் தீவன செலவு</th><td>₹25,000</td></tr>
+              <tr><th>வேலை, vet, மருந்து, lease, transport</th><td>₹87,219</td></tr>
+              <tr><th>மொத்த batch செலவு</th><td>₹5,99,719</td></tr>
+              <tr><th>Mortality</th><td>3 ஆடுகள்</td></tr>
+              <tr><th>விற்பனைக்கு மீதமுள்ள ஆடுகள்</th><td>47</td></tr>
+              <tr><th>விற்பனை வருவாய்</th><td>₹6,97,950</td></tr>
+              <tr><th>Batch லாபம்</th><td>₹98,231</td></tr>
+            </tbody>
+          </table>
+
+          <h3>1. தொடக்க ஆடு ஒன்றுக்கு செலவு</h3>
+          <p>மொத்த batch செலவை தொடக்க ஆடுகளால் வகுத்தால் ஒரு animal slot-க்கு எவ்வளவு capital தேவை என்பது தெரியும்.</p>
+          <p><strong>₹5,99,719 / 50 = ₹11,994 ஒரு தொடக்க ஆடுக்கு.</strong> இதனால் இதே மாதிரி 50 ஆடுகள் batch தொடங்க எவ்வளவு பணம் தேவை என்பதை திட்டமிடலாம்.</p>
+
+          <h3>2. விற்ற ஆடு ஒன்றுக்கு வருவாய்</h3>
+          <p>இந்த batch-ல் 47 ஆடுகள் விற்கப்பட்டு ₹6,97,950 வருவாய் கிடைத்தது.</p>
+          <p><strong>₹6,97,950 / 47 = ₹14,850 ஒரு விற்ற ஆடுக்கு.</strong> இது 33 kg finished animal மற்றும் ₹450/kg liveweight விலைக்கு பொருந்துகிறது. ஆனால் 47 ஆடுகளின் வருவாயே 50 ஆடுகளின் செலவையும் தாங்க வேண்டும்.</p>
+
+          <h3>3. ஒரு ஆடுக்கு லாபம்</h3>
+          <p>லாபத்தை இரண்டு வழியில் பார்க்கலாம். தொடக்க batch அளவில் <strong>₹98,231 / 50 = ₹1,965 ஒரு தொடக்க ஆடுக்கு</strong>. உண்மையில் விற்ற ஆடுகளின் அடிப்படையில் <strong>₹98,231 / 47 = ₹2,090 ஒரு விற்ற ஆடுக்கு</strong>.</p>
+          <p>பண்ணை திட்டமிடலுக்கு முதல் எண் நேர்மையானது. ஏனெனில் capital மற்றும் risk 50 ஆடுகளுக்கும் முதல் நாளிலிருந்தே செல்கிறது.</p>
+
+          <h3>4. Break-even விற்பனை விலை</h3>
+          <p>Break-even என்பது நஷ்டமில்லாமல் இருக்க வேண்டிய குறைந்தபட்ச விலை.</p>
+          <p><strong>₹5,99,719 / 47 = ₹12,760 ஒரு விற்ற ஆடுக்கு.</strong> ஒவ்வொரு ஆடும் சராசரி 33 kg என்றால் break-even liveweight விலை <strong>₹12,760 / 33 = சுமார் ₹387/kg</strong>.</p>
+          <p>Batch 1 சுமார் ₹450/kg-க்கு விற்றதால் ₹63/kg அளவுக்கு பாதுகாப்பு இடைவெளி இருந்தது. சந்தை ₹387/kg-க்கு கீழே சென்றால் இதே batch நஷ்டத்துக்குச் செல்லும்.</p>
+
+          <h3>5. ROI மற்றும் margin</h3>
+          <p>Batch லாபம் ₹98,231. மொத்த batch செலவு ₹5,99,719. அதனால் இந்த cycle-க்கு ROI <strong>சுமார் 16.4%</strong>. Sale revenue அடிப்படையில் profit margin <strong>சுமார் 14.1%</strong>.</p>
+          <p>100 நாட்கள் fattening period என்றால் இது நல்ல முடிவு. ஆனால் mortality, feed wastage, அல்லது purchase price அதிகரிக்காமல் இதை மீண்டும் செய்ய முடிந்தால் மட்டுமே இந்த ROI வலிமையானதாகும்.</p>
+
+          <h3>6. Mortality batch-ஐ எப்படி பாதித்தது?</h3>
+          <p>3 ஆடுகள் விற்பனைக்கு கிடைக்கவில்லை. ஒரு ஆடுக்கு ₹14,850 வருவாய் கிடைத்ததால், 3 ஆடுகள் சுமார் <strong>₹44,550 potential revenue loss</strong> ஆகும். Mortality இல்லாமல் 50 ஆடுகளும் அதே விலையில் விற்றிருந்தால் வருவாய் ₹7,42,500 ஆகி, லாபம் சுமார் ₹1,42,781 ஆகியிருக்கும்.</p>
+          <p>அதனால் quarantine, ஆரம்ப சிகிச்சை, காற்றோட்டம், deworming, தண்ணீர், feed transition ஆகியவை animal care மட்டுமல்ல; அவை financial decisions.</p>
+
+          <h3>7. தீவன செலவு கட்டுப்பாடு</h3>
+          <p>TMR + dry fodder செலவு ₹1,75,000. இது மொத்த batch செலவின் சுமார் <strong>29%</strong>. தீவன வீணாக்கம், தவறான ration density, அல்லது intake குறைவு batch லாபத்தை விரைவாக பாதிக்கும். ஆனால் feed-ஐ கண்மூடித்தனமாக குறைக்கக் கூடாது. இலக்கு cheapest feed அல்ல; ஆரோக்கியமான rumen உடன் குறைந்த feed cost per kg gain.</p>
+
+          <h3>அடுத்த batch-க்கு எப்படி பயன்படுத்துவது?</h3>
+          <ul>
+            <li>ஆடுகள் வாங்கும் முன் break-even விலையை கணக்கிடுங்கள்.</li>
+            <li>Mortality-ஐ headcount loss மட்டும் அல்ல, financial loss ஆகப் பாருங்கள்.</li>
+            <li>TMR மற்றும் roughage செலவை தனியாக பதிவு செய்யுங்கள்.</li>
+            <li>ஒவ்வொரு batch-க்கும் profit per starting animal ஒப்பிடுங்கள்.</li>
+            <li>50-இல் இருந்து 100 ஆடுகளுக்கு scale செய்யும் முன் labour, shed space, water, health monitoring போதுமா என உறுதி செய்யுங்கள்.</li>
+          </ul>
+
+          <div class="note">நடைமுறை முடிவு: Batch 1 லாபமுள்ளது, ஏனெனில் sale price, weight gain, மற்றும் cost control மூன்றும் 3 mortality-ஐ தாங்கும் அளவுக்கு வலிமையாக இருந்தன. அடுத்த batch-ல் முக்கிய levers: நல்ல purchase discipline, mortality குறைப்பு, feed efficiency, மற்றும் ₹387/kg break-even-க்கு மேலே விற்பனை.</div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div data-en="The Fat Lamb Co. · Farmer Articles" data-ta="The Fat Lamb Co. · விவசாயி கட்டுரைகள்">The Fat Lamb Co. · Farmer Articles</div>
+    <div>
+      <a href="blog.html" data-en="All Articles" data-ta="அனைத்து கட்டுரைகள்">All Articles</a>
+      <span aria-hidden="true"> · </span>
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+    </div>
+  </footer>
+
+  <script>
+    const langButtons = document.querySelectorAll('[data-lang-btn]');
+    const translatable = document.querySelectorAll('[data-en][data-ta]');
+    const titles = {
+      en: 'The Fat Lamb Co. | 50-Animal Fattening Economics',
+      ta: 'The Fat Lamb Co. | 50 ஆடுகள் batch பொருளாதாரம்'
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.classList.toggle('lang-en', lang === 'en');
+      document.body.classList.toggle('lang-ta', lang === 'ta');
+      document.title = titles[lang] || titles.en;
+      translatable.forEach((el) => {
+        el.textContent = el.dataset[lang] || el.dataset.en;
+      });
+      langButtons.forEach((button) => {
+        const active = button.dataset.langBtn === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('fatLambLang', lang);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.langBtn));
+    });
+
+    setLanguage(localStorage.getItem('fatLambLang') || 'en');
+  </script>
+</body>
+</html>

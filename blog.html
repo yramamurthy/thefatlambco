@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fat Lamb Co. | Farmer Articles</title>
+<meta name="description" content="Weekly bilingual Tamil and English farmer articles from The Fat Lamb Co. on sheep fattening, breeding, feeding systems, and practical livestock management.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1d140b">
+<meta property="og:title" content="The Fat Lamb Co. | Farmer Articles">
+<meta property="og:description" content="Tamil and English articles for farmers and farms on fattening, breeding, feed systems, and practical sheep management.">
+<meta property="og:image" content="assets/farm-hero.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d140b;
+  --cream: #fff7e8;
+  --paper: #faf6ee;
+  --leaf: #2d5832;
+  --sun: #e6b65d;
+  --line: rgba(29, 20, 11, .11);
+  --card-shadow: 0 2px 16px rgba(29, 20, 11, .07);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+body.lang-ta { font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif; }
+
+body.lang-ta h1,
+body.lang-ta h2,
+body.lang-ta h3 {
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+body.lang-ta h1 {
+  font-size: clamp(36px, 6.2vw, 68px);
+  line-height: 1.1;
+}
+
+body.lang-ta h2 {
+  font-size: clamp(27px, 3.5vw, 40px);
+  line-height: 1.18;
+}
+
+body.lang-ta .hero p,
+body.lang-ta .article-card p,
+body.lang-ta .article-body {
+  font-size: 16px;
+  line-height: 1.82;
+}
+
+body.lang-ta .article-body h3 {
+  font-size: 20px;
+  line-height: 1.42;
+}
+
+a { color: inherit; }
+
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(1160px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px 10px 20px;
+  background: rgba(29, 20, 11, .84);
+  border: 1px solid rgba(255, 247, 232, .13);
+  border-radius: 999px;
+  backdrop-filter: blur(18px);
+  color: var(--cream);
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+  gap: 18px;
+}
+
+.brand {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-links,
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a,
+.lang-toggle button {
+  border-radius: 999px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  background: rgba(255, 247, 232, .07);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links .current,
+.lang-toggle button.active {
+  background: var(--sun);
+  border-color: var(--sun);
+  color: var(--ink);
+}
+
+.lang-toggle {
+  padding: 3px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, .06);
+}
+
+.lang-toggle button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.hero {
+  background:
+    linear-gradient(90deg, rgba(29,20,11,.94) 0%, rgba(29,20,11,.74) 58%, rgba(29,20,11,.35) 100%),
+    url("assets/farm-feeding.jpeg") center/cover;
+  color: var(--cream);
+  padding: 152px 0 70px;
+}
+
+.wrap {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.eyebrow,
+.kicker {
+  color: var(--sun);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+h1 {
+  max-width: 880px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(40px, 6.6vw, 74px);
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.hero p {
+  max-width: 690px;
+  margin-top: 20px;
+  color: rgba(255, 247, 232, .82);
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.65;
+}
+
+.blog-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  padding: 44px 0 72px;
+}
+
+.article-card {
+  display: block;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--card-shadow);
+  text-decoration: none;
+}
+
+.article-card h2 {
+  margin-top: 10px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.18;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  color: rgba(29, 20, 11, .58);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.article-card p {
+  margin-top: 14px;
+  color: rgba(29, 20, 11, .66);
+  font-size: 14.5px;
+  line-height: 1.72;
+}
+
+.article {
+  padding: 72px 0;
+  border-top: 1px solid var(--line);
+}
+
+.article:nth-of-type(odd) {
+  background: #fff;
+}
+
+.article-head {
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+
+.article h2 {
+  margin-top: 10px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(30px, 3.8vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+
+.article-body {
+  max-width: 780px;
+  color: rgba(29, 20, 11, .76);
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.article-body h3 {
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.article-body p,
+.article-body ul,
+.article-body table {
+  margin-top: 16px;
+}
+
+.article-body ul {
+  padding-left: 22px;
+}
+
+.article-body li + li {
+  margin-top: 8px;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.article-body th,
+.article-body td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-body th {
+  background: rgba(45, 88, 50, .08);
+  color: var(--leaf);
+  font-weight: 800;
+}
+
+.article-body tr:last-child td { border-bottom: 0; }
+
+.note {
+  margin-top: 26px;
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  border-left: 4px solid var(--sun);
+  background: rgba(230, 182, 93, .14);
+  color: rgba(29, 20, 11, .78);
+}
+
+.sources {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.sources a {
+  color: var(--leaf);
+  font-weight: 700;
+}
+
+.lang-copy { display: none; }
+body.lang-en .lang-copy.en,
+body.lang-ta .lang-copy.ta { display: block; }
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 36px;
+  border-top: 1px solid var(--line);
+  color: rgba(29, 20, 11, .48);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--leaf);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 860px) {
+  .nav {
+    position: absolute;
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
+
+  .nav-main { width: 100%; }
+
+  .nav-links { flex-wrap: wrap; justify-content: flex-start; }
+
+  .hero { padding: 192px 0 56px; }
+
+  .wrap,
+  .footer { width: calc(100% - 28px); }
+
+  .blog-index { grid-template-columns: 1fr; padding-top: 32px; }
+
+  .article { padding: 56px 0; }
+}
+
+@media (max-width: 560px) {
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .brand { white-space: normal; line-height: 1.2; }
+
+  .hero { padding-top: 272px; }
+
+  .article-card { padding: 22px; }
+
+  .article-body {
+    font-size: 15.5px;
+    line-height: 1.76;
+  }
+
+  body.lang-ta .article-body {
+    font-size: 15.5px;
+    line-height: 1.82;
+  }
+
+  .article-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body class="lang-en">
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="nav-main">
+      <a class="brand" href="index.html">The Fat Lamb Co.</a>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+      <a class="current" href="blog.html" aria-current="page" data-en="Blog" data-ta="கட்டுரைகள்">Blog</a>
+      <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
+      <a href="team.html" data-en="Team" data-ta="குழு">Team</a>
+      <a href="tel:+917845867125" data-en="Call" data-ta="அழைக்க">Call</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow" data-en="Farmer Articles" data-ta="விவசாயி கட்டுரைகள்">Farmer Articles</div>
+      <h1 data-en="Practical weekly notes for fattening and breeding farms." data-ta="கொழுப்பூட்டல் மற்றும் இனப்பெருக்க பண்ணைகளுக்கான நடைமுறை வாராந்திர குறிப்புகள்.">Practical weekly notes for fattening and breeding farms.</h1>
+      <p data-en="Bilingual Tamil and English articles written for farmers who want clear decisions on feeding, housing, growth, health, and farm economics." data-ta="தீவனம், குடியிடம், வளர்ச்சி, ஆரோக்கியம், மற்றும் பண்ணை பொருளாதாரம் குறித்து தெளிவான முடிவுகள் எடுக்க விரும்பும் விவசாயிகளுக்கான தமிழ் மற்றும் ஆங்கில கட்டுரைகள்.">Bilingual Tamil and English articles written for farmers who want clear decisions on feeding, housing, growth, health, and farm economics.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap blog-index" aria-label="Articles">
+      <a class="article-card" href="blog-stall-fed-fattening.html">
+        <div class="kicker" data-en="Fattening Systems" data-ta="கொழுப்பூட்டல் முறை">Fattening Systems</div>
+        <h2 data-en="Advantages of stall-fed fattening over grazing" data-ta="மேய்ச்சலை விட கொட்டகை கொழுப்பூட்டலின் நன்மைகள்">Advantages of stall-fed fattening over grazing</h2>
+        <p data-en="How controlled feeding, lower walking loss, and better monitoring can improve finishing speed and buyer-ready batches." data-ta="கட்டுப்படுத்தப்பட்ட தீவனம், நடப்பதால் ஏற்படும் சக்தி இழப்பு குறைவு, மற்றும் கண்காணிப்பு மூலம் விற்பனைக்கு தயாரான தொகுதிகளை எப்படி உருவாக்கலாம்.">How controlled feeding, lower walking loss, and better monitoring can improve finishing speed and buyer-ready batches.</p>
+        <div class="meta"><span data-en="5 min read" data-ta="5 நிமிட வாசிப்பு">5 min read</span><span>Fattening</span></div>
+      </a>
+      <a class="article-card" href="blog-pelleted-vs-mash-tmr.html">
+        <div class="kicker" data-en="Feed Form" data-ta="தீவன வடிவம்">Feed Form</div>
+        <h2 data-en="Pelleted vs. mash TMR for sheep fattening" data-ta="ஆடு கொழுப்பூட்டலில் பெலெட் TMR vs மாஷ் TMR">Pelleted vs. mash TMR for sheep fattening</h2>
+        <p data-en="A practical comparison of intake, sorting, wastage, cost per kg gain, and when mash still makes sense." data-ta="தீவன உட்கொள்ளல், தேர்ந்தெடுத்து சாப்பிடுதல், வீணாக்கம், ஒரு கிலோ எடை கூடுவதற்கான செலவு, மற்றும் மாஷ் எப்போது பொருத்தமாக இருக்கும் என்பதன் நடைமுறை ஒப்பீடு.">A practical comparison of intake, sorting, wastage, cost per kg gain, and when mash still makes sense.</p>
+        <div class="meta"><span data-en="6 min read" data-ta="6 நிமிட வாசிப்பு">6 min read</span><span>TMR</span></div>
+      </a>
+      <a class="article-card" href="blog-50-animal-fattening-economics.html">
+        <div class="kicker" data-en="Farm Economics" data-ta="பண்ணை பொருளாதாரம்">Farm Economics</div>
+        <h2 data-en="Unit economics of a 50-animal fattening batch" data-ta="50 ஆடுகள் கொண்ட கொழுப்பூட்டல் தொகுதியின் யூனிட் பொருளாதாரம்">Unit economics of a 50-animal fattening batch</h2>
+        <p data-en="A practical breakdown of Batch 1 cost, revenue, mortality, break-even price, profit per animal, and ROI." data-ta="Batch 1 செலவு, வருவாய், இறப்பு, break-even விலை, ஒரு ஆடுக்கு லாபம், மற்றும் ROI பற்றிய நடைமுறை விளக்கம்.">A practical breakdown of Batch 1 cost, revenue, mortality, break-even price, profit per animal, and ROI.</p>
+        <div class="meta"><span data-en="6 min read" data-ta="6 நிமிட வாசிப்பு">6 min read</span><span data-en="50 animals" data-ta="50 ஆடுகள்">50 animals</span></div>
+      </a>
+    </section>
+</main>
+
+  <footer class="footer">
+    <div data-en="The Fat Lamb Co. · Farmer Articles" data-ta="The Fat Lamb Co. · விவசாயி கட்டுரைகள்">The Fat Lamb Co. · Farmer Articles</div>
+    <div>
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+      <span aria-hidden="true"> · </span>
+      <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
+    </div>
+  </footer>
+
+  <script>
+    const langButtons = document.querySelectorAll('[data-lang-btn]');
+    const translatable = document.querySelectorAll('[data-en][data-ta]');
+    const titles = {
+      en: 'The Fat Lamb Co. | Farmer Articles',
+      ta: 'The Fat Lamb Co. | விவசாயி கட்டுரைகள்'
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.classList.toggle('lang-en', lang === 'en');
+      document.body.classList.toggle('lang-ta', lang === 'ta');
+      document.title = titles[lang] || titles.en;
+      translatable.forEach((el) => {
+        el.textContent = el.dataset[lang] || el.dataset.en;
+      });
+      langButtons.forEach((button) => {
+        const active = button.dataset.langBtn === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('fatLambLang', lang);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.langBtn));
+    });
+
+    setLanguage(localStorage.getItem('fatLambLang') || 'en');
+  </script>
+</body>
+</html>
+
+
