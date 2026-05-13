@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fat Lamb Co. | Weighing Station for Fattening Units</title>
+<meta name="description" content="Why a weighing station matters in fattening units and practical recommendations for weighing sheep accurately and consistently.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1d140b">
+<meta property="og:title" content="The Fat Lamb Co. | Weighing Station for Fattening Units">
+<meta property="og:description" content="Why a weighing station matters in fattening units and practical recommendations for weighing sheep accurately and consistently.">
+<meta property="og:image" content="assets/farm-hero.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d140b;
+  --cream: #fff7e8;
+  --paper: #faf6ee;
+  --leaf: #2d5832;
+  --sun: #e6b65d;
+  --line: rgba(29, 20, 11, .11);
+  --card-shadow: 0 2px 16px rgba(29, 20, 11, .07);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+body.lang-ta { font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif; }
+
+body.lang-ta h1,
+body.lang-ta h2,
+body.lang-ta h3 {
+  font-family: 'Noto Sans Tamil', 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+body.lang-ta h1 {
+  font-size: clamp(36px, 6.2vw, 68px);
+  line-height: 1.1;
+}
+
+body.lang-ta h2 {
+  font-size: clamp(27px, 3.5vw, 40px);
+  line-height: 1.18;
+}
+
+body.lang-ta .hero p,
+body.lang-ta .article-card p,
+body.lang-ta .article-body {
+  font-size: 16px;
+  line-height: 1.82;
+}
+
+body.lang-ta .article-body h3 {
+  font-size: 20px;
+  line-height: 1.42;
+}
+
+a { color: inherit; }
+
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(1160px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px 10px 20px;
+  background: rgba(29, 20, 11, .84);
+  border: 1px solid rgba(255, 247, 232, .13);
+  border-radius: 999px;
+  backdrop-filter: blur(18px);
+  color: var(--cream);
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+  gap: 18px;
+}
+
+.brand {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-links,
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a,
+.lang-toggle button {
+  border-radius: 999px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  background: rgba(255, 247, 232, .07);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links .current,
+.lang-toggle button.active {
+  background: var(--sun);
+  border-color: var(--sun);
+  color: var(--ink);
+}
+
+.lang-toggle {
+  padding: 3px;
+  border: 1px solid rgba(255, 247, 232, .16);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, .06);
+}
+
+.lang-toggle button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.hero {
+  background:
+    linear-gradient(90deg, rgba(29,20,11,.94) 0%, rgba(29,20,11,.74) 58%, rgba(29,20,11,.35) 100%),
+    url("assets/farm-feeding.jpeg") center/cover;
+  color: var(--cream);
+  padding: 152px 0 70px;
+}
+
+.wrap {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.eyebrow,
+.kicker {
+  color: var(--sun);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+h1 {
+  max-width: 880px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(40px, 6.6vw, 74px);
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.hero p {
+  max-width: 690px;
+  margin-top: 20px;
+  color: rgba(255, 247, 232, .82);
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.65;
+}
+
+.article {
+  padding: 72px 0;
+  border-top: 1px solid var(--line);
+}
+
+.article-page .article {
+  padding-top: 152px;
+}
+
+.article:nth-of-type(odd) {
+  background: #fff;
+}
+
+.article-head {
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+
+.article h2 {
+  margin-top: 10px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(30px, 3.8vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  color: rgba(29, 20, 11, .58);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.article-body {
+  max-width: 780px;
+  color: rgba(29, 20, 11, .76);
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.article-body h3 {
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.article-body p,
+.article-body ul,
+.article-body table {
+  margin-top: 16px;
+}
+
+.article-body ul {
+  padding-left: 22px;
+}
+
+.article-body li + li {
+  margin-top: 8px;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.article-body th,
+.article-body td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-body th {
+  background: rgba(45, 88, 50, .08);
+  color: var(--leaf);
+  font-weight: 800;
+}
+
+.article-body tr:last-child td { border-bottom: 0; }
+
+.note {
+  margin-top: 26px;
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  border-left: 4px solid var(--sun);
+  background: rgba(230, 182, 93, .14);
+  color: rgba(29, 20, 11, .78);
+}
+
+.sources {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.sources a {
+  color: var(--leaf);
+  font-weight: 700;
+}
+
+.lang-copy { display: none; }
+body.lang-en .lang-copy.en,
+body.lang-ta .lang-copy.ta { display: block; }
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 36px;
+  border-top: 1px solid var(--line);
+  color: rgba(29, 20, 11, .48);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--leaf);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 860px) {
+  .nav {
+    position: absolute;
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
+
+  .nav-main { width: 100%; }
+
+  .nav-links { flex-wrap: wrap; justify-content: flex-start; }
+
+  .hero { padding: 192px 0 56px; }
+
+  .wrap,
+  .footer { width: calc(100% - 28px); }
+
+  .article { padding: 56px 0; }
+}
+
+@media (max-width: 560px) {
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .brand { white-space: normal; line-height: 1.2; }
+
+  .hero { padding-top: 272px; }
+
+  .article-body {
+    font-size: 15.5px;
+    line-height: 1.76;
+  }
+
+  body.lang-ta .article-body {
+    font-size: 15.5px;
+    line-height: 1.82;
+  }
+
+  .article-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body class="lang-en article-page">
+<nav class="nav" aria-label="Primary navigation">
+    <div class="nav-main">
+      <a class="brand" href="index.html">The Fat Lamb Co.</a>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+      <a class="current" href="blog.html" aria-current="page" data-en="Blog" data-ta="கட்டுரைகள்">Blog</a>
+      <a href="farm-tools.html" data-en="Farm Tools" data-ta="பண்ணை கருவிகள்">Farm Tools</a>
+      <a href="team.html" data-en="Team" data-ta="குழு">Team</a>
+      <a href="tel:+917845867125" data-en="Call" data-ta="அழைக்க">Call</a>
+    </div>
+  </nav>
+
+  <main>
+<article class="article" id="weighing-station">
+      <div class="wrap">
+        <div class="article-head">
+          <div class="kicker" data-en="Batch Management" data-ta="Batch நிர்வாகம்">Batch Management</div>
+          <h2 data-en="Why a weighing station matters in a fattening unit" data-ta="கொழுப்பூட்டல் பிரிவில் எடையான் நிலையம் ஏன் முக்கியம்">Why a weighing station matters in a fattening unit</h2>
+          <div class="meta"><span data-en="Weighing recommendations for accurate feed and sale decisions" data-ta="தீவனம் மற்றும் விற்பனை முடிவுகளுக்கான சரியான எடையான் பரிந்துரைகள்">Weighing recommendations for accurate feed and sale decisions</span><span data-en="5 min read" data-ta="5 நிமிட வாசிப்பு">5 min read</span></div>
+        </div>
+
+        <div class="lang-copy en article-body">
+          <p>A reliable weighing station is the backbone of a professional fattening unit. It turns guesswork into measurable progress, helps keep feed cost under control, and makes it possible to decide when an animal is ready for sale or when a batch needs a different plan.</p>
+
+          <h3>Why weigh every batch?</h3>
+          <p>Weight is the single most important measure in fattening. Visual condition and body finish are useful, but only a scale tells you how much pay weight you have gained. Regular weighing reveals average daily gain, identifies slow growers, and stops the farm from carrying animals too long at extra feed cost.</p>
+
+          <h3>What a weighing station gives you</h3>
+          <ul>
+            <li>Accurate entry weight for every animal and batch.</li>
+            <li>Weekly progress records to compare feed cost with weight gain.</li>
+            <li>Early detection of poor performers or sick animals when growth falls behind.</li>
+            <li>Better sale timing by knowing when the lot has reached the buyer's expected liveweight.</li>
+            <li>Evidence for pricing and negotiation with buyers.</li>
+          </ul>
+
+          <h3>Setting up a practical station</h3>
+          <p>Use a stable flat base and a strong platform or livestock scale. The scale should be easy to clean and large enough for an adult lamb or sheep. If you use a mechanical scale, check the zero and calibration regularly. Digital scales with a simple display work well if they are protected from dust and moisture.</p>
+
+          <h3>How to weigh animals consistently</h3>
+          <ul>
+            <li>Weigh animals at the same time of day, ideally before feed, so gut fill does not vary too much.</li>
+            <li>Use the same handler and the same procedure for every weigh session.</li>
+            <li>Record the date, animal ID, batch, entry weight, and current weight in a log book or spreadsheet.</li>
+            <li>Weigh a small group at a time to keep animals calm and reduce mistakes.</li>
+            <li>Use the same halter or cradle method each time if needed for safety and consistency.</li>
+          </ul>
+
+          <h3>Recommended weighing frequency</h3>
+          <p>For a fattening unit, weekly weighing is usually enough to see progress and adjust the plan. If the batch is near the target sale weight, every 5–7 days gives you confidence that the animals are moving toward the goal. Do a final check 3–5 days before sale so you can make the decision without adding unnecessary days on feed.</p>
+
+          <h3>Weighing station details that matter</h3>
+          <ul>
+            <li>A solid ramp or approach so animals move onto the scale comfortably.</li>
+            <li>A calm, shaded location where animals do not get stressed before weighing.</li>
+            <li>Clear markings for the platform and a safe holding pen nearby.</li>
+            <li>Regular cleaning to avoid mud, manure, and slippery surfaces.</li>
+            <li>Simple calibration checks using a known weight or a standard reference.</li>
+          </ul>
+
+          <h3>Use the data to manage your batch</h3>
+          <p>Compare the weekly weights to the batch average. If an animal falls behind, separate it for examination and decide whether it needs medicine, feed adjustment, or a different role. If the whole lot is gaining well, the weighing station gives the confidence to book buyers and plan sale dates instead of waiting until the batch looks ready.</p>
+
+          <div class="note">A good weighing station costs little compared with the value of avoiding extra feed days, reducing risk, and selling animals at the right weight. Accurate weighing is the basis for predictable fattening, not only a convenience.</div>
+        </div>
+
+        <div class="lang-copy ta article-body">
+          <p>நம்பகமான எடையான் நிலையம் கொழுப்பூட்டல் பிரிவின் அடிப்படை. இது கற்பனையை தரமான முன்னேற்றமாக மாற்றி, தீவனச் செலவை கட்டுப்பட வைத்துக் கொண்டு, ஒரு மாடு விற்க தயாரா என்பதை அல்லது தொகுதி வேறு திட்டத்தை தேடும் நேரமா என்பதை தீர்மானிக்க உதவுகிறது.</p>
+
+          <h3>ஏன் ஒவ்வொரு தொகுதியையும் எடையாகக் கணக்கிட வேண்டும்?</h3>
+          <p>எடை கொழுப்பூட்டலில் முக்கியமான அளவை. பார்வை மற்றும் உடல் நிலை உதவியாக இருக்கலாம், ஆனால் எடையை மட்டுமே அளவுகோல் சரியாக கூறும். அடிக்கடி எடையைக் கணக்கிடுவது, சராசரி தினசரி வளர்ச்சியை காட்டுகிறது, மெதுவாக வளர்பவர்களை கண்டறிகிறது, அதிக தீவன செலவில் மாடுகளை நீண்ட நாட்கள் வைத்திருப்பதைத் தடுக்கும்.</p>
+
+          <h3>எடையான் நிலையம் எதை தருகிறது?</h3>
+          <ul>
+            <li>ஒவ்வொரு மாடுக்கும் மற்றும் தொகுதியற்கும் சரியான மொழு எடை.</li>
+            <li>தீவன செலவு மற்றும் எடை வளர்ச்சி ஒப்பிட வாராந்திர பதிவுகள்.</li>
+            <li>வளர்ச்சி பின்னடைவாகியால் உடனே நோய்த்திகை அல்லது மெதுவாக வளர்பவர்கள் தெரியும்.</li>
+            <li>வாங்குபவரின் எதிர்பார்க்கும் உயிர்உடை எடையை எப்போது அடைந்தது என்பதை அறிய உதவும்.</li>
+            <li>விலை மற்றும் பேச்சுவார்த்தைக்கு ஆதாரம்.</li>
+          </ul>
+
+          <h3>பயன்பாட்டிற்கான நிலையத்தை அமைப்பது</h3>
+          <p>திடமான மிளகாய் தரையையும் வலுவான மேடையையும் அல்லது மாட்டு அளவையைப் பயன்படுத்தவும். அளவைக் கருவி சுத்தமாக பராமரிக்கத் தகுதியும், ஒரு நிரம்பிய முடிவு கொண்ட ஆடுக்கு போதுமான அளவிலும் இருக்க வேண்டும். இயாந்திர அளவையில், பூஜ்ஜியத்தில் சரிபார்க்கவும் மற்றும் அடிக்கடி அளவிடவும். மின்திறன் அளவைகள் தூசி மற்றும் ஈரப்பதத்திலிருந்து பாதுகாக்கப்பட்டால் சிறந்தது.</p>
+
+          <h3>எவ்வாறு ஒரே மாதிரியாக எடையைக் கணக்கிடுவது?</h3>
+          <ul>
+            <li>தீவனத்திற்கு முன்பு ஒரே நேரத்தில் மாடுகளை எடையிடுங்கள், அதன் மூலம் குடல் நிறம் மாறாது.</li>
+            <li>ஒவ்வொரு எடையிடும் அமர்விலும் ஒரே handler மற்றும் நடைமுறையைப் பயன்படுத்தவும்.</li>
+            <li>தேதி, மாடு ID, தொகுதி, முதல் எடை, தற்போதைய எடை ஆகியவற்றை பதிவு புத்தகத்தில் அல்லது spreadsheet-இல் வைத்துக் கொள்ளுங்கள்.</li>
+            <li>தவறுகள் குறைவு வரியாக சிறிய குழுக்களைக் கொடுக்கவும்.</li>
+            <li>பாதுகாப்புக்கும் ஒரே மாதிரியாக்கலுக்கும் தேவையானால் ஒரே தலைமாலை அல்லது cradle முறையைப் பயன்படுத்தவும்.</li>
+          </ul>
+
+          <h3>பரிந்துரைக்கப்படும் எடையிடும் அடிக்கடி</h3>
+          <p>ஒரு கொழுப்பூட்டல் பிரிவிற்கு, முன்னேற்றத்தை காண வாராந்திர எடையிடுதல் போதும். தொகுதி இலக்கு விற்பனை எடைக்கு அருகிலும் இருந்தால், 5–7 நாட்களுக்கு ஒரு முறை எடையிடுவது மேம்பட்ட நம்பகத்தன்மையை தரும். விற்பனைக்கு முன் 3–5 நாட்கள் இறுதி பரிசோதனை செய்தால், தேவையில்லாத தீவன நாள்களை சேராமல் முடிவு செய்ய முடியும்.</p>
+
+          <h3>முக்கியமான எடையான் நிலைய விவரங்கள்</h3>
+          <ul>
+            <li>மாடுகள் அறிந்து அமைதியாக மேல்நோக்கி செல்ல ஒரு படிநிலையோ அணுகலோ.</li>
+            <li>மாடுகள் எடையிடுவதற்கு முன் மனச்சோர்வில்லாமல், நிழலான இடம்.</li>
+            <li>மேடைக்கு அருகில் பாதுகாப்பான பிடிப்பு வடிப்பு.</li>
+            <li>மண், மலம் மற்றும் சரிவுகளைத் தடுத்தும் சுத்தம்.</li>
+            <li>அறியப்பட்ட எடையுடன் அல்லது தரநிலை ஆவணத்துடன் அடிக்கடி அளவீட்டை சரிபார்க்கவும்.
+</li>
+          </ul>
+
+          <h3>தகவலை உங்கள் தொகுதி நிர்வாகத்தில் பயன்படுத்துங்கள்</h3>
+          <p>வாராந்திர எடைகள் தொகுப்பு சராசரி வளர்ச்சியுடன் ஒப்பிடுங்கள். ஒரு மாடு பின்னடைவாயில் இருந்தால், அதை தனிக்காப்பிற்காக பிரித்து பரிசோதனை செய்யவும், அது மருந்து, தீவன திருத்தம், அல்லது வேறு பணி தேவைப்படுகிறதா என்பதைக் கண்டுபிடிக்கவும். முழு தொகுதி நன்றாக வளர்ந்தால், எடையான் நிலையம் வாங்குபவர்களை முன்பே முன்பதிவு செய்யவும் மற்றும் வெற்றி நாள்களை திட்டமிடவும் நம்பகத்தன்மையை தரும்.</p>
+
+          <div class="note">நல்ல எடையான் நிலையம், கூடுதல் தீவன நாட்களைத் தவிர்க்கவும், அபாயத்தை குறைக்கவும், சரியான எடையில் விற்பனை செய்யவும் உதவுவதால் அதன் மதிப்பை குறைவாக மதிப்பிட முடியாது. சரியானஎடையிடுதல் கணிப்பாளிக்கான அடிப்படையாகும், வெறும் வசதியல்ல.</div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div data-en="The Fat Lamb Co. · Farmer Articles" data-ta="The Fat Lamb Co. · விவசாயி கட்டுரைகள்">The Fat Lamb Co. · Farmer Articles</div>
+    <div>
+      <a href="blog.html" data-en="All Articles" data-ta="அனைத்து கட்டுரைகள்">All Articles</a>
+      <span aria-hidden="true"> · </span>
+      <a href="index.html" data-en="Home" data-ta="முகப்பு">Home</a>
+    </div>
+  </footer>
+
+<script>
+    const langButtons = document.querySelectorAll('[data-lang-btn]');
+    const translatable = document.querySelectorAll('[data-en][data-ta]');
+    const titles = {
+      en: 'The Fat Lamb Co. | Weighing Station for Fattening Units',
+      ta: 'The Fat Lamb Co. | கொழுப்பூட்டல் பிரிவிற்கு எடையான் நிலையம்'
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.classList.toggle('lang-en', lang === 'en');
+      document.body.classList.toggle('lang-ta', lang === 'ta');
+      document.title = titles[lang] || titles.en;
+      translatable.forEach((el) => {
+        el.textContent = el.dataset[lang] || el.dataset.en;
+      });
+      langButtons.forEach((button) => {
+        const active = button.dataset.langBtn === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('fatLambLang', lang);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.langBtn));
+    });
+
+    setLanguage(localStorage.getItem('fatLambLang') || 'en');
+  </script>
+</body>
+</html>
