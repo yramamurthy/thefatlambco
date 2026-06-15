@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>லாப–நட்ட சிமுலேட்டர் — P&L Simulator</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --soil:    #1c1209;
+  --bark:    #2d1e0a;
+  --earth:   #3d2b12;
+  --clay:    #6b4423;
+  --sand:    #c4a882;
+  --cream:   #f5edd8;
+  --green:   #2d6a2f;
+  --leaf:    #4a8c3f;
+  --lime:    #7ab648;
+  --sage:    #a8c87a;
+  --amber:   #d4820a;
+  --gold:    #f0a020;
+  --saffron: #f5c040;
+  --red:     #b83232;
+  --rose:    #e05050;
+  --pink:    #f08080;
+  --blue:    #2a5a8a;
+  --sky:     #4a8ab5;
+  --mist:    #8ab8d8;
+  --teal:    #2a8a7a;
+  --aqua:    #4ab5a0;
+  --ink:     #1d140b;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--soil);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--cream);
+  font-size: 14px;
+  line-height: 1.55;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+.wrap { max-width: 1000px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
+
+/* Nav */
+.nav { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; font-size: 13px; }
+.nav a { color: rgba(196,168,130,.6); text-decoration: none; transition: color .2s; }
+.nav a:hover { color: var(--sand); }
+.nav-sep { color: rgba(196,168,130,.3); }
+.nav-curr { color: var(--aqua); font-weight: 500; }
+
+/* Header */
+.hdr { margin-bottom: 32px; }
+.hdr-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(42,138,122,.15); border: 1px solid rgba(74,181,160,.3);
+  border-radius: 100px; padding: 5px 16px; margin-bottom: 16px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--aqua);
+}
+.hdr h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(28px, 4.4vw, 40px);
+  line-height: 1.14; color: var(--cream); margin-bottom: 8px;
+}
+.hdr h1 span { color: var(--aqua); }
+.hdr-ta {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-size: clamp(18px, 3vw, 22px);
+  line-height: 1.45; color: var(--gold); margin-bottom: 8px; font-weight: 700;
+}
+.hdr-desc { font-size: 13.5px; color: rgba(196,168,130,.8); max-width: 640px; line-height: 1.68; }
+
+/* Section title */
+.sec-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 17px; color: var(--gold);
+  line-height: 1.35; margin: 36px 0 16px;
+  padding-bottom: 10px; border-bottom: 1px solid rgba(240,160,32,.2);
+  display: flex; align-items: center; gap: 12px;
+}
+.sec-title::before {
+  content: ''; display: block; width: 4px; height: 18px;
+  background: var(--gold); border-radius: 2px;
+}
+.sec-title.teal { color: var(--aqua); border-bottom-color: rgba(74,181,160,.2); }
+.sec-title.teal::before { background: var(--aqua); }
+
+/* Input card */
+.input-card {
+  background: rgba(45,30,10,.5);
+  border: 1px solid rgba(196,168,130,.12);
+  border-radius: 16px; padding: 22px; margin-bottom: 14px;
+}
+.ic-head {
+  font-size: 12px; font-weight: 700; color: var(--sand);
+  letter-spacing: .04em; text-transform: uppercase;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+.ic-head span { font-size: 16px; }
+
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 11px; color: var(--sand); font-weight: 600; letter-spacing: .02em; line-height: 1.4; }
+.field label b { color: var(--cream); font-weight: 700; }
+.field label span {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  display: block; font-size: 11px; color: rgba(196,168,130,.58); font-weight: 400; margin-top: 1px;
+}
+.input-wrap { position: relative; display: flex; align-items: center; }
+.field input {
+  background: rgba(28,18,9,.6);
+  border: 1px solid rgba(196,168,130,.2);
+  border-radius: 8px; color: var(--cream);
+  font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+  padding: 9px 12px; outline: none; transition: border-color .2s; width: 100%;
+}
+.field input:focus { border-color: rgba(74,181,160,.55); background: rgba(28,18,9,.85); }
+.field .unit {
+  position: absolute; right: 11px; font-size: 10.5px; color: rgba(196,168,130,.5);
+  pointer-events: none; font-weight: 500;
+}
+.field input.has-unit { padding-right: 42px; }
+
+/* Sale price control */
+.price-card {
+  background: linear-gradient(135deg, rgba(42,138,122,.14), rgba(42,90,138,.12));
+  border: 1px solid rgba(74,181,160,.3);
+  border-radius: 16px; padding: 22px; margin-bottom: 14px;
+}
+.price-row { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.price-label { font-size: 13px; font-weight: 600; color: var(--sand); }
+.price-label span { font-family: 'Noto Sans Tamil', sans-serif; display: block; font-size: 11px; color: rgba(196,168,130,.6); }
+.price-val { font-family: 'DM Sans', sans-serif; font-size: 30px; font-weight: 700; color: var(--aqua); }
+.price-val small { font-size: 14px; color: rgba(196,168,130,.7); font-weight: 500; }
+input[type=range] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+  border-radius: 999px; background: rgba(196,168,130,.18); outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 22px; height: 22px;
+  border-radius: 50%; background: var(--aqua); cursor: pointer;
+  border: 3px solid var(--soil); box-shadow: 0 2px 8px rgba(0,0,0,.5);
+}
+input[type=range]::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--aqua);
+  cursor: pointer; border: 3px solid var(--soil); box-shadow: 0 2px 8px rgba(0,0,0,.5);
+}
+.range-ticks { display: flex; justify-content: space-between; font-size: 10px; color: rgba(196,168,130,.45); margin-top: 8px; }
+
+/* Toolbar */
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.tb-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(28,18,9,.6); border: 1px solid rgba(196,168,130,.2);
+  border-radius: 10px; color: var(--sand);
+  font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 600;
+  padding: 9px 15px; cursor: pointer; transition: border-color .2s, background .2s, color .2s;
+}
+.tb-btn:hover { border-color: rgba(74,181,160,.5); background: rgba(28,18,9,.85); color: var(--cream); }
+.tb-btn.copied { border-color: rgba(74,140,63,.6); color: var(--lime); background: rgba(74,140,63,.12); }
+.tb-btn span { font-size: 14px; }
+
+/* Hero result cards */
+.hero-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px; margin-bottom: 16px;
+}
+.hero-card {
+  border-radius: 16px; border: 1px solid; padding: 20px 22px;
+  position: relative; overflow: hidden;
+}
+.hero-card::before { content: ''; position: absolute; top:0; left:0; right:0; height: 3px; }
+.hc-profit { background: rgba(74,140,63,.12); border-color: rgba(74,140,63,.4); }
+.hc-profit::before { background: linear-gradient(90deg, var(--green), var(--lime)); }
+.hc-roi { background: rgba(42,138,122,.12); border-color: rgba(74,181,160,.4); }
+.hc-roi::before { background: linear-gradient(90deg, var(--teal), var(--aqua)); }
+.hc-annual { background: rgba(212,130,10,.1); border-color: rgba(212,130,10,.38); }
+.hc-annual::before { background: linear-gradient(90deg, var(--amber), var(--gold)); }
+.hc-net { background: rgba(42,90,138,.12); border-color: rgba(42,90,138,.4); }
+.hc-net::before { background: linear-gradient(90deg, var(--blue), var(--sky)); }
+.hc-label { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--sand); opacity: .85; margin-bottom: 10px; }
+.hc-val { font-family: 'DM Sans', sans-serif; font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.hc-profit .hc-val { color: var(--lime); }
+.hc-roi .hc-val { color: var(--aqua); }
+.hc-annual .hc-val { color: var(--gold); }
+.hc-net .hc-val { color: var(--mist); }
+.hc-val.neg { color: var(--rose) !important; }
+.hc-sub { font-size: 11.5px; color: rgba(196,168,130,.7); }
+.hc-sub b { color: var(--cream); }
+
+/* Two-col layout for breakdown + scenarios */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* Cost / ledger card */
+.ledger {
+  background: rgba(28,18,9,.5);
+  border: 1px solid rgba(196,168,130,.12);
+  border-radius: 16px; padding: 22px;
+}
+.ledger-title { font-family: 'Libre Baskerville', serif; font-size: 15px; color: var(--sand); margin-bottom: 16px; }
+.lg-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid rgba(196,168,130,.08); font-size: 13px;
+}
+.lg-row:last-child { border-bottom: none; }
+.lg-label { color: rgba(196,168,130,.85); }
+.lg-label span { font-family: 'Noto Sans Tamil', sans-serif; font-size: 11px; color: rgba(196,168,130,.5); margin-left: 4px; }
+.lg-val { font-weight: 600; font-family: 'DM Sans', sans-serif; }
+.lg-bar-bg { flex: 0 0 64px; height: 5px; border-radius: 999px; background: rgba(196,168,130,.12); margin-left: 12px; overflow: hidden; }
+.lg-bar { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--amber), var(--gold)); }
+.lg-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 14px; margin-top: 6px; border-top: 1px solid rgba(240,160,32,.3);
+  font-size: 15px; font-weight: 700;
+}
+.lg-total-val { color: var(--gold); font-family: 'DM Sans', sans-serif; font-size: 19px; }
+
+/* Scenario table */
+.scen {
+  background: rgba(28,18,9,.5);
+  border: 1px solid rgba(196,168,130,.12);
+  border-radius: 16px; padding: 22px;
+}
+.scen-title { font-family: 'Libre Baskerville', serif; font-size: 15px; color: var(--sand); margin-bottom: 6px; }
+.scen-sub { font-size: 11px; color: rgba(196,168,130,.55); margin-bottom: 14px; font-family: 'Noto Sans Tamil', sans-serif; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: right; padding: 9px 6px; font-size: 12.5px; }
+th { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: rgba(196,168,130,.6); font-weight: 700; border-bottom: 1px solid rgba(196,168,130,.15); }
+td:first-child, th:first-child { text-align: left; }
+tbody tr { border-bottom: 1px solid rgba(196,168,130,.06); }
+tbody tr:last-child { border-bottom: none; }
+.sc-price { font-weight: 700; color: var(--cream); }
+.sc-pos { color: var(--lime); font-weight: 600; }
+.sc-neg { color: var(--rose); font-weight: 600; }
+tr.sc-current { background: rgba(74,181,160,.1); }
+tr.sc-current td:first-child { box-shadow: inset 3px 0 0 var(--aqua); }
+tr.sc-break td { color: var(--saffron); font-weight: 600; }
+
+/* Insight strip */
+.insight {
+  background: rgba(42,138,122,.1);
+  border: 1px solid rgba(74,181,160,.25);
+  border-radius: 14px; padding: 16px 18px; margin-top: 16px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.insight-icon { font-size: 20px; line-height: 1.2; }
+.insight-text { font-size: 13px; color: rgba(245,237,216,.9); line-height: 1.62; }
+.insight-text b { color: var(--aqua); }
+.insight-text span { font-family: 'Noto Sans Tamil', sans-serif; display:block; font-size: 12px; color: rgba(196,168,130,.7); margin-top: 4px; }
+
+.footer { text-align: center; margin-top: 48px; font-size: 11px; color: rgba(196,168,130,.4); line-height: 1.85; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.hdr, .input-card, .price-card { animation: fadeUp .45s ease both; }
+
+@media (max-width: 760px) {
+  .wrap { padding: 28px 14px 52px; }
+  .nav { flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .cols { grid-template-columns: 1fr; }
+  .input-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field input { font-size: 16px; min-height: 42px; }
+  .input-card, .price-card, .ledger, .scen, .hero-card { border-radius: 14px; padding: 18px; }
+  .price-val { font-size: 26px; }
+}
+@media (max-width: 380px) {
+  .input-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a href="index.html">Home</a><span class="nav-sep">/</span>
+    <a href="farm-tools.html">Farm Tools</a><span class="nav-sep">/</span>
+    <span class="nav-curr">P&L Simulator</span>
+  </nav>
+
+  <div class="hdr">
+    <div class="hdr-badge">📊 Financial Model</div>
+    <h1>P&L <span>Simulator</span></h1>
+    <div class="hdr-ta">லாப–நட்ட சிமுலேட்டர்</div>
+    <div class="hdr-desc">Model your fattening operation end-to-end. Adjust purchase weight, growth rate, feed cost, and sale price — and watch per-head cost, batch profit, annual ROI, and partner returns update instantly. All defaults are calibrated to a Mecheri / Mylambadi stall-fed batch.</div>
+  </div>
+
+  <!-- ============ INPUTS ============ -->
+  <div class="sec-title teal">Inputs · உள்ளீடுகள்</div>
+
+  <div class="input-card">
+    <div class="ic-head"><span>🐑</span> Animal &amp; Growth</div>
+    <div class="input-grid">
+      <div class="field">
+        <label><b>Purchase weight</b><span>வாங்கும் எடை</span></label>
+        <div class="input-wrap"><input id="purchaseWt" type="number" class="has-unit" value="20" step="1"><span class="unit">kg</span></div>
+      </div>
+      <div class="field">
+        <label><b>Sale weight</b><span>விற்கும் எடை</span></label>
+        <div class="input-wrap"><input id="saleWt" type="number" class="has-unit" value="40" step="1"><span class="unit">kg</span></div>
+      </div>
+      <div class="field">
+        <label><b>Target daily gain</b><span>தினசரி எடை ஏற்றம்</span></label>
+        <div class="input-wrap"><input id="adg" type="number" class="has-unit" value="160" step="10"><span class="unit">g/day</span></div>
+      </div>
+      <div class="field">
+        <label><b>Purchase price</b><span>வாங்கும் விலை</span></label>
+        <div class="input-wrap"><input id="purchasePrice" type="number" class="has-unit" value="450" step="10"><span class="unit">₹/kg</span></div>
+      </div>
+      <div class="field">
+        <label><b>Buy discount</b><span>பேரம் தள்ளுபடி</span></label>
+        <div class="input-wrap"><input id="buyDiscount" type="number" class="has-unit" value="500" step="50"><span class="unit">₹</span></div>
+      </div>
+      <div class="field">
+        <label><b>Mortality</b><span>இறப்பு விகிதம்</span></label>
+        <div class="input-wrap"><input id="mortality" type="number" class="has-unit" value="2" step="0.5"><span class="unit">%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-card">
+    <div class="ic-head"><span>🌾</span> Feed &amp; Per-head Costs</div>
+    <div class="input-grid">
+      <div class="field">
+        <label><b>TMR cost</b><span>தீவன விலை</span></label>
+        <div class="input-wrap"><input id="tmrCost" type="number" class="has-unit" value="30" step="1"><span class="unit">₹/kg</span></div>
+      </div>
+      <div class="field">
+        <label><b>TMR % bodyweight/day</b><span>உடல் எடையில் %</span></label>
+        <div class="input-wrap"><input id="tmrPct" type="number" class="has-unit" value="4" step="0.5"><span class="unit">%</span></div>
+      </div>
+      <div class="field">
+        <label><b>Dry fodder cost</b><span>உலர் தீவனம்/நாள்</span></label>
+        <div class="input-wrap"><input id="dryFodder" type="number" class="has-unit" value="4" step="0.5"><span class="unit">₹/day</span></div>
+      </div>
+      <div class="field">
+        <label><b>Transport</b><span>போக்குவரத்து</span></label>
+        <div class="input-wrap"><input id="transport" type="number" class="has-unit" value="100" step="10"><span class="unit">₹</span></div>
+      </div>
+      <div class="field">
+        <label><b>Commission</b><span>தரகு</span></label>
+        <div class="input-wrap"><input id="commission" type="number" class="has-unit" value="50" step="10"><span class="unit">₹</span></div>
+      </div>
+      <div class="field">
+        <label><b>Vaccine + medicine</b><span>தடுப்பூசி + மருந்து</span></label>
+        <div class="input-wrap"><input id="medicine" type="number" class="has-unit" value="250" step="25"><span class="unit">₹</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-card">
+    <div class="ic-head"><span>👷</span> Labour, Batch &amp; Partners</div>
+    <div class="input-grid">
+      <div class="field">
+        <label><b>Labour wage</b><span>கூலி/மாதம்</span></label>
+        <div class="input-wrap"><input id="labourWage" type="number" class="has-unit" value="12000" step="500"><span class="unit">₹/mo</span></div>
+      </div>
+      <div class="field">
+        <label><b>Animals per labour</b><span>ஒரு ஆளுக்கு ஆடு</span></label>
+        <div class="input-wrap"><input id="animalsPerLabour" type="number" class="has-unit" value="200" step="10"><span class="unit">head</span></div>
+      </div>
+      <div class="field">
+        <label><b>Batch size</b><span>தொகுப்பு அளவு</span></label>
+        <div class="input-wrap"><input id="heads" type="number" class="has-unit" value="100" step="10"><span class="unit">head</span></div>
+      </div>
+      <div class="field">
+        <label><b>Partners</b><span>பங்குதாரர்கள்</span></label>
+        <div class="input-wrap"><input id="partners" type="number" class="has-unit" value="2" step="1"><span class="unit">no</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SALE PRICE ============ -->
+  <div class="price-card">
+    <div class="price-row">
+      <div class="price-label">Sale price <span>விற்பனை விலை</span></div>
+      <div class="price-val">₹<span id="salePriceVal">450</span><small>/kg live wt</small></div>
+    </div>
+    <input id="salePrice" type="range" min="300" max="600" value="450" step="10">
+    <div class="range-ticks"><span>₹300</span><span>₹400</span><span>₹500</span><span>₹600</span></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="tb-btn" id="btn-share"><span>🔗</span> Copy share link</button>
+    <button class="tb-btn" id="btn-reset"><span>↺</span> Reset to defaults</button>
+  </div>
+
+  <!-- ============ RESULTS ============ -->
+  <div class="sec-title">Results · முடிவுகள்</div>
+
+  <div class="hero-grid">
+    <div class="hero-card hc-profit">
+      <div class="hc-label">Gross profit / batch</div>
+      <div class="hc-val" id="r-gpBatch">—</div>
+      <div class="hc-sub"><b id="r-heads">—</b> head batch · <span id="r-days">—</span> days</div>
+    </div>
+    <div class="hero-card hc-roi">
+      <div class="hc-label">ROI / batch</div>
+      <div class="hc-val" id="r-roiBatch">—</div>
+      <div class="hc-sub">on <b id="r-prodBatch">—</b> invested</div>
+    </div>
+    <div class="hero-card hc-annual">
+      <div class="hc-label">Gross profit / year</div>
+      <div class="hc-val" id="r-gpYear">—</div>
+      <div class="hc-sub"><b id="r-batches">—</b> batches/yr · <b id="r-roiYear">—</b> ROI</div>
+    </div>
+    <div class="hero-card hc-net">
+      <div class="hc-label">Net / partner / year</div>
+      <div class="hc-val" id="r-netPartner">—</div>
+      <div class="hc-sub">split across <b id="r-partners">—</b> partners</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <!-- Per-head cost ledger -->
+    <div class="ledger">
+      <div class="ledger-title">Per-head cost · ஒரு ஆட்டுக்கு செலவு</div>
+      <div id="ledger-rows"></div>
+      <div class="lg-total"><span>Total production cost</span><span class="lg-total-val" id="r-costHead">—</span></div>
+    </div>
+
+    <!-- Scenario table -->
+    <div class="scen">
+      <div class="scen-title">Sale-price scenarios</div>
+      <div class="scen-sub">விற்பனை விலைக்கேற்ப லாபம் / batch</div>
+      <table>
+        <thead><tr><th>₹/kg</th><th>Revenue</th><th>Gross profit</th><th>ROI</th></tr></thead>
+        <tbody id="scen-rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">💡</div>
+    <div class="insight-text" id="insight-text">—</div>
+  </div>
+
+  <div class="footer">
+    கொம்பனைப்புதூர் பண்ணை · ஈரோடு மாவட்டம் · 2026<br>
+    Model basis: TANUVAS feed norms · Erode / Bhavani market observations. Figures are estimates for planning only.
+  </div>
+
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const num = id => parseFloat($(id).value) || 0;
+
+const fmt = n => {
+  const r = Math.round(n);
+  return '₹' + r.toLocaleString('en-IN');
+};
+// Indian short form (L = lakh)
+const fmtShort = n => {
+  const a = Math.abs(n);
+  if (a >= 10000000) return (n/10000000).toFixed(2).replace(/\.00$/,'') + ' Cr';
+  if (a >= 100000)   return (n/100000).toFixed(2).replace(/\.00$/,'') + ' L';
+  if (a >= 1000)     return Math.round(n/1000) + 'k';
+  return Math.round(n).toString();
+};
+const fmtRs = n => '₹' + fmtShort(n);
+const pct = n => (n*100).toFixed(1) + '%';
+
+function calc() {
+  // ---- read inputs ----
+  const purchaseWt   = num('purchaseWt');
+  const saleWt       = num('saleWt');
+  const adg          = num('adg') / 1000;        // g -> kg
+  const purchasePrice= num('purchasePrice');
+  const buyDiscount  = num('buyDiscount');
+  const mortality    = num('mortality') / 100;
+  const tmrCost      = num('tmrCost');
+  const tmrPct       = num('tmrPct') / 100;
+  const dryFodder    = num('dryFodder');
+  const transport    = num('transport');
+  const commission   = num('commission');
+  const medicine     = num('medicine');
+  const labourWage   = num('labourWage');
+  const animalsPerLabour = num('animalsPerLabour') || 1;
+  const heads        = num('heads');
+  const partners     = Math.max(1, num('partners'));
+  const salePrice    = num('salePrice');
+
+  // ---- derived ----
+  const gain     = Math.max(0, saleWt - purchaseWt);
+  const days     = adg > 0 ? gain / adg : 0;
+  const medianWt = (purchaseWt + saleWt) / 2;
+
+  // per-head costs
+  const cAnimal   = purchaseWt * purchasePrice - buyDiscount;
+  const cTransport= transport;
+  const cCommission = commission;
+  const cMedicine = medicine;
+  const cTmr      = tmrPct * medianWt * days * tmrCost;
+  const cDry      = days * dryFodder;
+  const cLabour   = (days / 30) * labourWage / animalsPerLabour;
+  const costHead  = cAnimal + cTransport + cCommission + cMedicine + cTmr + cDry + cLabour;
+
+  // batch
+  const prodBatch = costHead * heads;
+  const saleHeads = heads * (1 - mortality);
+  const revenue   = saleHeads * salePrice * saleWt;
+  const gpBatch   = revenue - prodBatch;
+  const roiBatch  = prodBatch > 0 ? gpBatch / prodBatch : 0;
+
+  // annual
+  const batches   = days > 0 ? 365 / days : 0;
+  const gpYear    = gpBatch * batches;
+  const roiYear   = prodBatch > 0 ? gpYear / prodBatch : 0;
+  const netPartner= gpYear / partners;
+
+  // break-even sale price per kg
+  const breakEven = (saleHeads * saleWt) > 0 ? prodBatch / (saleHeads * saleWt) : 0;
+
+  // ---- hero cards ----
+  setVal('r-gpBatch', fmtRs(gpBatch), gpBatch < 0);
+  $('r-heads').textContent = Math.round(heads);
+  $('r-days').textContent  = Math.round(days);
+  setVal('r-roiBatch', pct(roiBatch), roiBatch < 0);
+  $('r-prodBatch').textContent = fmtRs(prodBatch);
+  setVal('r-gpYear', fmtRs(gpYear), gpYear < 0);
+  $('r-batches').textContent = batches.toFixed(2);
+  $('r-roiYear').textContent = pct(roiYear);
+  setVal('r-netPartner', fmtRs(netPartner), netPartner < 0);
+  $('r-partners').textContent = Math.round(partners);
+
+  // ---- per-head ledger ----
+  const items = [
+    ['Animal',        'விலங்கு',  cAnimal],
+    ['TMR feed',      'தீவனம்',   cTmr],
+    ['Dry fodder',    'உலர்',     cDry],
+    ['Labour',        'கூலி',     cLabour],
+    ['Vaccine/med',   'மருந்து',  cMedicine],
+    ['Transport',     'போக்கு',   cTransport],
+    ['Commission',    'தரகு',     cCommission],
+  ];
+  const maxItem = Math.max(...items.map(i => i[2]), 1);
+  $('ledger-rows').innerHTML = items.map(([en, ta, v]) => `
+    <div class="lg-row">
+      <div class="lg-label">${en}<span>${ta}</span></div>
+      <div style="display:flex;align-items:center;">
+        <span class="lg-val">${fmt(v)}</span>
+        <span class="lg-bar-bg"><span class="lg-bar" style="width:${Math.max(2, v/maxItem*100)}%"></span></span>
+      </div>
+    </div>`).join('');
+  $('r-costHead').textContent = fmt(costHead);
+
+  // ---- scenario table ----
+  const prices = [300, 350, 400, 450, 500, 550, 600];
+  // ensure current + break-even appear
+  const cur = Math.round(salePrice);
+  const be  = Math.round(breakEven);
+  const rows = prices.map(p => ({p, kind: p === cur ? 'current' : ''}));
+  if (!prices.includes(cur)) rows.push({p: cur, kind: 'current'});
+  if (be > 0 && !rows.some(r => r.p === be)) rows.push({p: be, kind: 'break'});
+  rows.sort((a,b) => a.p - b.p);
+  $('scen-rows').innerHTML = rows.map(({p, kind}) => {
+    const rev = saleHeads * p * saleWt;
+    const gp  = rev - prodBatch;
+    const roi = prodBatch > 0 ? gp / prodBatch : 0;
+    const cls = kind === 'current' ? 'sc-current' : (kind === 'break' ? 'sc-break' : '');
+    const gpCls = gp < 0 ? 'sc-neg' : 'sc-pos';
+    const tag = kind === 'break' ? ' ⟵ break-even' : '';
+    return `<tr class="${cls}">
+      <td class="sc-price">₹${p}${tag}</td>
+      <td>${fmtRs(rev)}</td>
+      <td class="${gpCls}">${fmtRs(gp)}</td>
+      <td class="${gpCls}">${pct(roi)}</td>
+    </tr>`;
+  }).join('');
+
+  // ---- insight ----
+  let msg;
+  if (gpBatch < 0) {
+    msg = `At <b>₹${cur}/kg</b> you lose <b>${fmtRs(-gpBatch)}</b> per batch. You need at least <b>₹${be}/kg</b> just to break even — buy cheaper, push daily gain above ${(adg*1000).toFixed(0)}g, or cut feed cost.`;
+  } else {
+    const marginPerHead = gpBatch / heads;
+    msg = `Break-even is <b>₹${be}/kg</b>. Every ₹10/kg above it adds about <b>${fmtRs(saleHeads * 10 * saleWt)}</b> to batch profit. At ₹${cur}/kg you net <b>${fmt(marginPerHead)}/head</b> over a ${Math.round(days)}-day cycle, or <b>${fmtRs(gpYear)}/yr</b> across ${batches.toFixed(1)} batches.`;
+  }
+  $('insight-text').innerHTML = msg + `<span>இந்த விலையில் ஒரு ஆட்டுக்கு லாபம் ≈ ${fmt(gpBatch/Math.max(1,heads))}</span>`;
+}
+
+function setVal(id, text, neg) {
+  const el = $(id);
+  el.textContent = text;
+  el.classList.toggle('neg', !!neg);
+}
+
+// ---- shareable URL state ----
+// short keys keep links compact
+const STATE_KEYS = {
+  purchaseWt:'pw', saleWt:'sw', adg:'ag', purchasePrice:'pp', buyDiscount:'bd',
+  mortality:'mo', tmrCost:'tc', tmrPct:'tp', dryFodder:'df', transport:'tr',
+  commission:'cm', medicine:'md', labourWage:'lw', animalsPerLabour:'al',
+  heads:'hd', partners:'pt', salePrice:'sp'
+};
+const DEFAULTS = {};
+Object.keys(STATE_KEYS).forEach(id => DEFAULTS[id] = $(id).value);
+
+function loadFromURL() {
+  const p = new URLSearchParams(location.search);
+  Object.entries(STATE_KEYS).forEach(([id, k]) => {
+    if (p.has(k)) $(id).value = p.get(k);
+  });
+}
+
+function buildShareURL() {
+  const p = new URLSearchParams();
+  Object.entries(STATE_KEYS).forEach(([id, k]) => {
+    if ($(id).value !== DEFAULTS[id]) p.set(k, $(id).value); // only non-defaults
+  });
+  const q = p.toString();
+  return location.origin + location.pathname + (q ? '?' + q : '');
+}
+
+function syncSlider() { $('salePriceVal').textContent = $('salePrice').value; }
+
+$('btn-share').addEventListener('click', async () => {
+  const url = buildShareURL();
+  const btn = $('btn-share');
+  try { await navigator.clipboard.writeText(url); }
+  catch (e) {
+    const t = document.createElement('textarea');
+    t.value = url; document.body.appendChild(t); t.select();
+    document.execCommand('copy'); t.remove();
+  }
+  history.replaceState(null, '', url);
+  btn.classList.add('copied');
+  btn.innerHTML = '<span>✓</span> Link copied';
+  setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '<span>🔗</span> Copy share link'; }, 1800);
+});
+
+$('btn-reset').addEventListener('click', () => {
+  Object.keys(STATE_KEYS).forEach(id => $(id).value = DEFAULTS[id]);
+  history.replaceState(null, '', location.origin + location.pathname);
+  syncSlider(); calc();
+});
+
+// live update
+document.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+$('salePrice').addEventListener('input', syncSlider);
+
+// init
+loadFromURL();
+syncSlider();
+calc();
+</script>
+</body>
+</html>

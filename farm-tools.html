@@ -204,6 +204,15 @@ body::before {
 .tile-breeds .tile-label { color: #c090e8; }
 .tile-breeds .pill { background: rgba(138,90,181,.16); color: #c090e8; border: 1px solid rgba(138,90,181,.24); }
 
+.tile-sim {
+  background: rgba(20,52,48,.52);
+  border-color: rgba(74,181,160,.28);
+}
+.tile-sim::before { background: linear-gradient(90deg, #2a8a7a, #4ab5a0); }
+.tile-sim:hover { border-color: rgba(74,181,160,.62); }
+.tile-sim .tile-label { color: #5fd0bb; }
+.tile-sim .pill { background: rgba(74,181,160,.16); color: #5fd0bb; border: 1px solid rgba(74,181,160,.24); }
+
 .tile-icon { font-size: 40px; margin-bottom: 16px; display: block; line-height: 1; }
 
 .tile-label {
@@ -269,6 +278,7 @@ body::before {
 .tile:nth-child(1) { animation-delay: .12s; }
 .tile:nth-child(2) { animation-delay: .22s; }
 .tile:nth-child(3) { animation-delay: .32s; }
+.tile:nth-child(4) { animation-delay: .42s; }
 
 @media (max-width: 720px) {
   body { padding: 0 16px 44px; }
@@ -375,6 +385,21 @@ body::before {
         <span class="pill">Sheep · Goat</span>
         <span class="pill">Buy/Sell Tips</span>
         <span class="pill">தமிழ் · English</span>
+      </div>
+      <div class="tile-arrow">↗</div>
+    </a>
+
+    <a class="tile tile-sim" href="simulator.html">
+      <span class="tile-icon">📊</span>
+      <div class="tile-label">Financial Model</div>
+      <div class="tile-title">P&amp;L Simulator</div>
+      <span class="tile-title-ta">லாப–நட்ட சிமுலேட்டர்</span>
+      <div class="tile-desc">Model the whole fattening operation. Adjust purchase weight, daily gain, feed cost, and sale price — and watch per-head cost, batch profit, annual ROI, and partner returns update live.</div>
+      <div class="tile-pills">
+        <span class="pill">Unit Economics</span>
+        <span class="pill">Break-even ₹/kg</span>
+        <span class="pill">ROI / Year</span>
+        <span class="pill">Partner Split</span>
       </div>
       <div class="tile-arrow">↗</div>
     </a>

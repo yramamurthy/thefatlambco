@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(Get-ChildItem -Path \"c:\\\\Users\\\\algo\\\\source\\\\repos\\\\fatlambco\" -Recurse -Directory | Select-Object -First 30 | ForEach-Object { $_.FullName })"
+      "PowerShell(Get-ChildItem -Path \"c:\\\\Users\\\\algo\\\\source\\\\repos\\\\fatlambco\" -Recurse -Directory | Select-Object -First 30 | ForEach-Object { $_.FullName })",
+      "Read(//c/Users/algo/Downloads/**)",
+      "Bash(python -c \"import openpyxl; print\\('ok'\\)\")",
+      "Bash(pip show *)",
+      "Bash(python -c \"import openpyxl; print\\('openpyxl ok'\\)\")",
+      "Bash(pip install *)",
+      "Bash(python)",
+      "Bash(node)"
     ]
   }
 }
