@@ -8,7 +8,10 @@
       "Bash(python -c \"import openpyxl; print\\('openpyxl ok'\\)\")",
       "Bash(pip install *)",
       "Bash(python)",
-      "Bash(node)"
+      "Bash(node)",
+      "Bash(git remote *)",
+      "Bash(ls .vercel)",
+      "Bash(cat .vercel/project.json)"
     ]
   }
 }

@@ -190,12 +190,15 @@ input[type=range]::-moz-range-thumb {
 .hc-annual::before { background: linear-gradient(90deg, var(--amber), var(--gold)); }
 .hc-net { background: rgba(42,90,138,.12); border-color: rgba(42,90,138,.4); }
 .hc-net::before { background: linear-gradient(90deg, var(--blue), var(--sky)); }
+.hc-cycle { background: rgba(107,68,35,.16); border-color: rgba(196,168,130,.32); }
+.hc-cycle::before { background: linear-gradient(90deg, var(--clay), var(--sand)); }
 .hc-label { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--sand); opacity: .85; margin-bottom: 10px; }
 .hc-val { font-family: 'DM Sans', sans-serif; font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
 .hc-profit .hc-val { color: var(--lime); }
 .hc-roi .hc-val { color: var(--aqua); }
 .hc-annual .hc-val { color: var(--gold); }
 .hc-net .hc-val { color: var(--mist); }
+.hc-cycle .hc-val { color: var(--sand); }
 .hc-val.neg { color: var(--rose) !important; }
 .hc-sub { font-size: 11.5px; color: rgba(196,168,130,.7); }
 .hc-sub b { color: var(--cream); }
@@ -244,6 +247,7 @@ tbody tr:last-child { border-bottom: none; }
 .sc-price { font-weight: 700; color: var(--cream); }
 .sc-pos { color: var(--lime); font-weight: 600; }
 .sc-neg { color: var(--rose); font-weight: 600; }
+.sc-roi { display: block; font-size: 10px; font-weight: 500; color: rgba(196,168,130,.6); margin-top: 2px; }
 tr.sc-current { background: rgba(74,181,160,.1); }
 tr.sc-current td:first-child { box-shadow: inset 3px 0 0 var(--aqua); }
 tr.sc-break td { color: var(--saffron); font-weight: 600; }
@@ -375,7 +379,7 @@ tr.sc-break td { color: var(--saffron); font-weight: 600; }
       </div>
       <div class="field">
         <label><b>Partners</b><span>பங்குதாரர்கள்</span></label>
-        <div class="input-wrap"><input id="partners" type="number" class="has-unit" value="2" step="1"><span class="unit">no</span></div>
+        <div class="input-wrap"><input id="partners" type="number" class="has-unit" value="1" step="1"><span class="unit">no</span></div>
       </div>
     </div>
   </div>
@@ -409,6 +413,11 @@ tr.sc-break td { color: var(--saffron); font-weight: 600; }
       <div class="hc-val" id="r-roiBatch">—</div>
       <div class="hc-sub">on <b id="r-prodBatch">—</b> invested</div>
     </div>
+    <div class="hero-card hc-cycle">
+      <div class="hc-label">Batches / year</div>
+      <div class="hc-val" id="r-batchesBig">—</div>
+      <div class="hc-sub"><span id="r-daysCycle">—</span>-day cycle each</div>
+    </div>
     <div class="hero-card hc-annual">
       <div class="hc-label">Gross profit / year</div>
       <div class="hc-val" id="r-gpYear">—</div>
@@ -434,7 +443,7 @@ tr.sc-break td { color: var(--saffron); font-weight: 600; }
       <div class="scen-title">Sale-price scenarios</div>
       <div class="scen-sub">விற்பனை விலைக்கேற்ப லாபம் / batch</div>
       <table>
-        <thead><tr><th>₹/kg</th><th>Revenue</th><th>Gross profit</th><th>ROI</th></tr></thead>
+        <thead><tr><th>₹/kg</th><th>Prod. cost</th><th>Revenue</th><th>Profit / batch</th><th>Profit / year</th></tr></thead>
         <tbody id="scen-rows"></tbody>
       </table>
     </div>
@@ -533,6 +542,8 @@ function calc() {
   $('r-roiYear').textContent = pct(roiYear);
   setVal('r-netPartner', fmtRs(netPartner), netPartner < 0);
   $('r-partners').textContent = Math.round(partners);
+  $('r-batchesBig').textContent = batches.toFixed(2);
+  $('r-daysCycle').textContent = Math.round(days);
 
   // ---- per-head ledger ----
   const items = [
@@ -568,14 +579,17 @@ function calc() {
     const rev = saleHeads * p * saleWt;
     const gp  = rev - prodBatch;
     const roi = prodBatch > 0 ? gp / prodBatch : 0;
+    const gpYr  = gp * batches;
+    const roiYr = prodBatch > 0 ? gpYr / prodBatch : 0;
     const cls = kind === 'current' ? 'sc-current' : (kind === 'break' ? 'sc-break' : '');
     const gpCls = gp < 0 ? 'sc-neg' : 'sc-pos';
     const tag = kind === 'break' ? ' ⟵ break-even' : '';
     return `<tr class="${cls}">
       <td class="sc-price">₹${p}${tag}</td>
+      <td>${fmtRs(prodBatch)}</td>
       <td>${fmtRs(rev)}</td>
-      <td class="${gpCls}">${fmtRs(gp)}</td>
-      <td class="${gpCls}">${pct(roi)}</td>
+      <td class="${gpCls}">${fmtRs(gp)}<span class="sc-roi">${pct(roi)} ROI</span></td>
+      <td class="${gpCls}">${fmtRs(gpYr)}<span class="sc-roi">${pct(roiYr)} ROI</span></td>
     </tr>`;
   }).join('');
 
