@@ -11,7 +11,9 @@
       "Bash(node)",
       "Bash(git remote *)",
       "Bash(ls .vercel)",
-      "Bash(cat .vercel/project.json)"
+      "Bash(cat .vercel/project.json)",
+      "PowerShell(& 'c:\\\\Users\\\\algo\\\\source\\\\repos\\\\fatlambco\\\\_seo_patch.ps1')",
+      "Bash(xxd)"
     ]
   }
 }

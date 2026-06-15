@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /calendar-data.json
+
+Sitemap: https://www.fatlamb.in/sitemap.xml
