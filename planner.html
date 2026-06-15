@@ -48,7 +48,7 @@ body {
   background: var(--soil);
   font-family: 'DM Sans', sans-serif;
   color: var(--cream);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.55;
   min-height: 100vh;
   padding-bottom: 80px;
@@ -65,7 +65,7 @@ body::before {
 .nav {
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 36px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .nav a {
   color: rgba(196,168,130,.6); text-decoration: none;
@@ -81,23 +81,23 @@ body::before {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(74,140,63,.15); border: 1px solid rgba(74,140,63,.3);
   border-radius: 100px; padding: 5px 16px; margin-bottom: 16px;
-  font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 10.6px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
   color: var(--lime);
 }
 .hdr h1 {
   font-family: 'Libre Baskerville', serif;
-  font-size: clamp(28px, 4.4vw, 40px);
+  font-size: clamp(32px, 4.4vw, 46px);
   line-height: 1.14;
   color: var(--cream); margin-bottom: 8px;
 }
 .hdr h1 span { color: var(--lime); }
 .hdr-ta {
   font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: clamp(18px, 3vw, 22px);
+  font-size: clamp(21px, 3vw, 25px);
   line-height: 1.45;
   color: var(--gold); margin-bottom: 8px; font-weight: 700;
 }
-.hdr-desc { font-size: 13.5px; color: rgba(196,168,130,.8); max-width: 580px; line-height: 1.68; }
+.hdr-desc { font-size: 13.6px; color: rgba(196,168,130,.8); max-width: 580px; line-height: 1.68; }
 
 /* Festival countdown bar */
 .fest-bar {
@@ -109,9 +109,9 @@ body::before {
   padding: 10px 16px; border-radius: 12px; border: 1px solid;
   min-width: 110px;
 }
-.fc-days { font-size: 22px; font-weight: 700; font-family: 'DM Sans', sans-serif; line-height: 1; }
-.fc-label { font-size: 10px; opacity: .8; margin-top: 3px; text-align: center; font-weight: 500; }
-.fc-name  { font-family: 'Noto Sans Tamil', sans-serif; font-size: 11px; margin-top: 2px; text-align: center; }
+.fc-days { font-size: 25px; font-weight: 700; font-family: 'DM Sans', sans-serif; line-height: 1; }
+.fc-label { font-size: 12px; opacity: .8; margin-top: 3px; text-align: center; font-weight: 500; }
+.fc-name  { font-family: 'Noto Sans Tamil', sans-serif; font-size: 13px; margin-top: 2px; text-align: center; }
 
 .fc-urgent { background: rgba(184,50,50,.15); border-color: rgba(184,50,50,.4); }
 .fc-urgent .fc-days { color: var(--pink); }
@@ -129,7 +129,7 @@ body::before {
 /* Section title */
 .sec-title {
   font-family: 'Libre Baskerville', serif;
-  font-size: 17px; color: var(--gold);
+  font-size: 20px; color: var(--gold);
   line-height: 1.35;
   margin: 36px 0 16px;
   padding-bottom: 10px;
@@ -155,11 +155,11 @@ body::before {
   margin-bottom: 20px;
 }
 .input-card-title {
-  font-size: 14.5px; font-weight: 700; color: var(--cream);
+  font-size: 14.6px; font-weight: 700; color: var(--cream);
 }
 .input-card-ta {
   font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: 11.5px; line-height: 1.55; color: var(--sand); opacity: .82; margin-top: 2px;
+  font-size: 11.6px; line-height: 1.55; color: var(--sand); opacity: .82; margin-top: 2px;
 }
 
 .input-grid {
@@ -169,11 +169,11 @@ body::before {
 }
 .field { display: flex; flex-direction: column; gap: 5px; }
 .field label {
-  font-size: 11px; color: var(--sand); font-weight: 600; letter-spacing: .03em;
+  font-size: 13px; color: var(--sand); font-weight: 600; letter-spacing: .03em;
 }
 .field label span {
   font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: 11.5px; line-height: 1.45; color: rgba(196,168,130,.64); margin-left: 4px;
+  font-size: 11.6px; line-height: 1.45; color: rgba(196,168,130,.64); margin-left: 4px;
 }
 .field input, .field select {
   background: rgba(28,18,9,.6);
@@ -181,7 +181,7 @@ body::before {
   border-radius: 8px;
   color: var(--cream);
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   padding: 9px 12px;
   outline: none;
   transition: border-color .2s;
@@ -200,7 +200,7 @@ body::before {
   border-radius: 12px;
   color: var(--lime);
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   padding: 12px 20px;
   cursor: pointer;
   width: 100%;
@@ -215,7 +215,7 @@ body::before {
 .btn-remove {
   background: none; border: none;
   color: rgba(240,80,80,.5); cursor: pointer;
-  font-size: 16px; padding: 2px 6px; border-radius: 6px;
+  font-size: 18px; padding: 2px 6px; border-radius: 6px;
   transition: color .2s, background .2s;
 }
 .btn-remove:hover { color: var(--rose); background: rgba(240,80,80,.1); }
@@ -229,7 +229,7 @@ body::before {
   border-radius: 14px;
   color: var(--cream);
   font-family: 'DM Sans', sans-serif;
-  font-size: 15px; font-weight: 600;
+  font-size: 17px; font-weight: 600;
   padding: 16px;
   cursor: pointer;
   margin-top: 8px;
@@ -270,7 +270,7 @@ body::before {
 }
 .tc-action-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   padding: 4px 12px; border-radius: 100px;
 }
 .badge-sell   { background: rgba(184,50,50,.25); color: var(--pink); border: 1px solid rgba(184,50,50,.4); }
@@ -279,11 +279,11 @@ body::before {
 .badge-buy    { background: rgba(100,70,30,.3); color: var(--sand); border: 1px solid rgba(100,70,30,.5); }
 
 .tc-batch-name {
-  font-size: 16px; font-weight: 700; color: var(--cream);
+  font-size: 18px; font-weight: 700; color: var(--cream);
   margin-bottom: 4px;
 }
 .tc-reason {
-  font-size: 13.5px; color: rgba(196,168,130,.85); line-height: 1.68;
+  font-size: 13.6px; color: rgba(196,168,130,.85); line-height: 1.68;
   margin-bottom: 14px;
   font-family: 'Noto Sans Tamil', sans-serif;
 }
@@ -295,8 +295,8 @@ body::before {
   border-radius: 10px; padding: 10px 14px;
   min-width: 110px;
 }
-.stat-val { font-size: 18px; font-weight: 700; font-family: 'DM Sans', sans-serif; line-height: 1; }
-.stat-label { font-size: 10px; color: var(--sand); opacity: .8; margin-top: 4px; }
+.stat-val { font-size: 21px; font-weight: 700; font-family: 'DM Sans', sans-serif; line-height: 1; }
+.stat-label { font-size: 12px; color: var(--sand); opacity: .8; margin-top: 4px; }
 
 /* Cash flow summary */
 .cashflow {
@@ -307,14 +307,14 @@ body::before {
 }
 .cf-title {
   font-family: 'Libre Baskerville', serif;
-  font-size: 16px; color: var(--sage);
+  font-size: 18px; color: var(--sage);
   margin-bottom: 16px;
 }
 .cf-row {
   display: flex; justify-content: space-between; align-items: center;
   padding: 8px 0;
   border-bottom: 1px solid rgba(196,168,130,.07);
-  font-size: 13px;
+  font-size: 15px;
 }
 .cf-row:last-child { border-bottom: none; }
 .cf-row-label { color: rgba(196,168,130,.8); font-family: 'Noto Sans Tamil', sans-serif; }
@@ -323,9 +323,9 @@ body::before {
   display: flex; justify-content: space-between; align-items: center;
   padding-top: 14px; margin-top: 6px;
   border-top: 1px solid rgba(74,140,63,.3);
-  font-size: 16px; font-weight: 700;
+  font-size: 18px; font-weight: 700;
 }
-.cf-total-val { color: var(--lime); font-family: 'DM Sans', sans-serif; font-size: 20px; }
+.cf-total-val { color: var(--lime); font-family: 'DM Sans', sans-serif; font-size: 23px; }
 
 /* Next actions checklist */
 .checklist {
@@ -336,19 +336,19 @@ body::before {
 }
 .cl-title {
   font-family: 'Libre Baskerville', serif;
-  font-size: 16px; color: var(--gold); margin-bottom: 16px;
+  font-size: 18px; color: var(--gold); margin-bottom: 16px;
 }
 .cl-item {
   display: flex; align-items: flex-start; gap: 12px;
   padding: 10px 0;
   border-bottom: 1px solid rgba(196,168,130,.06);
-  font-size: 13px;
+  font-size: 15px;
 }
 .cl-item:last-child { border-bottom: none; }
 .cl-num {
   width: 22px; height: 22px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
 }
 .cl-urgent .cl-num { background: rgba(184,50,50,.25); color: var(--pink); }
 .cl-high   .cl-num { background: rgba(212,130,10,.25); color: var(--saffron); }
@@ -357,7 +357,7 @@ body::before {
 .cl-text small {
   display: block;
   font-family: 'Noto Sans Tamil', sans-serif;
-  font-size: 11.5px; line-height: 1.55; color: rgba(196,168,130,.72); margin-top: 2px;
+  font-size: 11.6px; line-height: 1.55; color: rgba(196,168,130,.72); margin-top: 2px;
 }
 
 /* Hidden initially */
@@ -411,12 +411,12 @@ body::before {
   }
 
   .hdr-ta {
-    font-size: 17px;
+    font-size: 20px;
     line-height: 1.5;
   }
 
   .hdr-desc {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.65;
   }
 
@@ -435,7 +435,7 @@ body::before {
 
   .sec-title {
     align-items: flex-start;
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.35;
     margin: 30px 0 14px;
   }
@@ -469,7 +469,7 @@ body::before {
   .field input,
   .field select {
     min-height: 42px;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .btn-add-batch,
@@ -504,7 +504,7 @@ body::before {
   }
 
   .stat-val {
-    font-size: 16px;
+    font-size: 18px;
     overflow-wrap: anywhere;
   }
 
@@ -578,7 +578,7 @@ body::before {
   <div class="fest-bar" id="festBar"></div>
 
   <!-- Inputs -->
-  <div class="sec-title">உங்கள் பண்ணை விவரம் <span style="font-size:12.5px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Your Farm Details</span></div>
+  <div class="sec-title">உங்கள் பண்ணை விவரம் <span style="font-size:12.6px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Your Farm Details</span></div>
 
   <!-- Global settings -->
   <div class="input-card">
@@ -611,7 +611,7 @@ body::before {
   <!-- Batch cards (dynamic) -->
   <div id="batchContainer"></div>
 
-  <button class="btn-add-batch" id="addBatch">+ Add Another Batch &nbsp;<span style="font-family:'Noto Sans Tamil',sans-serif;font-size:12.5px;line-height:1.5">மேலும் ஒரு தொகுதி சேர்க்கவும்</span></button>
+  <button class="btn-add-batch" id="addBatch">+ Add Another Batch &nbsp;<span style="font-family:'Noto Sans Tamil',sans-serif;font-size:12.6px;line-height:1.5">மேலும் ஒரு தொகுதி சேர்க்கவும்</span></button>
 
   <!-- Calculate -->
   <button class="btn-calc" id="calcBtn" onclick="calculate()">
@@ -620,7 +620,7 @@ body::before {
 
   <!-- Results -->
   <div id="results">
-    <div class="sec-title" style="margin-top:40px">இன்றைய பரிந்துரை <span style="font-size:12.5px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Today's Recommendations</span></div>
+    <div class="sec-title" style="margin-top:40px">இன்றைய பரிந்துரை <span style="font-size:12.6px;font-weight:400;color:var(--sand);font-family:'DM Sans',sans-serif;margin-left:8px;">Today's Recommendations</span></div>
     <div id="batchResults"></div>
     <div id="cashflowDiv"></div>
     <div id="checklistDiv"></div>
@@ -701,7 +701,7 @@ function addBatch(defaults = {}) {
     <div class="input-card-header">
       <div>
         <div class="input-card-title">
-          <input type="text" value="${nm}" id="bname-${id}" style="background:none;border:none;color:var(--cream);font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;width:160px;outline:none;padding:0;" />
+          <input type="text" value="${nm}" id="bname-${id}" style="background:none;border:none;color:var(--cream);font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;width:160px;outline:none;padding:0;" />
         </div>
         <div class="input-card-ta">தொகுதி விவரம்</div>
       </div>
@@ -913,7 +913,7 @@ function calculate() {
       <div class="today-card ${cardCls}">
         <div class="tc-header">
           <div>
-            <div class="tc-batch-name">${b.name} &nbsp;<span style="font-size:12px;color:var(--sand);font-weight:400">${b.count} sheep · ${b.startWt ? `${b.startWt}→` : ''}${b.wt} kg avg · ${b.daysAtFarm} days at farm</span></div>
+            <div class="tc-batch-name">${b.name} &nbsp;<span style="font-size:14px;color:var(--sand);font-weight:400">${b.count} sheep · ${b.startWt ? `${b.startWt}→` : ''}${b.wt} kg avg · ${b.daysAtFarm} days at farm</span></div>
           </div>
           <div class="tc-action-badge ${badgeCls}">${actionLabel}</div>
         </div>
@@ -1006,7 +1006,7 @@ function calculate() {
         <span class="cf-row-val" style="color:var(--sand)">−₹${Math.round(totalFeedCost).toLocaleString('en-IN')}</span>
       </div>` : ''}
       <div class="cf-total">
-        <span style="font-family:'Noto Sans Tamil',sans-serif;font-size:13.5px;line-height:1.5;color:var(--sand)">Net Profit (sell-now batches)</span>
+        <span style="font-family:'Noto Sans Tamil',sans-serif;font-size:13.6px;line-height:1.5;color:var(--sand)">Net Profit (sell-now batches)</span>
         <span class="cf-total-val">${netProfit >= 0 ? '+' : ''}₹${Math.round(netProfit).toLocaleString('en-IN')}</span>
       </div>
     </div>
