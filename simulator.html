@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.fatlamb.in/simulator">
 <meta property="og:url" content="https://www.fatlamb.in/simulator">
@@ -287,7 +289,8 @@ tr.sc-break td { color: var(--saffron); font-weight: 600; }
 @media (max-width: 760px) {
   .wrap { padding: 28px 14px 52px; }
   .nav { flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-  .cols { grid-template-columns: 1fr; }
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  .scen { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .input-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
   .field input { font-size: 18px; min-height: 42px; }
   .input-card, .price-card, .ledger, .scen, .hero-card { border-radius: 14px; padding: 18px; }
@@ -295,6 +298,16 @@ tr.sc-break td { color: var(--saffron); font-weight: 600; }
 }
 @media (max-width: 380px) {
   .input-grid { grid-template-columns: 1fr; }
+  .ledger, .scen { padding: 14px; }
+  th, td { padding: 8px 3px; }
+  td { font-size: 12px; white-space: nowrap; }
+  td:first-child { white-space: normal; }
+  .lg-bar-bg { flex-basis: 40px; margin-left: 8px; }
+}
+@media (max-width: 345px) {
+  .scen { padding: 10px; }
+  th, td { font-size: 11px; padding: 7px 2px; }
+  th { letter-spacing: 0; }
 }
 </style>
 </head>

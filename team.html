@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://www.fatlamb.in/team">
 <meta property="og:url" content="https://www.fatlamb.in/team">
 <title>The Fat Lamb Co. | Team & Credentials</title>
@@ -500,7 +502,9 @@ h2 {
   .section-head,
   .team-grid,
   .proof-grid,
-  .cta { grid-template-columns: 1fr; }
+  .cta { grid-template-columns: minmax(0, 1fr); }
+
+  h1, h2, h3 { overflow-wrap: break-word; }
 
   .card-body { padding: 24px 28px; }
 
@@ -543,12 +547,13 @@ h2 {
 
   .together { font-size: 18px; padding: 18px 20px; }
 
+  /* sized so the longest Tamil words fit a phone width without breaking */
   body.lang-ta h1 {
-    font-size: clamp(39px, 10vw, 53px);
+    font-size: clamp(24px, 7.4vw, 53px);
   }
 
   body.lang-ta h2 {
-    font-size: clamp(30px, 8vw, 39px);
+    font-size: clamp(21px, 6.2vw, 39px);
   }
 }
 </style>

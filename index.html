@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:url" content="https://www.fatlamb.in/">
 <title>Sheep & Goat Buyers and Suppliers, Erode | ஆடு வியாபாரம் | The Fat Lamb Co.</title>
 <meta name="description" content="We buy sheep & goats from farmers at competitive market prices and supply Mecheri lambs, sheep & goats to farmers, caterers, hotels and export houses. ஆடு வாங்குதல் & விற்பனை – ஈரோடு. Call 8762005930 · WhatsApp 8762005940.">
@@ -458,9 +460,31 @@ h2 {
   box-shadow: var(--card-shadow-hover);
 }
 
+.feature-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+}
+
+.feature-icon img {
+  display: block;
+  width: 52px;
+  height: 52px;
+}
+
 .feature-num {
   display: inline-block;
-  margin-bottom: 16px;
   padding: 4px 10px;
   border-radius: 999px;
   background: var(--sky);
@@ -887,9 +911,10 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
 
   .hero { min-height: auto; }
 
+  /* --nav-h is measured by JS so the hero always clears the nav, whatever its height in EN or Tamil */
   .hero-inner {
     width: calc(100% - 28px);
-    padding: 144px 0 52px;
+    padding: calc(var(--nav-h, 124px) + 36px) 0 52px;
   }
 
   .hero-stats,
@@ -971,7 +996,7 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
 
   .hero-inner {
     width: calc(100% - 24px);
-    padding-top: 192px;
+    padding-top: calc(var(--nav-h, 240px) + 32px);
     padding-bottom: 40px;
   }
 
@@ -1011,9 +1036,7 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
 @media (max-width: 380px) {
   .nav { width: calc(100% - 14px); padding: 8px; }
   .brand { font-size: 17px; }
-  .nav-links { grid-template-columns: 1fr; }
-  .nav-links .shop { grid-column: auto; }
-  .hero-inner { padding-top: 234px; }
+  .nav-links a { padding: 8px 8px; font-size: 14px; }
   h1 { font-size: 48px; }
   body.lang-ta h1 { font-size: 41px; }
   .section { width: calc(100% - 22px); }
@@ -1105,27 +1128,42 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
 
       <div class="feature-grid">
         <div class="feature">
-          <span class="feature-num">01</span>
+          <div class="feature-top">
+            <span class="feature-icon"><img src="icons/farm-consulting.webp" width="48" height="48" alt="" loading="lazy"></span>
+            <span class="feature-num">01</span>
+          </div>
           <b data-en="Farm Consulting" data-ta="பண்ணை ஆலோசனை">Farm Consulting</b>
           <p data-en="Guidance on farm setup, batch planning, feed systems, fattening schedules, and day-to-day livestock management." data-ta="பண்ணை அமைப்பு, தொகுதி திட்டமிடல், தீவன முறை, கொழுப்பூட்டல் அட்டவணை, மற்றும் தினசரி கால்நடை மேலாண்மைக்கு வழிகாட்டுதல்.">Guidance on farm setup, batch planning, feed systems, fattening schedules, and day-to-day livestock management.</p>
         </div>
         <div class="feature">
-          <span class="feature-num">02</span>
+          <div class="feature-top">
+            <span class="feature-icon"><img src="icons/vet-care.webp" width="48" height="48" alt="" loading="lazy"></span>
+            <span class="feature-num">02</span>
+          </div>
           <b data-en="Vet Services" data-ta="கால்நடை மருத்துவர் சேவை">Vet Services</b>
           <p data-en="On-call farm health support from our in-house expert vet doctor team for preventive care and practical treatment guidance." data-ta="தடுப்பு பராமரிப்பு மற்றும் நடைமுறை சிகிச்சை வழிகாட்டலுக்காக எங்கள் நிபுணர் கால்நடை மருத்துவர் குழுவின் பண்ணை ஆரோக்கிய ஆதரவு.">On-call farm health support from our in-house expert vet doctor team for preventive care and practical treatment guidance.</p>
         </div>
         <div class="feature">
-          <span class="feature-num">03</span>
+          <div class="feature-top">
+            <span class="feature-icon"><img src="icons/farmer-workshops.webp" width="48" height="48" alt="" loading="lazy"></span>
+            <span class="feature-num">03</span>
+          </div>
           <b data-en="Workshops" data-ta="பயிற்சி பட்டறைகள்">Workshops</b>
           <p data-en="Hands-on farm management sessions for farmers, farm teams, and new entrants who want practical livestock systems." data-ta="விவசாயிகள், பண்ணை குழுக்கள், மற்றும் கால்நடை பண்ணை தொடங்க விரும்புவோருக்கான நடைமுறை பண்ணை மேலாண்மை பயிற்சிகள்.">Hands-on farm management sessions for farmers, farm teams, and new entrants who want practical livestock systems.</p>
         </div>
         <div class="feature">
-          <span class="feature-num">04</span>
+          <div class="feature-top">
+            <span class="feature-icon"><img src="icons/mecheri-lamb.webp" width="48" height="48" alt="" loading="lazy"></span>
+            <span class="feature-num">04</span>
+          </div>
           <b data-en="Mecheri Lambs" data-ta="மேச்சேரி ஆடுகள்">Mecheri Lambs</b>
           <p data-en="Farm-raised Mecheri lambs averaging 33 kg, available for buyers who want breed clarity and direct farm inspection." data-ta="சராசரி 33 கிலோ எடையுள்ள பண்ணையில் வளர்க்கப்பட்ட மேச்சேரி ஆடுகள்; இனம் தெளிவாகவும் நேரடி பார்வையுடனும் வாங்க விரும்புவோருக்கு.">Farm-raised Mecheri lambs averaging 33 kg, available for buyers who want breed clarity and direct farm inspection.</p>
         </div>
         <div class="feature">
-          <span class="feature-num">05</span>
+          <div class="feature-top">
+            <span class="feature-icon"><img src="icons/feed-supplies.webp" width="48" height="48" alt="" loading="lazy"></span>
+            <span class="feature-num">05</span>
+          </div>
           <b data-en="Feed Supplies" data-ta="தீவன பொருட்கள்">Feed Supplies</b>
           <p data-en="Quality feed ingredients — concentrates, green fodder, and supplements — sourced and supplied to support optimal fattening and health." data-ta="கொழுப்பூட்டல் மற்றும் ஆரோக்கியத்தை மேம்படுத்த தேவையான தீவன பொருட்கள் — செறிவூட்டிகள், பச்சை தீவனம், மற்றும் சத்துக்கள் — கொள்முதல் செய்து வழங்கப்படுகின்றன.">Quality feed ingredients — concentrates, green fodder, and supplements — sourced and supplied to support optimal fattening and health.</p>
         </div>
@@ -1250,7 +1288,7 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
           <div class="contact-actions">
             <a class="btn btn-primary" href="tel:+918762005930" data-en="Call 8762005930" data-ta="அழைக்க 8762005930">Call 8762005930</a>
             <a class="btn btn-secondary" href="https://wa.me/918762005940" target="_blank" rel="noopener" data-en="WhatsApp 8762005940" data-ta="வாட்ஸ்அப் 8762005940">WhatsApp 8762005940</a>
-            <a class="btn btn-secondary" href="https://www.google.com/maps?q=11.13363051328006,77.85525579661882" target="_blank" rel="noopener" data-en="Open in Google Maps" data-ta="Google Maps-ல் திறக்கவும்">Open in Google Maps</a>
+            <a class="btn btn-secondary" href="https://maps.app.goo.gl/wkg9tfcnaPfAXg5z7" target="_blank" rel="noopener" data-en="Open in Google Maps" data-ta="Google Maps-ல் திறக்கவும்">Open in Google Maps</a>
           </div>
         </div>
         <div class="map-card">
@@ -1258,7 +1296,7 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
             title="The Fat Lamb Co. farm location map"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            src="https://maps.google.com/maps?q=11.13363051328006,77.85525579661882&z=15&output=embed">
+            src="https://maps.google.com/maps?q=The+Fat+Lamb+Co.,+Nadar+Colony,+Kompanaipudur,+Kolathupalayam,+Tamil+Nadu+638152&z=15&output=embed">
           </iframe>
         </div>
       </div>
@@ -1293,7 +1331,7 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
         "கொம்பனைப்புதூர் ஆட்டுப் பண்ணை"
       ],
       "url": "https://www.fatlamb.in/",
-      "logo": "https://www.fatlamb.in/favicon.svg",
+      "logo": "https://www.fatlamb.in/icon-512.png",
       "image": "https://www.fatlamb.in/assets/farm-hero.jpeg",
       "telephone": "+918762005930",
       "contactPoint": [
@@ -1387,7 +1425,7 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
         "latitude": 11.13363051328006,
         "longitude": 77.85525579661882
       },
-      "hasMap": "https://www.google.com/maps?q=11.13363051328006,77.85525579661882",
+      "hasMap": "https://maps.app.goo.gl/wkg9tfcnaPfAXg5z7",
       "areaServed": [
         {
           "@type": "AdministrativeArea",
@@ -1511,7 +1549,7 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
       ],
       "sameAs": [
         "https://wa.me/918762005940",
-        "https://www.google.com/maps?q=11.13363051328006,77.85525579661882"
+        "https://maps.app.goo.gl/wkg9tfcnaPfAXg5z7"
       ],
       "alternateName": "கொம்பனைப்புதூர் ஆட்டுப் பண்ணை",
       "knowsLanguage": [
@@ -1671,6 +1709,13 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
     });
 
     setLanguage(localStorage.getItem('fatLambLang') || 'en');
+
+    // Keep the hero clear of the nav: its height changes with language and screen width
+    const navEl = document.querySelector('.nav');
+    const syncNavHeight = () => document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px');
+    syncNavHeight();
+    if ('ResizeObserver' in window) new ResizeObserver(syncNavHeight).observe(navEl);
+    else window.addEventListener('resize', syncNavHeight);
   </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>

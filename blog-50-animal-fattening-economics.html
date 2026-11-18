@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://www.fatlamb.in/blog-50-animal-fattening-economics">
 <meta property="og:url" content="https://www.fatlamb.in/blog-50-animal-fattening-economics">
 <title>The Fat Lamb Co. | 50-Animal Fattening Economics</title>
@@ -218,10 +220,18 @@ body.lang-ta .lang-copy.ta { display: block; }
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
+    white-space: normal;
   }
+
+  /* let cells wrap instead of running off-screen; table still scrolls if it has many columns */
+  .article-body th,
+  .article-body td { min-width:6.5em; }
   .footer { flex-direction: column; align-items: flex-start; }
 }
+
+/* mobile: keep the nav and long Tamil words inside the screen */
+.nav{box-sizing:border-box}
+@media(max-width:560px){.brand{white-space:normal;line-height:1.2}.lang-toggle button{padding:8px 9px;min-width:38px}body.lang-ta h1{font-size:clamp(24px,7.4vw,41px)}body.lang-ta .article h2,body.lang-ta .article-head h2{font-size:clamp(24px,7.4vw,34px)}h1,h2,h3{overflow-wrap:break-word}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}th,td{min-width:6.5em}body.lang-ta table{font-size:14px}body.lang-ta th,body.lang-ta td{min-width:0;padding:10px 8px}}
 </style>
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="The Fat Lamb Co.">
@@ -230,7 +240,7 @@ body.lang-ta .lang-copy.ta { display: block; }
 <meta name="twitter:title" content="The Fat Lamb Co. | 50-Animal Fattening Economics">
 <meta name="twitter:description" content="Batch cost, revenue, mortality, break-even price, profit per animal, and ROI for a 50-animal sheep fattening batch.">
 <meta name="twitter:image" content="https://www.fatlamb.in/assets/farm-hero.jpeg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "50-Animal Fattening Economics", "description": "Bilingual Tamil and English farmer article explaining sheep fattening unit economics for a 50-animal batch using Batch 1 data.", "url": "https://www.fatlamb.in/blog-50-animal-fattening-economics", "mainEntityOfPage": "https://www.fatlamb.in/blog-50-animal-fattening-economics", "image": "https://www.fatlamb.in/assets/farm-hero.jpeg", "inLanguage": ["en-IN", "ta-IN"], "datePublished": "2026-05-09T10:19:33+05:30", "dateModified": "2026-11-18T12:23:56+05:30", "author": {"@type": "Organization", "@id": "https://www.fatlamb.in/#organization", "name": "The Fat Lamb Co.", "url": "https://www.fatlamb.in/"}, "publisher": {"@type": "Organization", "@id": "https://www.fatlamb.in/#organization", "name": "The Fat Lamb Co.", "url": "https://www.fatlamb.in/", "logo": {"@type": "ImageObject", "url": "https://www.fatlamb.in/favicon.svg"}}, "isPartOf": {"@type": "Blog", "@id": "https://www.fatlamb.in/blog#blog", "name": "The Fat Lamb Co. Farmer Articles", "url": "https://www.fatlamb.in/blog"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "50-Animal Fattening Economics", "description": "Bilingual Tamil and English farmer article explaining sheep fattening unit economics for a 50-animal batch using Batch 1 data.", "url": "https://www.fatlamb.in/blog-50-animal-fattening-economics", "mainEntityOfPage": "https://www.fatlamb.in/blog-50-animal-fattening-economics", "image": "https://www.fatlamb.in/assets/farm-hero.jpeg", "inLanguage": ["en-IN", "ta-IN"], "datePublished": "2026-05-09T10:19:33+05:30", "dateModified": "2026-11-18T12:23:56+05:30", "author": {"@type": "Organization", "@id": "https://www.fatlamb.in/#organization", "name": "The Fat Lamb Co.", "url": "https://www.fatlamb.in/"}, "publisher": {"@type": "Organization", "@id": "https://www.fatlamb.in/#organization", "name": "The Fat Lamb Co.", "url": "https://www.fatlamb.in/", "logo": {"@type": "ImageObject", "url": "https://www.fatlamb.in/icon-512.png"}}, "isPartOf": {"@type": "Blog", "@id": "https://www.fatlamb.in/blog#blog", "name": "The Fat Lamb Co. Farmer Articles", "url": "https://www.fatlamb.in/blog"}}</script>
 </head>
 <body class="lang-en">
   <nav class="nav" aria-label="Primary navigation">

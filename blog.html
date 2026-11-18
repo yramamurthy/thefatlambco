@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://www.fatlamb.in/blog">
 <meta property="og:url" content="https://www.fatlamb.in/blog">
 <title>Sheep &amp; Goat Farming Articles | ஆடு வளர்ப்பு கட்டுரைகள் | The Fat Lamb Co.</title>
@@ -216,6 +218,12 @@ h1 {
   line-height: 1.18;
 }
 
+/* Tamil card titles: card-sized, not section-heading-sized, so long words fit the column */
+body.lang-ta .article-card h2 {
+  font-size: clamp(22px, 2vw, 26px);
+  overflow-wrap: break-word;
+}
+
 .meta {
   display: flex;
   flex-wrap: wrap;
@@ -375,7 +383,7 @@ body.lang-ta .lang-copy.ta { display: block; }
   .wrap,
   .footer { width: calc(100% - 28px); }
 
-  .blog-index { grid-template-columns: 1fr; padding-top: 32px; }
+  .blog-index { grid-template-columns: minmax(0, 1fr); padding-top: 32px; }
 
   .article { padding: 56px 0; }
 }
@@ -402,6 +410,11 @@ body.lang-ta .lang-copy.ta { display: block; }
 
   .article-card { padding: 22px; }
 
+  /* long Tamil words must fit a phone width without cropping */
+  body.lang-ta h1 { font-size: clamp(22px, 7vw, 41px); }
+  body.lang-ta .article-card h2 { font-size: clamp(21px, 6.4vw, 27px); }
+  h1, h2, h3 { overflow-wrap: break-word; }
+
   .article-body {
     font-size: 15.6px;
     line-height: 1.76;
@@ -416,8 +429,12 @@ body.lang-ta .lang-copy.ta { display: block; }
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
+    white-space: normal;
   }
+
+  /* let cells wrap instead of running off-screen; table still scrolls if it has many columns */
+  .article-body th,
+  .article-body td { min-width:6.5em; }
 
   .footer {
     flex-direction: column;

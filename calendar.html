@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.fatlamb.in/calendar">
 <meta property="og:url" content="https://www.fatlamb.in/calendar">
@@ -373,12 +375,14 @@ html:not(:lang(en)) .hdr h1 span {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
+    white-space: normal;
   }
 
+  /* let cells wrap instead of running off-screen; table still scrolls if it has many columns */
   .strat-table th,
   .strat-table td {
     padding: 11px 12px;
+    min-width: 8em;
   }
 
   .footer-note {

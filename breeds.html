@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.fatlamb.in/breeds">
 <meta property="og:url" content="https://www.fatlamb.in/breeds">
@@ -301,12 +303,15 @@ body::before {
 
 @media (max-width: 780px) {
   .breed-grid { grid-template-columns: 1fr; gap: 16px; }
-  .site-nav { margin: 12px 20px 32px; flex-wrap: wrap; border-radius: 18px; padding: 10px; }
+  .site-nav { width: auto; margin: 12px 14px 32px; flex-wrap: wrap; border-radius: 18px; padding: 10px; }
   .nav-brand { font-size: 16px; }
   .nav-links { width: 100%; gap: 5px; }
   .nav-links a { padding: 7px 11px; font-size: 13px; }
   .lang-select { margin-left: 0; }
-  .toggle-btn { padding: 8px 16px; font-size: 14px; }
+  /* full-width toggle; labels wrap instead of being cut off at the screen edges */
+  .top-controls { justify-content: stretch; }
+  .animal-toggle { display: flex; width: 100%; }
+  .toggle-btn { flex: 1 1 0; min-width: 0; padding: 8px 10px; font-size: 14px; line-height: 1.35; white-space: normal; }
   .breed-img-wrap { height: 180px; }
   .breed-body { padding: 18px 18px 22px; }
 }
