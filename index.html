@@ -1041,12 +1041,22 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
   body.lang-ta h1 { font-size: 41px; }
   .section { width: calc(100% - 22px); }
 }
+
+/* full brand logo on a cream chip so it reads on the dark nav */
+.brand-logo { display: inline-flex; align-items: center; padding: 4px 14px; border-radius: 999px; background: #fdf7ed; line-height: 0; }
+.brand-logo img { display: block; height: 40px; width: auto; }
+@media (max-width: 860px) { .brand-logo { padding: 3px 12px; } .brand-logo img { height: 34px; } }
+
+.footer { flex-wrap: wrap; }
+.footer-logo { flex: 0 0 100%; line-height: 0; }
+.footer-logo a { display: inline-block; }
+.footer-logo img { display: block; height: 60px; width: auto; }
 </style>
 </head>
 <body>
   <nav class="nav" aria-label="Primary navigation">
     <div class="nav-main">
-      <a class="brand" href="/">The Fat Lamb Co.</a>
+      <a class="brand brand-logo" href="/"><img src="assets/logo.webp" width="148" height="40" alt="The Fat Lamb Co."></a>
       <div class="lang-toggle" aria-label="Language toggle">
         <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
         <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
@@ -1304,6 +1314,7 @@ body.lang-ta .portal-card h3 { font-family: 'Noto Sans Tamil', 'DM Sans', sans-s
   </main>
 
   <footer class="footer">
+    <div class="footer-logo"><a href="/"><img src="assets/logo.webp" width="222" height="60" alt="The Fat Lamb Co." loading="lazy"></a></div>
     <div data-en="The Fat Lamb Co. · Kombanaipudur · Mecheri lambs" data-ta="The Fat Lamb Co. · கொம்பனைப்புதூர் · மேச்சேரி ஆடுகள்">The Fat Lamb Co. · Kombanaipudur · Mecheri lambs</div>
     <div>
       <a href="team.html" data-en="Team & Credentials" data-ta="குழு & தகுதிகள்">Team & Credentials</a>

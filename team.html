@@ -556,6 +556,11 @@ h2 {
     font-size: clamp(21px, 6.2vw, 39px);
   }
 }
+
+/* full brand logo on a cream chip so it reads on the dark nav */
+.brand-logo { display: inline-flex; align-items: center; padding: 4px 14px; border-radius: 999px; background: #fdf7ed; line-height: 0; }
+.brand-logo img { display: block; height: 40px; width: auto; }
+@media (max-width: 860px) { .brand-logo { padding: 3px 12px; } .brand-logo img { height: 34px; } }
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Fat Lamb Co.">
@@ -568,7 +573,7 @@ h2 {
 <body>
   <nav class="nav" aria-label="Primary navigation">
     <div class="nav-main">
-      <a class="brand" href="index.html">The Fat Lamb Co.</a>
+      <a class="brand brand-logo" href="index.html"><img src="assets/logo.webp" width="148" height="40" alt="The Fat Lamb Co."></a>
       <div class="lang-toggle" aria-label="Language toggle">
         <button type="button" class="active" data-lang-btn="en" aria-pressed="true">EN</button>
         <button type="button" data-lang-btn="ta" aria-pressed="false">தமிழ்</button>
